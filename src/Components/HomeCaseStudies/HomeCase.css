@@ -1,0 +1,809 @@
+.ensai_home_case_pg_section {
+  --hc-bg: #05070b;
+  --hc-panel: #0b1119;
+  --hc-panel-edge: rgba(77, 216, 255, 0.16);
+  --hc-amber: #ffb454;
+  --hc-amber-dim: rgba(255, 180, 84, 0.4);
+  --hc-cyan: #4dd8ff;
+  --hc-cyan-dim: rgba(77, 216, 255, 0.4);
+  --hc-text: #eaf1f7;
+  --hc-text-dim: #7f8fa0;
+
+  position: relative;
+  width: 100%;
+  background: var(--hc-bg);
+  color: var(--hc-text);
+font-family: "Orbitron", sans-serif;
+  padding: 6.5rem 2rem 5.5rem;
+  box-sizing: border-box;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.ensai_home_case_pg_bg_grid {
+  position: absolute;
+  left: -10%;
+  right: -10%;
+  bottom: -4%;
+  height: 60%;
+  background-image:
+    linear-gradient(rgba(77, 216, 255, 0.14) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(77, 216, 255, 0.14) 1px, transparent 1px);
+  background-size: 64px 64px;
+  transform: perspective(480px) rotateX(64deg);
+  transform-origin: bottom center;
+  -webkit-mask-image: linear-gradient(to top, black 5%, transparent 85%);
+  mask-image: linear-gradient(to top, black 5%, transparent 85%);
+  pointer-events: none;
+  z-index: 0;
+  animation: ensai_home_case_pg_grid_scroll 5s linear infinite;
+}
+
+@keyframes ensai_home_case_pg_grid_scroll {
+  from {
+    background-position: 0 0, 0 0;
+  }
+  to {
+    background-position: 0 64px, 0 0;
+  }
+}
+
+.ensai_home_case_pg_bg_stars {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle, rgba(234, 241, 247, 0.55) 1px, transparent 1.4px),
+    radial-gradient(circle, rgba(77, 216, 255, 0.4) 1px, transparent 1.4px);
+  background-size: 160px 160px, 220px 220px;
+  background-position: 0 0, 60px 90px;
+  opacity: 0.55;
+  animation: ensai_home_case_pg_stars_drift 60s linear infinite;
+}
+
+@keyframes ensai_home_case_pg_stars_drift {
+  from {
+    background-position: 0 0, 60px 90px;
+  }
+  to {
+    background-position: -400px 400px, -340px 490px;
+  }
+}
+
+.ensai_home_case_pg_bg_radar {
+  position: absolute;
+  top: -120px;
+  right: -100px;
+  width: 420px;
+  height: 420px;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: 50%;
+  border: 1px solid rgba(77, 216, 255, 0.14);
+  opacity: 0.7;
+}
+
+.ensai_home_case_pg_bg_radar::before,
+.ensai_home_case_pg_bg_radar::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(77, 216, 255, 0.1);
+}
+
+.ensai_home_case_pg_bg_radar::before {
+  inset: 70px;
+}
+
+.ensai_home_case_pg_bg_radar::after {
+  inset: 150px;
+}
+
+.ensai_home_case_pg_bg_radar_sweep {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: conic-gradient(
+    from 0deg,
+    rgba(77, 216, 255, 0.35),
+    transparent 28%,
+    transparent 100%
+  );
+  animation: ensai_home_case_pg_radar_spin 7s linear infinite;
+}
+
+@keyframes ensai_home_case_pg_radar_spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.ensai_home_case_pg_bg_scanline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(77, 216, 255, 0.55),
+    transparent
+  );
+  filter: blur(0.5px);
+  opacity: 0.6;
+  animation: ensai_home_case_pg_scanline_sweep 7s ease-in-out infinite;
+}
+
+@keyframes ensai_home_case_pg_scanline_sweep {
+  0% {
+    top: 0%;
+    opacity: 0;
+  }
+  8% {
+    opacity: 0.6;
+  }
+  50% {
+    top: 100%;
+    opacity: 0.25;
+  }
+  58% {
+    opacity: 0;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+.ensai_home_case_pg_bg_crt {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.025) 0px,
+    rgba(255, 255, 255, 0.025) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  mix-blend-mode: overlay;
+  opacity: 0.5;
+}
+
+.ensai_home_case_pg_container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4.5rem;
+  box-sizing: border-box;
+}
+
+/* ---------------------------------------------------------------- */
+/* Title / HUD header                                                */
+/* ---------------------------------------------------------------- */
+
+.ensai_home_case_pg_title_wrap {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.7rem;
+  text-align: justify;
+  padding: 1.4rem 2.4rem;
+}
+
+.ensai_home_case_pg_title_wrap::before,
+.ensai_home_case_pg_title_wrap::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 22px;
+  height: 22px;
+  border-top: 1.5px solid var(--hc-cyan-dim);
+}
+
+.ensai_home_case_pg_title_wrap::before {
+  left: 0;
+  border-left: 1.5px solid var(--hc-cyan-dim);
+}
+
+.ensai_home_case_pg_title_wrap::after {
+  right: 0;
+  border-right: 1.5px solid var(--hc-cyan-dim);
+}
+
+.ensai_home_case_pg_status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+font-family: "Orbitron", sans-serif;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--hc-cyan);
+}
+
+.ensai_home_case_pg_status_dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--hc-cyan);
+  box-shadow: 0 0 8px 1px var(--hc-cyan);
+  animation: ensai_home_case_pg_pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes ensai_home_case_pg_pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+
+.ensai_home_case_pg_kicker {
+  font-family: "Orbitron", sans-serif;
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: var(--hc-amber);
+}
+
+.ensai_home_case_pg_title {
+  font-family: "Orbitron", sans-serif;
+  font-weight: 700;
+  font-size: clamp(30px, 5.4vw, 58px);
+  letter-spacing: 2px;
+  color: #f3f7fb;
+  margin: 0;
+  text-shadow: 0 0 30px rgba(77, 216, 255, 0.25);
+}
+
+/* ---------------------------------------------------------------- */
+/* Carousel                                                          */
+/* ---------------------------------------------------------------- */
+
+.ensai_home_case_pg_carousel {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.ensai_home_case_pg_carousel_viewport {
+  overflow: hidden;
+  padding: 20px 0 30px;
+}
+
+.ensai_home_case_pg_carousel_track {
+  display: flex;
+  align-items: flex-start;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+.ensai_home_case_pg_carousel_slide {
+  flex: 0 0 auto;
+  min-width: 0;
+  padding: 0 24px;
+  box-sizing: border-box;
+}
+
+.ensai_home_case_pg_carousel_controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  margin-top: 1rem;
+}
+
+.ensai_home_case_pg_carousel_btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  color: var(--hc-cyan);
+  background: rgba(77, 216, 255, 0.06);
+  border: 1px solid var(--hc-cyan-dim);
+  border-radius: 2px;
+  cursor: pointer;
+  clip-path: polygon(
+    10px 0,
+    100% 0,
+    100% calc(100% - 10px),
+    calc(100% - 10px) 100%,
+    0 100%,
+    0 10px
+  );
+  transition: color 0.25s ease, background 0.25s ease, border-color 0.25s ease,
+    transform 0.25s ease;
+}
+
+.ensai_home_case_pg_carousel_btn:hover:not(:disabled),
+.ensai_home_case_pg_carousel_btn:focus-visible:not(:disabled) {
+  color: #04141c;
+  background: var(--hc-cyan);
+  border-color: var(--hc-cyan);
+  outline: none;
+  transform: translateY(-2px);
+}
+
+.ensai_home_case_pg_carousel_btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.ensai_home_case_pg_carousel_dots {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ensai_home_case_pg_carousel_dot {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: 1px solid var(--hc-cyan-dim);
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  transition: width 0.35s ease, background 0.35s ease, border-color 0.35s ease,
+    border-radius 0.35s ease;
+}
+
+.ensai_home_case_pg_carousel_dot:hover {
+  background: var(--hc-cyan-dim);
+}
+
+.ensai_home_case_pg_carousel_dot_active {
+  width: 26px;
+  border-radius: 4px;
+  border-color: var(--hc-amber);
+  background: var(--hc-amber);
+  box-shadow: 0 0 10px rgba(255, 180, 84, 0.45);
+}
+
+/* ---------------------------------------------------------------- */
+/* Card                                                              */
+/* ---------------------------------------------------------------- */
+
+.ensai_home_case_pg_moleskine_wrapper {
+  display: block;
+  position: relative;
+  width: 100%;
+  cursor: pointer;
+  outline: none;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ensai_home_case_pg_moleskine_wrapper:hover {
+    transform: translateY(-6px);
+  }
+}
+
+.ensai_home_case_pg_moleskine_wrapper.ensai_home_case_pg_notebook_open {
+  transform: translateY(-6px);
+}
+
+.ensai_home_case_pg_moleskine_wrapper:focus-visible .ensai_home_case_pg_moleskine_notebook {
+  outline: 2px solid var(--hc-cyan);
+  outline-offset: 5px;
+}
+
+.ensai_home_case_pg_moleskine_notebook {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 3 / 4.3;
+  border-radius: 4px;
+  background: var(--hc-panel);
+  border: 1px solid var(--hc-panel-edge);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ensai_home_case_pg_moleskine_wrapper:hover .ensai_home_case_pg_moleskine_notebook {
+    border-color: var(--hc-cyan-dim);
+    box-shadow: 0 22px 50px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(77, 216, 255, 0.15),
+      0 0 32px rgba(77, 216, 255, 0.18);
+  }
+}
+
+.ensai_home_case_pg_notebook_open .ensai_home_case_pg_moleskine_notebook {
+  border-color: var(--hc-amber-dim);
+  box-shadow: 0 22px 50px rgba(0, 0, 0, 0.65), 0 0 0 1px rgba(255, 180, 84, 0.18),
+    0 0 32px rgba(255, 180, 84, 0.16);
+}
+
+/* HUD corner brackets, always visible on the card frame */
+.ensai_home_case_pg_hud_corner {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  z-index: 11;
+  pointer-events: none;
+  border-color: var(--hc-cyan-dim);
+  transition: border-color 0.4s ease, opacity 0.4s ease;
+}
+
+.ensai_home_case_pg_hud_corner_tl {
+  top: 8px;
+  left: 8px;
+  border-top: 1.5px solid;
+  border-left: 1.5px solid;
+}
+
+.ensai_home_case_pg_hud_corner_tr {
+  top: 8px;
+  right: 8px;
+  border-top: 1.5px solid;
+  border-right: 1.5px solid;
+}
+
+.ensai_home_case_pg_hud_corner_bl {
+  bottom: 8px;
+  left: 8px;
+  border-bottom: 1.5px solid;
+  border-left: 1.5px solid;
+}
+
+.ensai_home_case_pg_hud_corner_br {
+  bottom: 8px;
+  right: 8px;
+  border-bottom: 1.5px solid;
+  border-right: 1.5px solid;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ensai_home_case_pg_moleskine_wrapper:hover .ensai_home_case_pg_hud_corner {
+    border-color: var(--hc-cyan);
+  }
+}
+
+.ensai_home_case_pg_notebook_open .ensai_home_case_pg_hud_corner {
+  border-color: var(--hc-amber);
+}
+
+/* Readout panel behind the cover */
+.ensai_home_case_pg_notebook_page {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    linear-gradient(rgba(77, 216, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(77, 216, 255, 0.05) 1px, transparent 1px),
+    var(--hc-panel);
+  background-size: 20px 20px, 20px 20px, auto;
+}
+
+.ensai_home_case_pg_notebook_quote_container {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 34px 24px 28px;
+  box-sizing: border-box;
+  opacity: 0;
+  filter: blur(6px);
+  transform: translateY(6px);
+  transition: opacity 0.5s ease 0.18s, transform 0.5s ease 0.18s, filter 0.5s ease 0.18s;
+}
+
+.ensai_home_case_pg_notebook_open .ensai_home_case_pg_notebook_quote_container {
+  opacity: 1;
+  filter: blur(0);
+  transform: translateY(0);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ensai_home_case_pg_moleskine_wrapper:hover .ensai_home_case_pg_notebook_quote_container {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+  }
+}
+
+/* Paragraph: full text visible, scrolls inside the card if it is long */
+.ensai_home_case_pg_notebook_quote_scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  padding-right: 8px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--hc-cyan-dim) transparent;
+}
+
+.ensai_home_case_pg_notebook_quote_scroll::-webkit-scrollbar {
+  width: 3px;
+}
+
+.ensai_home_case_pg_notebook_quote_scroll::-webkit-scrollbar-thumb {
+  background: var(--hc-cyan-dim);
+  border-radius: 2px;
+}
+
+.ensai_home_case_pg_notebook_quote_text {
+  font-family: "Orbitron", sans-serif;
+  font-size: 12.5px;
+  line-height: 1.7;
+  color: var(--hc-text);
+  margin: 0;
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  overflow-wrap: anywhere;
+}
+
+/* Read More button */
+.ensai_home_case_pg_read_more_btn {
+  flex: 0 0 auto;
+  align-self: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-width: 150px;
+  padding: 10px 20px;
+  color: var(--hc-cyan);
+  font-family: "Orbitron", sans-serif;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  background: linear-gradient(
+    135deg,
+    rgba(77, 216, 255, 0.14),
+    rgba(77, 216, 255, 0.04)
+  );
+  border: 1px solid var(--hc-cyan-dim);
+  border-radius: 2px;
+  cursor: pointer;
+  clip-path: polygon(
+    12px 0,
+    100% 0,
+    100% calc(100% - 12px),
+    calc(100% - 12px) 100%,
+    0 100%,
+    0 12px
+  );
+  box-shadow: inset 0 0 14px rgba(77, 216, 255, 0.08);
+  transition: color 0.3s ease, background 0.3s ease, border-color 0.3s ease,
+    letter-spacing 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ensai_home_case_pg_read_more_icon {
+  transition: transform 0.3s ease;
+}
+
+.ensai_home_case_pg_read_more_btn:hover,
+.ensai_home_case_pg_read_more_btn:focus-visible {
+  color: #1a1004;
+  background: var(--hc-amber);
+  border-color: var(--hc-amber);
+  letter-spacing: 2.6px;
+  box-shadow: 0 0 22px rgba(255, 180, 84, 0.4);
+  outline: none;
+}
+
+.ensai_home_case_pg_read_more_btn:hover .ensai_home_case_pg_read_more_icon,
+.ensai_home_case_pg_read_more_btn:focus-visible .ensai_home_case_pg_read_more_icon {
+  transform: translateX(4px);
+}
+
+/* Cover: the sealed / classified state, lifts away on open */
+.ensai_home_case_pg_notebook_cover {
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+  overflow: hidden;
+  background: #060a10;
+  transform-origin: center;
+  transform: translateY(0) scale(1);
+  transition: transform 0.6s cubic-bezier(0.34, 1.1, 0.4, 1), opacity 0.6s ease;
+  opacity: 1;
+}
+
+.ensai_home_case_pg_notebook_cover_img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: grayscale(35%) brightness(0.75) contrast(1.05);
+  transition: filter 0.4s ease, transform 6s linear;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ensai_home_case_pg_moleskine_wrapper:hover .ensai_home_case_pg_notebook_cover_img {
+    filter: grayscale(0%) brightness(0.95) contrast(1.05);
+    transform: scale(1.05);
+  }
+}
+
+.ensai_home_case_pg_notebook_shine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(5, 8, 12, 0.15) 0%,
+    rgba(5, 8, 12, 0.55) 70%,
+    rgba(5, 8, 12, 0.92) 100%
+  );
+  pointer-events: none;
+}
+
+/* moving "encrypted data" scan sweep on the cover, always animating */
+.ensai_home_case_pg_notebook_scanband {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 46%;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(77, 216, 255, 0.12),
+    transparent
+  );
+  pointer-events: none;
+  animation: ensai_home_case_pg_scanband_move 3.4s ease-in-out infinite;
+}
+
+@keyframes ensai_home_case_pg_scanband_move {
+  0% {
+    top: -46%;
+  }
+  100% {
+    top: 100%;
+  }
+}
+
+/* bottom title label on the cover (replaces the old "Access Log") */
+.ensai_home_case_pg_notebook_title {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 26px 22px 24px;
+  font-family: "Orbitron", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 1.5px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #f3f7fb;
+  text-shadow: 0 0 14px rgba(77, 216, 255, 0.35);
+  background: linear-gradient(to top, rgba(5, 8, 12, 0.92), transparent);
+}
+
+.ensai_home_case_pg_notebook_title::before {
+  content: "";
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  width: 28px;
+  height: 2px;
+  transform: translateX(-50%);
+  background: var(--hc-amber);
+  box-shadow: 0 0 8px var(--hc-amber);
+}
+
+.ensai_home_case_pg_notebook_open .ensai_home_case_pg_notebook_cover {
+  transform: translateY(-14%) scale(0.94);
+  opacity: 0;
+  pointer-events: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ensai_home_case_pg_moleskine_wrapper:hover .ensai_home_case_pg_notebook_cover {
+    transform: translateY(-14%) scale(0.94);
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+/* Tablet */
+@media only screen and (max-width: 1024px) {
+  .ensai_home_case_pg_section {
+    padding: 5rem 1.5rem 4rem;
+  }
+
+  .ensai_home_case_pg_carousel {
+    max-width: 720px;
+  }
+
+  .ensai_home_case_pg_carousel_slide {
+    padding: 0 18px;
+  }
+
+  .ensai_home_case_pg_bg_radar {
+    width: 300px;
+    height: 300px;
+    top: -80px;
+    right: -80px;
+  }
+}
+
+/* Mobile */
+@media only screen and (max-width: 640px) {
+  .ensai_home_case_pg_section {
+    padding: 4rem 1.25rem 3rem;
+  }
+
+  .ensai_home_case_pg_container {
+    gap: 3rem;
+  }
+
+  .ensai_home_case_pg_carousel {
+    max-width: 340px;
+  }
+
+  .ensai_home_case_pg_carousel_slide {
+    padding: 0 10px;
+  }
+
+  .ensai_home_case_pg_notebook_quote_text {
+    font-size: 11.5px;
+  }
+
+  .ensai_home_case_pg_bg_radar {
+    width: 220px;
+    height: 220px;
+  }
+}
+
+/* Android 360px breakpoint */
+@media only screen and (max-width: 360px) {
+  .ensai_home_case_pg_section {
+    padding: 3.5rem 1rem 2.5rem;
+  }
+
+  .ensai_home_case_pg_carousel {
+    max-width: 290px;
+  }
+
+  .ensai_home_case_pg_notebook_title {
+    font-size: 11.5px;
+    letter-spacing: 1px;
+  }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .ensai_home_case_pg_bg_grid,
+  .ensai_home_case_pg_bg_stars,
+  .ensai_home_case_pg_bg_radar_sweep,
+  .ensai_home_case_pg_bg_scanline,
+  .ensai_home_case_pg_status_dot,
+  .ensai_home_case_pg_notebook_scanband {
+    animation: none !important;
+  }
+
+  .ensai_home_case_pg_carousel_track,
+  .ensai_home_case_pg_moleskine_wrapper,
+  .ensai_home_case_pg_moleskine_notebook,
+  .ensai_home_case_pg_notebook_cover,
+  .ensai_home_case_pg_notebook_cover_img,
+  .ensai_home_case_pg_notebook_quote_container,
+  .ensai_home_case_pg_read_more_btn {
+    transition: none !important;
+  }
+}

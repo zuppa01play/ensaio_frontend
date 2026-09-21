@@ -1,0 +1,495 @@
+
+.ensai_error_pg_stage {
+  position: relative;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem 1rem 2.5rem;
+  overflow: hidden;
+  color: #e6edf5;
+font-family: "Orbitron", sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  background:
+    radial-gradient(ellipse 70% 55% at 50% 38%, #0e1826 0%, transparent 70%),
+    linear-gradient(rgba(159, 216, 255, 0.035) 1px, transparent 1px) 0 0 / 48px 48px,
+    linear-gradient(90deg, rgba(159, 216, 255, 0.035) 1px, transparent 1px) 0 0 / 48px 48px,
+    #06080c;
+}
+
+.ensai_error_pg_stage *,
+.ensai_error_pg_stage *::before,
+.ensai_error_pg_stage *::after {
+  box-sizing: border-box;
+}
+
+/* ---------- Stars ---------- */
+.ensai_error_pg_stars {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.ensai_error_pg_star {
+  position: absolute;
+  border-radius: 50%;
+  background: #cfe8ff;
+  opacity: 0.15;
+  animation: ensai_error_pg_twinkle 3s ease-in-out infinite;
+}
+
+@keyframes ensai_error_pg_twinkle {
+  0%,
+  100% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* ---------- Hero (404 + drone) ---------- */
+.ensai_error_pg_hero {
+  position: relative;
+  width: 100%;
+  max-width: 760px;
+  display: grid;
+  place-items: center;
+  z-index: 1;
+}
+
+.ensai_error_pg_code {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+font-family: "Orbitron", sans-serif;
+  font-weight: 700;
+  font-size: clamp(6.5rem, 40vw, 23rem);
+  line-height: 1;
+  letter-spacing: 0.04em;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(159, 216, 255, 0.16);
+  user-select: none;
+  white-space: nowrap;
+}
+
+/* subtle glitch, fires briefly every few seconds */
+.ensai_error_pg_code::before,
+.ensai_error_pg_code::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  -webkit-text-stroke: 2px transparent;
+  opacity: 0;
+}
+
+.ensai_error_pg_code::before {
+  color: rgba(255, 77, 77, 0.35);
+  animation: ensai_error_pg_glitch_a 6s steps(1) infinite;
+}
+
+.ensai_error_pg_code::after {
+  color: rgba(159, 216, 255, 0.35);
+  animation: ensai_error_pg_glitch_b 6s steps(1) infinite;
+}
+
+@keyframes ensai_error_pg_glitch_a {
+  0%,
+  92%,
+  100% {
+    opacity: 0;
+    transform: none;
+    clip-path: inset(0 0 0 0);
+  }
+  93% {
+    opacity: 1;
+    transform: translate(-6px, 0);
+    clip-path: inset(18% 0 62% 0);
+  }
+  95% {
+    opacity: 1;
+    transform: translate(5px, 0);
+    clip-path: inset(58% 0 12% 0);
+  }
+  97% {
+    opacity: 1;
+    transform: translate(-3px, 0);
+    clip-path: inset(38% 0 40% 0);
+  }
+}
+
+@keyframes ensai_error_pg_glitch_b {
+  0%,
+  92%,
+  100% {
+    opacity: 0;
+    transform: none;
+    clip-path: inset(0 0 0 0);
+  }
+  94% {
+    opacity: 1;
+    transform: translate(6px, 0);
+    clip-path: inset(48% 0 30% 0);
+  }
+  96% {
+    opacity: 1;
+    transform: translate(-5px, 0);
+    clip-path: inset(10% 0 74% 0);
+  }
+  98% {
+    opacity: 1;
+    transform: translate(3px, 0);
+    clip-path: inset(70% 0 8% 0);
+  }
+}
+
+/* ---------- Drone ---------- */
+.ensai_error_pg_drone_wrap {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  transition: transform 0.35s ease-out; /* driven by pointer parallax in Error.jsx */
+  will-change: transform;
+  cursor: pointer;
+}
+
+.ensai_error_pg_drone_float {
+  animation: ensai_error_pg_hover 4.2s ease-in-out infinite;
+}
+
+.ensai_error_pg_drone_svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  filter: drop-shadow(0 24px 30px rgba(0, 0, 0, 0.55));
+}
+
+@keyframes ensai_error_pg_hover {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+
+/* body tilts like it's fighting to stay level */
+.ensai_error_pg_drone {
+  transform-box: fill-box;
+  transform-origin: 50% 60%;
+  animation: ensai_error_pg_wobble 3.4s ease-in-out infinite;
+}
+
+@keyframes ensai_error_pg_wobble {
+  0% {
+    transform: rotate(-10deg);
+  }
+  22% {
+    transform: rotate(-5deg) translateX(3px);
+  }
+  38% {
+    transform: rotate(-11deg) translateX(-2px);
+  }
+  60% {
+    transform: rotate(-6deg);
+  }
+  78% {
+    transform: rotate(-12deg) translateY(4px);
+  }
+  100% {
+    transform: rotate(-10deg);
+  }
+}
+
+/* propellers */
+.ensai_error_pg_disc {
+  fill: rgba(159, 216, 255, 0.1);
+}
+
+.ensai_error_pg_blade {
+  fill: #b8c4d4;
+  opacity: 0.9;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: ensai_error_pg_spin 0.14s linear infinite alternate;
+}
+
+.ensai_error_pg_blade_rear {
+  animation-duration: 0.17s;
+}
+
+@keyframes ensai_error_pg_spin {
+  from {
+    transform: scaleX(1);
+  }
+  to {
+    transform: scaleX(0.55);
+  }
+}
+
+/* struggling propeller: cuts out and restarts */
+.ensai_error_pg_sputter {
+  animation:
+    ensai_error_pg_spin 0.14s linear infinite alternate,
+    ensai_error_pg_sputter 3.4s steps(1) infinite;
+}
+
+@keyframes ensai_error_pg_sputter {
+  0%,
+  30%,
+  100% {
+    opacity: 0.9;
+  }
+  32% {
+    opacity: 0.15;
+  }
+  36% {
+    opacity: 0.9;
+  }
+  40% {
+    opacity: 0.1;
+  }
+  52% {
+    opacity: 0.9;
+  }
+  70% {
+    opacity: 0.2;
+  }
+  74% {
+    opacity: 0.9;
+  }
+}
+
+/* broken propeller tumbling away, then reset */
+.ensai_error_pg_lost_prop {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: ensai_error_pg_tumble 4.2s cubic-bezier(0.3, 0.1, 0.6, 1) infinite;
+}
+
+@keyframes ensai_error_pg_tumble {
+  0% {
+    transform: translate(0, 0) rotate(0deg) scaleX(1);
+    opacity: 0;
+  }
+  6% {
+    opacity: 1;
+  }
+  55% {
+    transform: translate(70px, -30px) rotate(160deg) scaleX(0.6);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(120px, 150px) rotate(430deg) scaleX(0.3);
+    opacity: 0;
+  }
+}
+
+/* LEDs + crack */
+.ensai_error_pg_led_red {
+  animation: ensai_error_pg_blink 0.9s steps(1) infinite;
+}
+
+@keyframes ensai_error_pg_blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  51%,
+  100% {
+    opacity: 0.1;
+  }
+}
+
+.ensai_error_pg_led_dead {
+  animation: ensai_error_pg_flicker 2.6s steps(1) infinite;
+}
+
+@keyframes ensai_error_pg_flicker {
+  0%,
+  60%,
+  100% {
+    fill: #2a3340;
+  }
+  62% {
+    fill: #ffb020;
+  }
+  64% {
+    fill: #2a3340;
+  }
+  66% {
+    fill: #ffb020;
+  }
+  68% {
+    fill: #2a3340;
+  }
+}
+
+.ensai_error_pg_crack {
+  animation: ensai_error_pg_crack_glow 1.8s ease-in-out infinite;
+}
+
+@keyframes ensai_error_pg_crack_glow {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* ---------- Message ---------- */
+.ensai_error_pg_message {
+  position: relative;
+  z-index: 2;
+  margin-top: -1rem;
+  text-align: center;
+  max-width: 34rem;
+}
+
+.ensai_error_pg_status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  margin: 0 0 0.75rem;
+  font-size: 0.95rem;
+  color: #8b98a9;
+}
+
+.ensai_error_pg_dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #ff4d4d;
+  box-shadow: 0 0 10px #ff4d4d;
+  animation: ensai_error_pg_blink 0.9s steps(1) infinite;
+}
+
+.ensai_error_pg_title {
+  margin: 0 0 0.6rem;
+font-family: "Orbitron", sans-serif;
+  font-weight: 700;
+  font-size: clamp(1.75rem, 7vw, 3rem);
+  letter-spacing: 0.01em;
+  line-height: 1.15;
+  color: #e6edf5;
+}
+
+.ensai_error_pg_lead {
+  margin: 0 auto 1.75rem;
+  max-width: 30rem;
+  color: #8b98a9;
+  font-size: 1rem;
+}
+
+/* ---------- Button ---------- */
+.ensai_error_pg_btn {
+  display: inline-block;
+  padding: 0.85rem 1.6rem;
+font-family: "Orbitron", sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.02em;
+  color: #04121f;
+  text-decoration: none;
+  background: #9fd8ff;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  box-shadow: 0 0 0 0 rgba(159, 216, 255, 0.5);
+  transition: transform 0.2s ease, box-shadow 0.25s ease, background 0.2s ease;
+}
+
+.ensai_error_pg_btn:hover {
+  background: #c4e7ff;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px -8px rgba(159, 216, 255, 0.55);
+}
+
+.ensai_error_pg_btn:active {
+  transform: translateY(0);
+}
+
+.ensai_error_pg_btn:focus-visible {
+  outline: 3px solid #ffb020;
+  outline-offset: 4px;
+}
+
+/* ---------- Tablet & up ---------- */
+@media (min-width: 768px) {
+  .ensai_error_pg_stage {
+    padding: 2rem 1.25rem 3rem;
+  }
+
+  .ensai_error_pg_code {
+    -webkit-text-stroke: 2px rgba(159, 216, 255, 0.16);
+  }
+
+  .ensai_error_pg_drone_wrap {
+    width: 88%;
+  }
+
+  .ensai_error_pg_message {
+    margin-top: -0.5rem;
+  }
+
+  .ensai_error_pg_lead {
+    margin-bottom: 2rem;
+    font-size: 1.05rem;
+  }
+
+  .ensai_error_pg_btn {
+    padding: 0.9rem 1.9rem;
+    font-size: 1.05rem;
+  }
+}
+
+/* ---------- Small Android (360px and below) ---------- */
+@media (max-width: 360px) {
+  .ensai_error_pg_stage {
+    padding: 1rem 0.75rem 2rem;
+  }
+
+  .ensai_error_pg_code {
+    font-size: 6rem;
+    -webkit-text-stroke: 1px rgba(159, 216, 255, 0.16);
+  }
+
+  .ensai_error_pg_status {
+    font-size: 0.85rem;
+  }
+
+  .ensai_error_pg_title {
+    font-size: 1.6rem;
+  }
+
+  .ensai_error_pg_lead {
+    font-size: 0.95rem;
+  }
+
+  .ensai_error_pg_btn {
+    padding: 0.8rem 1.35rem;
+    font-size: 0.95rem;
+  }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .ensai_error_pg_stage *,
+  .ensai_error_pg_stage *::before,
+  .ensai_error_pg_stage *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .ensai_error_pg_lost_prop {
+    opacity: 0;
+  }
+}

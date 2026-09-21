@@ -1,0 +1,427 @@
+.ensai_home_pg_page {
+  font-family: "Orbitron", sans-serif;
+  font-feature-settings:
+    "liga" 1,
+    "calt" 1;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.ensai_home_pg_hero {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: #0a0e14;
+  box-sizing: border-box;
+}
+
+/* ---------- Background video ---------- */
+.ensai_home_pg_hero_video_wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.ensai_home_pg_hero_video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.ensai_home_pg_hero_overlay {
+  position: absolute;
+  inset: 0;
+
+}
+
+.ensai_home_pg_telemetry_value {
+  transition: color 0.3s ease;
+}
+
+/* ---------- Left-side content ---------- */
+.ensai_home_pg_hero_content {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 620px;
+  box-sizing: border-box;
+  padding: 24px 3vw;
+  text-align: left;
+  border-radius: 10px;
+  background-color: rgba(17, 17, 17, 0.432);
+}
+
+.ensai_home_pg_anim_item {
+  opacity: 0;
+  transform: translateY(20px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+}
+
+.ensai_home_pg_hero_content_visible .ensai_home_pg_anim_item,
+.ensai_home_pg_telemetry_card.ensai_home_pg_hero_content_visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.ensai_home_pg_hero_content_visible {
+  transition-delay: 0.1s;
+}
+.ensai_home_pg_hero_content_visible .ensai_home_pg_hero_title {
+  transition-delay: 0.2s;
+}
+.ensai_home_pg_hero_content_visible .ensai_home_pg_hero_description {
+  transition-delay: 0.35s;
+  text-align: justify;
+}
+.ensai_home_pg_hero_content_visible .ensai_home_pg_hero_actions {
+  transition-delay: 0.5s;
+}
+.ensai_home_pg_hero_content_visible .ensai_home_pg_hero_stats {
+  transition-delay: 0.65s;
+}
+
+.ensai_home_pg_hero_title {
+  font-size: clamp(2rem, 4.2vw, 3rem);
+  font-weight: 800;
+  line-height: 1.15;
+  color: #ffffff;
+  margin: 0 0 20px;
+  letter-spacing: -0.01em;
+
+}
+
+.ensai_home_pg_hero_title_accent {
+  color: #ffa600;
+   text-shadow: 5px 2px #010350;
+}
+
+.ensai_home_pg_hero_description {
+  font-size: clamp(0.95rem, 1.2vw, 1.3rem);
+  color: rgb(255, 255, 255);
+  line-height: 1.65;
+  max-width: 550px;
+  margin: 0 0 28px;
+}
+
+/* ---------- Buttons ---------- */
+.ensai_home_pg_hero_actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 28px;
+}
+
+.ensai_home_pg_primary_btn,
+.ensai_home_pg_secondary_btn {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 13px 22px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.ensai_home_pg_primary_btn {
+  border: none;
+  background: #f5820e;
+  color: #101418;
+}
+
+.ensai_home_pg_primary_btn:hover {
+  background: #ff9a2e;
+  transform: translateY(-2px);
+}
+
+.ensai_home_pg_secondary_btn {
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  background: rgba(255, 255, 255, 0.04);
+  color: #ffffff;
+}
+
+.ensai_home_pg_secondary_btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.6);
+  transform: translateY(-2px);
+}
+
+.ensai_home_pg_btn_icon {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.ensai_home_pg_btn_label {
+  position: relative;
+  z-index: 1;
+}
+
+/* Ripple / water-wave click effect */
+.ensai_home_pg_ripple {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.5) 0%,
+    rgba(255, 255, 255, 0.2) 40%,
+    transparent 70%
+  );
+  transform: scale(0);
+  animation: ensai_water_wave 0.7s ease-out forwards;
+}
+
+@keyframes ensai_water_wave {
+  0% {
+    transform: scale(0);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+/* ---------- Stats row ---------- */
+.ensai_home_pg_hero_stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 22px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ensai_home_pg_stat_item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.ensai_home_pg_stat_dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #f5820e;
+  flex-shrink: 0;
+}
+
+/* ---------- Telemetry card ---------- */
+.ensai_home_pg_telemetry_card {
+  position: absolute;
+  top: clamp(90px, 12vh, 140px);
+  right: 6vw;
+  z-index: 2;
+  min-width: 190px;
+  padding: 14px 18px;
+  border-radius: 10px;
+  border: 1px solid rgba(245, 130, 14, 0.35);
+  background: rgba(10, 14, 20, 0.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.ensai_home_pg_telemetry_header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #f5820e;
+  margin-bottom: 12px;
+  white-space: nowrap;
+}
+
+.ensai_home_pg_telemetry_dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ff3b3b;
+  box-shadow: 0 0 0 rgba(255, 59, 59, 0.6);
+  animation: ensai_pulse 1.6s infinite;
+}
+
+@keyframes ensai_pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(255, 59, 59, 0.6);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(255, 59, 59, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(255, 59, 59, 0);
+  }
+}
+
+.ensai_home_pg_telemetry_grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  row-gap: 12px;
+  column-gap: 18px;
+}
+
+.ensai_home_pg_telemetry_item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ensai_home_pg_telemetry_label {
+  font-size: 0.65rem;
+  color: rgba(255, 255, 255, 0.45);
+  letter-spacing: 0.05em;
+}
+
+.ensai_home_pg_telemetry_value {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+/* =========================================================
+   TABLET (769px – 1024px)
+   Telemetry card was overlapping hero text here before —
+   shrink it and pin it clear of the content column.
+   ========================================================= */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .ensai_home_pg_hero {
+    align-items: flex-end;
+    padding-bottom: 6vh;
+  }
+
+  .ensai_home_pg_hero_content {
+    max-width: 68%;
+    padding: 20px 5vw;
+  }
+
+  .ensai_home_pg_hero_title {
+    font-size: clamp(1.9rem, 4.5vw, 2.4rem);
+  }
+
+  .ensai_home_pg_hero_description {
+    max-width: 100%;
+  }
+
+  .ensai_home_pg_telemetry_card {
+    top: 80px;
+    right: 4vw;
+    min-width: 160px;
+    padding: 12px 14px;
+  }
+
+  .ensai_home_pg_telemetry_grid {
+    row-gap: 10px;
+    column-gap: 14px;
+  }
+}
+
+/* =========================================================
+   MOBILE (≤ 768px)
+   ========================================================= */
+@media (max-width: 768px) {
+  .ensai_home_pg_hero {
+    min-height: 100vh;
+    height: auto;
+    align-items: flex-end;
+    padding: 90px 0 32px;
+  }
+
+  .ensai_home_pg_hero_overlay {
+    background: linear-gradient(
+      180deg,
+      rgba(8, 12, 18, 0.25) 0%,
+      rgba(8, 12, 18, 0.55) 35%,
+      rgba(8, 12, 18, 0.92) 100%
+    );
+  }
+
+  .ensai_home_pg_hero_content {
+    max-width: 100%;
+    padding: 16px 6vw;
+  }
+
+  .ensai_home_pg_hero_title {
+    font-size: clamp(1.5rem, 6vw, 2.1rem);
+    margin-bottom: 10px;
+  }
+
+  .ensai_home_pg_hero_description {
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin-bottom: 16px;
+    text-align: justify;
+    max-width: 100%;
+  }
+
+  .ensai_home_pg_hero_actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .ensai_home_pg_primary_btn,
+  .ensai_home_pg_secondary_btn {
+    width: 100%;
+    justify-content: center;
+    padding: 11px 18px;
+    font-size: 0.82rem;
+  }
+
+  .ensai_home_pg_hero_stats {
+    gap: 12px 18px;
+  }
+
+  .ensai_home_pg_stat_item {
+    font-size: 0.72rem;
+  }
+
+  /* Telemetry is a tablet/desktop feature only — on mobile (300px–768px)
+     it sat right under the header nav and disturbed it, so it's hidden here. */
+  .ensai_home_pg_telemetry_card {
+    display: none;
+  }
+}
+
+@media (max-width: 420px) {
+  .ensai_home_pg_hero_stats {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+/* Short-height / landscape phones: don't let a 100vh hero clip content */
+@media (max-height: 480px) and (max-width: 900px) {
+  .ensai_home_pg_hero {
+    min-height: auto;
+    padding-top: 70px;
+  }
+
+  .ensai_home_pg_telemetry_card {
+    position: relative;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 12px 6vw 0;
+  }
+}

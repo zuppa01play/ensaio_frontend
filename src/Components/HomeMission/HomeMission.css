@@ -1,0 +1,382 @@
+/* HomeMission.css — mission section, no decorative shape
+   Font: Orbitron (display) — index.html-la load pannirukeengana podhum */
+
+/* Anchor jumps native-a smooth-a irukkanum-nu; scrub animations
+   ScrollTrigger vera scrub value-la thaan smooth aagum (below) */
+html {
+  scroll-behavior: smooth;
+}
+
+.ensai_mission_ho_wrapper {
+  --mh-bg: #000000;
+  --mh-blue: #0044ff;
+  --mh-green: #9bfd6e;
+  --mh-ink: #ffffff;
+  --mh-mute: rgba(255, 255, 255, 0.55);
+  --mh-gutter: clamp(20px, 5vw, 80px);
+
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  padding: clamp(60px, 10vw, 140px) 0;
+  background-color: var(--mh-bg);
+  overflow: clip;
+  box-sizing: border-box;
+}
+
+.ensai_mission_ho_wrapper * {
+  box-sizing: border-box;
+}
+
+.ensai_mission_ho_wrapper img {
+  width: 100%;
+  display: block;
+}
+
+/* Background grid — depth-ku oru subtle floor */
+.ensai_mission_ho_grid {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.045) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, #000 30%, transparent 78%);
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, #000 30%, transparent 78%);
+}
+
+/* ---------------- Row ---------------- */
+
+.ensai_mission_ho_row {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  padding: clamp(40px, 7vw, 90px) var(--mh-gutter);
+}
+
+/* ---------------- Head ---------------- */
+
+.ensai_mission_ho_head {
+  width: 100%;
+  margin: 0 0 clamp(32px, 5vw, 64px);
+}
+
+.ensai_mission_ho_row_alt .ensai_mission_ho_head {
+  text-align: right;
+}
+
+.ensai_mission_ho_meta {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 0 0 18px;
+  font-family: "Orbitron", sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  color: var(--mh-mute);
+}
+
+.ensai_mission_ho_row_alt .ensai_mission_ho_meta {
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+
+.ensai_mission_ho_num {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.ensai_mission_ho_rule {
+  flex: 0 0 48px;
+  height: 1px;
+  background: linear-gradient(90deg, #ffffff, transparent);
+}
+
+.ensai_mission_ho_row_alt .ensai_mission_ho_rule {
+  background: linear-gradient(90deg, transparent, #ffffff);
+}
+
+/* Title — full width of the row, fluid size across breakpoints */
+.ensai_mission_ho_title {
+  width: 100%;
+  margin: 0;
+  color: #ffffff;
+  font-family: "Orbitron", sans-serif;
+  font-size: clamp(26px, 4.6vw, 44px);
+  line-height: 1.28;
+  font-weight: 600;
+  text-align: justify;
+}
+
+.ensai_mission_ho_title::after {
+  content: "";
+  display: inline-block;
+  width: 100%;
+}
+
+.ensai_mission_ho_word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.ensai_mission_ho_char {
+  display: inline-block;
+  transform-origin: 50% 100%;
+  will-change: transform, opacity, filter;
+}
+
+/* ---------------- 3D stage ---------------- */
+
+.ensai_mission_ho_stage {
+  perspective: 1400px;
+  perspective-origin: 50% 45%;
+  width: 100%;
+}
+
+.ensai_mission_ho_cluster {
+  position: relative;
+  width: 100%;
+  max-width: 880px;
+  margin: 0 auto;
+  aspect-ratio: 16 / 11;
+  transform-style: preserve-3d;
+  will-change: transform, opacity;
+}
+
+.ensai_mission_ho_tilt {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.ensai_mission_ho_glow {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 80%;
+  height: 80%;
+  translate: -50% -50%;
+  background: radial-gradient(
+    circle,
+    rgba(0, 68, 255, 0.22),
+    rgba(155, 253, 110, 0.08) 45%,
+    transparent 72%
+  );
+  filter: blur(46px);
+  pointer-events: none;
+}
+
+.ensai_mission_ho_dots {
+  position: absolute;
+  left: 4%;
+  top: 8%;
+  width: 34%;
+  height: 34%;
+  background-image: radial-gradient(var(--mh-green) 2px, transparent 2.5px);
+  background-size: 26px 26px;
+  opacity: 0.6;
+}
+
+.ensai_mission_ho_row_alt .ensai_mission_ho_dots {
+  left: auto;
+  right: 4%;
+  top: auto;
+  bottom: 8%;
+}
+
+/* Image card — center-weighted, wider now that the shape is gone */
+
+.ensai_mission_ho_card {
+  position: relative;
+  width: 82%;
+  margin: 6% auto 0;
+}
+
+.ensai_mission_ho_frame {
+  position: relative;
+  overflow: hidden;
+  border-radius: 2px;
+  box-shadow: 0 40px 90px rgba(0, 0, 0, 0.65),
+    0 0 0 1px rgba(255, 255, 255, 0.08);
+  will-change: transform;
+}
+
+.ensai_mission_ho_sheen {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    115deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.14) 50%,
+    transparent 60%
+  );
+  pointer-events: none;
+}
+
+.ensai_mission_ho_reticle {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(255, 136, 0, 0.8);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.ensai_mission_ho_reticle::before,
+.ensai_mission_ho_reticle::after {
+  content: "";
+  position: absolute;
+  background: rgba(255, 136, 0, 0.8);
+}
+
+.ensai_mission_ho_reticle::before {
+  left: 50%;
+  top: -8px;
+  width: 1px;
+  height: calc(100% + 16px);
+}
+
+.ensai_mission_ho_reticle::after {
+  top: 50%;
+  left: -8px;
+  height: 1px;
+  width: calc(100% + 16px);
+}
+
+.ensai_mission_ho_caption {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 14px;
+  font-family: "Orbitron", sans-serif;
+  font-size: 13px;
+  line-height: 1.3;
+  letter-spacing: 0.06em;
+  color: var(--mh-ink);
+}
+
+.ensai_mission_ho_row_alt .ensai_mission_ho_caption {
+  justify-content: flex-start;
+}
+
+.ensai_mission_ho_caption_num {
+  color: #ffffff;
+}
+
+/* ---------------- Tablet ---------------- */
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .ensai_mission_ho_cluster {
+    max-width: 640px;
+    aspect-ratio: 4 / 3;
+  }
+
+  .ensai_mission_ho_card {
+    width: 88%;
+  }
+
+  .ensai_mission_ho_dots {
+    width: 30%;
+    height: 30%;
+  }
+
+  .ensai_mission_ho_title {
+    font-size: clamp(24px, 3.6vw, 34px);
+  }
+}
+
+/* ---------------- Mobile ---------------- */
+
+@media (max-width: 640px) {
+  .ensai_mission_ho_row,
+  .ensai_mission_ho_row_alt {
+    padding: 40px var(--mh-gutter);
+  }
+
+  /* Mobile-la 3D off — scroll smooth-a irukanum */
+  .ensai_mission_ho_stage {
+    perspective: none;
+  }
+
+  .ensai_mission_ho_head,
+  .ensai_mission_ho_row_alt .ensai_mission_ho_head {
+    margin: 0 0 24px;
+    text-align: left;
+  }
+
+  .ensai_mission_ho_title {
+    font-size: clamp(22px, 6.4vw, 28px);
+    line-height: 1.35;
+    text-align: left;
+  }
+
+  .ensai_mission_ho_row_alt .ensai_mission_ho_meta {
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+
+  .ensai_mission_ho_row_alt .ensai_mission_ho_rule {
+    background: linear-gradient(90deg, #ffffff, transparent);
+  }
+
+  .ensai_mission_ho_cluster,
+  .ensai_mission_ho_tilt {
+    position: relative;
+    inset: auto;
+    max-width: 100%;
+    aspect-ratio: auto;
+    transform-style: flat;
+  }
+
+  .ensai_mission_ho_card {
+    width: 100%;
+    margin: 0;
+  }
+
+  .ensai_mission_ho_dots {
+    display: none;
+  }
+
+  .ensai_mission_ho_glow {
+    width: 120%;
+    height: 60%;
+  }
+
+  .ensai_mission_ho_caption,
+  .ensai_mission_ho_row_alt .ensai_mission_ho_caption {
+    justify-content: flex-start;
+  }
+
+  .ensai_mission_ho_grid {
+    background-size: 44px 44px;
+  }
+}
+
+/* ---------------- Small mobile ---------------- */
+
+@media (max-width: 380px) {
+  .ensai_mission_ho_row,
+  .ensai_mission_ho_row_alt {
+    padding: 32px 16px;
+  }
+
+  .ensai_mission_ho_title {
+    font-size: 20px;
+  }
+}
+
+/* ---------------- Reduced motion ---------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .ensai_mission_ho_wrapper * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
