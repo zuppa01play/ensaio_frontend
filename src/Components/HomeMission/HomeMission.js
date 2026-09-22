@@ -5,16 +5,8 @@ import "./HomeMission.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
-/* Mobile-la address-bar show/hide aagum bodhu ScrollTrigger
-   unnecessary-a recalculate aagi jank varaadhu */
 ScrollTrigger.config({ ignoreMobileResize: true });
 
-/* Concept: each mission card is a "waypoint" the viewer flies past —
-   it banks in from altitude, levels off in frame, then banks away
-   again as the next waypoint approaches. A HUD strip on the side
-   reads ALT / HDG / SPD off actual scroll progress, and a runway
-   grid recedes underneath the whole thing. Everything is scroll-
-   driven (scrub), nothing runs on a timer/loop. */
 
 const CARDS_DATA = [
   {
@@ -63,15 +55,11 @@ const HomeMission = () => {
 
     const ctx = gsap.context(() => {
       const mm = gsap.matchMedia();
-
-      /* -----------------------------------------------------------
-         GROUND / HORIZON — one scrub tied to the whole section.
-         The runway grid's backgroundPositionY is tweened directly
-         (no custom property), which tiles the repeating-gradient
-         pattern to read as continuous forward motion while staying
-         entirely a function of scroll position, never of time.
-      ----------------------------------------------------------- */
-      mm.add("(prefers-reduced-motion: no-preference)", () => {
+      mm.add(
+        { reduceMotion: "(prefers-reduced-motion: no-preference)", depthOk: "(min-width: 641px)" },
+        (context) => {
+        const { reduceMotion, depthOk } = context.conditions;
+        if (!reduceMotion || !depthOk) return undefined;
         if (runwayRef.current) {
           gsap.fromTo(
             runwayRef.current,
@@ -125,14 +113,9 @@ const HomeMission = () => {
         });
 
         return () => ScrollTrigger.getAll().forEach((st) => st.trigger === wrapper && st.kill());
-      });
+        }
+      );
 
-      /* -----------------------------------------------------------
-         WAYPOINT FLYBY — desktop/tablet: full 3D bank-in, hold
-         level, bank-out. Each bay gets one scrubbed timeline spread
-         across the time it's near the viewport, so the motion reads
-         as one continuous flight rather than N separate triggers.
-      ----------------------------------------------------------- */
       mm.add(
         {
           reduceMotion: "(prefers-reduced-motion: no-preference)",
@@ -194,62 +177,12 @@ const HomeMission = () => {
         }
       );
 
-      /* -----------------------------------------------------------
-         MOBILE — same waypoint rhythm, no 3D/blur: a vertical swoop
-         and scale is cheap, reads as "arriving" and stays smooth on
-         phone GPUs. Content is never hidden by default in CSS, so a
-         mistimed trigger can't leave a card stuck invisible.
-      ----------------------------------------------------------- */
-      mm.add(
-        { reduceMotion: "(prefers-reduced-motion: no-preference)", isMobile: "(max-width: 640px)" },
-        (context) => {
-          const { reduceMotion, isMobile } = context.conditions;
-          if (!reduceMotion || !isMobile) return undefined;
-
-          bayRefs.current.forEach((bay) => {
-            const card = bay.querySelector(".ensai_flightpath_card");
-            const tag = bay.querySelector(".ensai_flightpath_tag");
-
-            gsap.fromTo(
-              card,
-              { y: 70, scale: 0.9, opacity: 0 },
-              {
-                y: 0,
-                scale: 1,
-                opacity: 1,
-                ease: "power2.out",
-                scrollTrigger: { trigger: bay, start: "top 86%", end: "top 48%", scrub: 0.6 },
-              }
-            );
-
-            if (tag) {
-              gsap.fromTo(
-                tag,
-                { opacity: 0, y: 10 },
-                {
-                  opacity: 1,
-                  y: 0,
-                  ease: "power2.out",
-                  scrollTrigger: { trigger: bay, start: "top 90%", end: "top 65%", scrub: 0.5 },
-                }
-              );
-            }
-          });
-
-          return undefined;
-        }
-      );
-
       mm.add("(prefers-reduced-motion: reduce)", () => {
         gsap.set([".ensai_flightpath_card", ".ensai_flightpath_tag"], { clearProps: "all", opacity: 1 });
       });
 
       return () => mm.revert();
     }, wrapper);
-
-    /* Image aspect-ratio is reserved in CSS so layout never
-       collapses pre-load; this just corrects trigger positions
-       once every image has actually settled, and on rotation. */
     const images = Array.from(wrapper.querySelectorAll("img"));
     let pending = images.filter((img) => !img.complete).length;
     const onImgSettle = () => {
