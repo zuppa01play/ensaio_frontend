@@ -1,0 +1,872 @@
+
+
+.ensai_why_pg_wrap {
+  position: relative;
+  width: 100%;
+  background-color: #ffffff;
+  color: #0b0d12;
+  overflow: clip;
+  box-sizing: border-box;
+}
+
+.ensai_why_pg_wrap * {
+  box-sizing: border-box;
+}
+
+.ensai_why_pg_wrap img {
+  width: 100%;
+  display: block;
+}
+
+/* ---------------- Scroll progress bar ---------------- */
+
+.ensai_why_pg_progress_track {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  width: 100%;
+  height: 3px;
+  background: rgba(37, 99, 235, 0.1);
+}
+
+.ensai_why_pg_progress_bar {
+  height: 100%;
+  width: 0%;
+  background: #2563eb;
+  box-shadow: 0 0 8px 1px rgba(37, 99, 235, 0.6);
+}
+
+/* ---------------- Reveal-on-scroll ---------------- */
+
+.ensai_why_pg_reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.ensai_why_pg_reveal_in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------------- HUD corner brackets (shared) ---------------- */
+
+.ensai_why_pg_bracket {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  border: 2px solid rgba(37, 99, 235, 0.85);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.ensai_why_pg_bracket_tl {
+  top: 16px;
+  left: 16px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.ensai_why_pg_bracket_tr {
+  top: 16px;
+  right: 16px;
+  border-left: none;
+  border-bottom: none;
+
+}
+
+.ensai_why_pg_bracket_bl {
+  bottom: 16px;
+  left: 16px;
+  border-right: none;
+  border-top: none;
+}
+
+.ensai_why_pg_bracket_br {
+  bottom: 16px;
+  right: 16px;
+  border-left: none;
+  border-top: none;
+}
+
+/* ================================================================
+   HERO — col-lg-6 split: media left, content right
+================================================================ */
+
+.ensai_why_pg_hero {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 640px;
+  width: 100%;
+}
+
+.ensai_why_pg_hero_media {
+  position: relative;
+  overflow: hidden;
+  background-color: #0b0d12;
+}
+
+.ensai_why_pg_hero_media_img {
+  position: absolute;
+  inset: -6% -6%;
+  background-size: cover;
+  background-position: center;
+  will-change: transform;
+}
+
+.ensai_why_pg_hero_media_grade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(11, 13, 18, 0.15) 0%, rgba(11, 13, 18, 0.55) 100%),
+    linear-gradient(90deg, transparent 70%, rgba(37, 99, 235, 0.28) 100%);
+}
+
+.ensai_why_pg_hero_media_badge {
+  position: absolute;
+  left: 50%;
+  bottom: 26px;
+  translate: -50% 0;
+  z-index: 2;
+    font-family: "Orbitron", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: #ffffff;
+  background: rgba(11, 13, 18, 0.55);
+  border: 1px solid rgba(37, 99, 235, 0.5);
+  border-radius: 999px;
+  padding: 7px 16px;
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+}
+
+.ensai_why_pg_hero_media_badge::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #2563eb;
+  box-shadow: 0 0 6px 2px rgba(37, 99, 235, 0.8);
+}
+
+.ensai_why_pg_hero_content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  padding: clamp(48px, 6vw, 96px);
+}
+
+.ensai_why_pg_hero_ref {
+    font-family: "Orbitron", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.28em;
+  color: #2563eb;
+    text-align: justify;
+}
+
+.ensai_why_pg_hero_title {
+  margin: 0;
+    font-family: "Orbitron", sans-serif;
+  font-weight: 700;
+  font-size: clamp(30px, 3.6vw, 35px);
+  line-height: 1.18;
+  color: #0b0d12;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ensai_why_pg_hero_title_accent {
+  color: #2563eb;
+  text-align: justify;
+}
+
+.ensai_why_pg_hero_sub {
+  margin: 0;
+  max-width: 46ch;
+  font-family:'Times New Roman', Times, serif;
+  font-size: clamp(15px, 1.4vw, 25px);
+  line-height: 1.6;
+  color: #000000;
+  text-align: justify;
+}
+
+.ensai_why_pg_hero_stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+  margin-top: 8px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(0, 0, 0, 0.767);
+}
+
+.ensai_why_pg_hero_stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ensai_why_pg_hero_stat_num {
+    font-family: "Orbitron", sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  color: #0b0d12;
+}
+
+.ensai_why_pg_hero_stat_label {
+    font-family: "Orbitron", sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: #6b7280;
+   text-align: justify;
+}
+
+/* ================================================================
+   Paradox statement
+================================================================ */
+
+.ensai_why_pg_paradox {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: clamp(56px, 8vw, 100px) clamp(20px, 5vw, 80px);
+  text-align: center;
+}
+
+.ensai_why_pg_paradox_kicker {
+  margin: 0 0 16px;
+    font-family: "Orbitron", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: #2563eb;
+}
+
+.ensai_why_pg_paradox_text {
+  margin: 0;
+    font-family:'Times New Roman', Times, serif;
+  font-size: clamp(18px, 2.2vw, 26px);
+  line-height: 1.55;
+  font-weight: 500;
+  color: #0b0d12;
+   text-align: justify;
+}
+
+/* ================================================================
+   Generic section shell
+================================================================ */
+
+.ensai_why_pg_section {
+  padding: clamp(56px, 8vw, 100px) clamp(20px, 5vw, 80px);
+}
+
+.ensai_why_pg_section_tint {
+  background-color: #f5f7fb;
+}
+
+.ensai_why_pg_section_title {
+  margin: 0 0 clamp(32px, 5vw, 56px);
+  max-width: 1320px;
+  margin-left: auto;
+  margin-right: auto;
+    font-family: "Orbitron", sans-serif;
+  font-weight: 700;
+  font-size: clamp(24px, 3vw, 34px);
+  color: #0b0d12;
+  text-align: center;
+}
+
+/* ================================================================
+   Six imperatives — gaming achievement cards
+================================================================ */
+
+.ensai_why_pg_grid {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.ensai_why_pg_card {
+  position: relative;
+  padding: 26px 24px;
+  border: 1px solid rgba(11, 13, 18, 0.1);
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 1px 2px rgba(11, 13, 18, 0.04);
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+}
+
+.ensai_why_pg_card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(37, 99, 235, 0.5);
+  box-shadow: 0 18px 40px rgba(37, 99, 235, 0.16);
+}
+
+.ensai_why_pg_card_tag {
+  display: inline-block;
+  margin-bottom: 14px;
+    font-family: "Orbitron", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #2563eb;
+  border: 1px solid rgba(37, 99, 235, 0.35);
+  border-radius: 999px;
+  padding: 3px 10px;
+}
+
+.ensai_why_pg_card_title {
+  margin: 0 0 10px;
+    font-family: "Orbitron", sans-serif;
+  font-weight: 700;
+  font-size: 17px;
+  line-height: 1.3;
+  color: #0b0d12;
+}
+
+.ensai_why_pg_card_text {
+  margin: 0;
+    font-family:'Times New Roman', Times, serif;
+  font-size: 20px;
+  line-height: 1.55;
+  color: #5b6270;
+  text-align: justify;
+}
+
+/* ================================================================
+   Decision gate — dark console panel
+================================================================ */
+
+.ensai_why_pg_gate {
+  margin: clamp(24px, 4vw, 40px) clamp(20px, 5vw, 80px);
+  border-radius: 18px;
+  background: radial-gradient(ellipse 120% 140% at 20% 0%, rgba(37, 99, 235, 0.35), transparent 60%), #0b0d12;
+  overflow: hidden;
+  position: relative;
+}
+
+.ensai_why_pg_gate::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+}
+
+.ensai_why_pg_gate_inner {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: clamp(56px, 8vw, 96px) clamp(20px, 5vw, 40px);
+  text-align: center;
+}
+
+.ensai_why_pg_gate_tag {
+  display: inline-block;
+  margin-bottom: 18px;
+    font-family: "Orbitron", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  color: #2563eb;
+  border: 1px solid rgba(37, 99, 235, 0.5);
+  border-radius: 999px;
+  padding: 6px 14px;
+}
+
+.ensai_why_pg_gate_title {
+  margin: 0 0 16px;
+    font-family: "Orbitron", sans-serif;
+  font-weight: 700;
+  font-size: clamp(24px, 3vw, 34px);
+  color: #ffffff;
+}
+
+.ensai_why_pg_gate_text {
+  margin: 0;
+    font-family: "Orbitron", sans-serif;
+  font-size: clamp(15px, 1.6vw, 18px);
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+/* ================================================================
+   Tri-layer engine
+================================================================ */
+
+.ensai_why_pg_layers {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.ensai_why_pg_layer {
+  padding: 28px 24px;
+  border-radius: 12px;
+  background: #f5f7fb;
+  border: 1px solid rgba(11, 13, 18, 0.08);
+}
+
+.ensai_why_pg_layer_tag {
+  display: block;
+  margin-bottom: 12px;
+    font-family: "Orbitron", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: #2563eb;
+}
+
+.ensai_why_pg_layer_title {
+  margin: 0 0 14px;
+    font-family: "Orbitron", sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  color: #0b0d12;
+}
+
+.ensai_why_pg_layer_list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ensai_why_pg_layer_list li {
+  position: relative;
+  padding-left: 16px;
+    font-family: "Orbitron", sans-serif;
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: #5b6270;
+}
+
+.ensai_why_pg_layer_list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 7px;
+  width: 6px;
+  height: 6px;
+  background: #2563eb;
+}
+
+/* ================================================================
+   Stakeholder grid
+================================================================ */
+
+.ensai_why_pg_stake_grid {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.ensai_why_pg_stake {
+  padding: 22px 20px;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid rgba(11, 13, 18, 0.1);
+}
+
+.ensai_why_pg_stake_role {
+  margin: 0 0 8px;
+    font-family: "Orbitron", sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  color: #2563eb;
+}
+
+.ensai_why_pg_stake_text {
+  margin: 0;
+    font-family: "Orbitron", sans-serif;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: #5b6270;
+}
+
+/* ================================================================
+   Competitive table
+================================================================ */
+
+.ensai_why_pg_table_wrap {
+  max-width: 1320px;
+  margin: 0 auto;
+  overflow-x: auto;
+  border-radius: 12px;
+  border: 1px solid rgba(11, 13, 18, 0.1);
+}
+
+.ensai_why_pg_table {
+  width: 100%;
+  border-collapse: collapse;
+    font-family: "Orbitron", sans-serif;
+  font-size: 13.5px;
+  min-width: 720px;
+}
+
+.ensai_why_pg_table th,
+.ensai_why_pg_table td {
+  padding: 14px 18px;
+  text-align: left;
+  border-bottom: 1px solid rgba(11, 13, 18, 0.08);
+}
+
+.ensai_why_pg_table th {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #6b7280;
+  background: #f5f7fb;
+}
+
+.ensai_why_pg_table td {
+  color: #4b5261;
+}
+
+.ensai_why_pg_table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.ensai_why_pg_table_hl {
+  color: #2563eb;
+  font-weight: 700;
+  background: rgba(37, 99, 235, 0.05);
+}
+
+/* ================================================================
+   Deployment steps
+================================================================ */
+
+.ensai_why_pg_steps {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.ensai_why_pg_step {
+  padding: 24px 20px;
+  border-radius: 12px;
+  background: #ffffff;
+  border: 1px solid rgba(11, 13, 18, 0.1);
+  position: relative;
+}
+
+.ensai_why_pg_step_tag {
+  display: block;
+  margin-bottom: 12px;
+    font-family: "Orbitron", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: #2563eb;
+}
+
+.ensai_why_pg_step_title {
+  margin: 0 0 8px;
+    font-family: "Orbitron", sans-serif;
+  font-weight: 700;
+  font-size: 15.5px;
+  color: #0b0d12;
+}
+
+.ensai_why_pg_step_text {
+  margin: 0;
+    font-family: "Orbitron", sans-serif;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #5b6270;
+}
+
+/* ================================================================
+   FOUNDER — col-lg-6 split, 3D hover tilt
+================================================================ */
+
+.ensai_why_pg_founder {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: clamp(32px, 5vw, 64px);
+  padding: clamp(56px, 8vw, 100px) clamp(20px, 5vw, 80px);
+  max-width: 1320px;
+  margin: 0 auto;
+}
+
+.ensai_why_pg_founder_media {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  perspective: 1200px;
+}
+
+.ensai_why_pg_founder_glow {
+  position: absolute;
+  inset: -12%;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.28), transparent 70%);
+  filter: blur(40px);
+  opacity: 0.5;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.ensai_why_pg_founder_media:hover .ensai_why_pg_founder_glow {
+  opacity: 1;
+}
+
+.ensai_why_pg_founder_tilt {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #0b0d12;
+  box-shadow: 0 30px 70px rgba(11, 13, 18, 0.25), 0 0 0 1px rgba(11, 13, 18, 0.06);
+  transform-style: preserve-3d;
+  transition: transform 0.2s ease-out;
+  will-change: transform;
+}
+
+.ensai_why_pg_founder_img {
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+
+.ensai_why_pg_founder_content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ensai_why_pg_founder_tag {
+    font-family: "Orbitron", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.24em;
+  color: #2563eb;
+}
+
+.ensai_why_pg_founder_name {
+  margin: 6px 0 0;
+    font-family: "Orbitron", sans-serif;
+  font-weight: 700;
+  font-size: clamp(26px, 3vw, 36px);
+  color: #0b0d12;
+}
+
+.ensai_why_pg_founder_role {
+  margin: 0;
+    font-family: "Orbitron", sans-serif;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: #6b7280;
+}
+
+.ensai_why_pg_founder_quote {
+  margin: 14px 0 0;
+  padding-left: 18px;
+  border-left: 3px solid #2563eb;
+    font-family: "Orbitron", sans-serif;
+  font-size: clamp(15px, 1.6vw, 18px);
+  line-height: 1.6;
+  font-style: italic;
+  color: #2b2f38;
+}
+
+/* ================================================================
+   Closing taglines
+================================================================ */
+
+.ensai_why_pg_close {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid rgba(11, 13, 18, 0.1);
+}
+
+.ensai_why_pg_close_item {
+  padding: clamp(32px, 5vw, 48px) clamp(20px, 4vw, 40px);
+  text-align: center;
+  border-left: 1px solid rgba(11, 13, 18, 0.1);
+}
+
+.ensai_why_pg_close_item:first-child {
+  border-left: none;
+}
+
+.ensai_why_pg_close_item h3 {
+  margin: 0 0 8px;
+    font-family: "Orbitron", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #2563eb;
+}
+
+.ensai_why_pg_close_item p {
+  margin: 0;
+    font-family: "Orbitron", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  color: #0b0d12;
+}
+
+/* ================================================================
+   Breakpoint: large desktop (≥1440)
+================================================================ */
+
+@media (min-width: 1440px) {
+  .ensai_why_pg_hero {
+    min-height: 720px;
+  }
+}
+
+/* ================================================================
+   Breakpoint: tablet (641–1024)
+================================================================ */
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .ensai_why_pg_hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .ensai_why_pg_hero_media {
+    height: 320px;
+  }
+
+  .ensai_why_pg_grid,
+  .ensai_why_pg_layers {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ensai_why_pg_stake_grid,
+  .ensai_why_pg_steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ensai_why_pg_founder {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .ensai_why_pg_founder_quote {
+    text-align: left;
+  }
+
+  .ensai_why_pg_close {
+    grid-template-columns: 1fr;
+  }
+
+  .ensai_why_pg_close_item {
+    border-left: none;
+    border-top: 1px solid rgba(11, 13, 18, 0.1);
+  }
+
+  .ensai_why_pg_close_item:first-child {
+    border-top: none;
+  }
+}
+
+/* ================================================================
+   Breakpoint: mobile (≤640)
+================================================================ */
+
+@media (max-width: 640px) {
+  .ensai_why_pg_hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+
+  .ensai_why_pg_hero_media {
+    height: 240px;
+  }
+
+  .ensai_why_pg_hero_content {
+    padding: 32px 20px 40px;
+    gap: 16px;
+  }
+
+  .ensai_why_pg_hero_stats {
+    gap: 20px;
+  }
+
+  .ensai_why_pg_paradox {
+    padding: 40px 20px;
+  }
+
+  .ensai_why_pg_section {
+    padding: 40px 20px;
+  }
+
+  .ensai_why_pg_grid,
+  .ensai_why_pg_layers,
+  .ensai_why_pg_stake_grid,
+  .ensai_why_pg_steps {
+    grid-template-columns: 1fr;
+  }
+
+  .ensai_why_pg_gate {
+    margin: 16px 20px;
+  }
+
+  .ensai_why_pg_founder {
+    grid-template-columns: 1fr;
+    padding: 40px 20px;
+    text-align: center;
+  }
+
+  .ensai_why_pg_founder_quote {
+    text-align: left;
+  }
+
+  /* 3D hover tilt is a mouse-only affordance — flatten it on touch
+     so nothing is left mid-tilt after a tap. */
+  .ensai_why_pg_founder_tilt {
+    transform: none !important;
+  }
+
+  .ensai_why_pg_close {
+    grid-template-columns: 1fr;
+  }
+
+  .ensai_why_pg_close_item {
+    border-left: none;
+    border-top: 1px solid rgba(11, 13, 18, 0.1);
+  }
+
+  .ensai_why_pg_close_item:first-child {
+    border-top: none;
+  }
+}
+
+/* ---------------- Reduced motion ---------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .ensai_why_pg_wrap * {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .ensai_why_pg_reveal {
+    opacity: 1;
+    transform: none;
+  }
+}

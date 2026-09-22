@@ -1,7 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600&display=swap");
 
-/* ---------- AppBar (transparent by default, white on scroll) ---------- */
-/* .MuiAppBar-root is added so these rules always beat MUI's own styles (no !important needed) */
 .ensai_head_pg_appbar.MuiAppBar-root {
   background-color: rgba(255, 255, 255, 0);
   box-shadow: 0 0 0 rgba(0, 0, 0, 0);

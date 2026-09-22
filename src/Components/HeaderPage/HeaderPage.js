@@ -15,7 +15,7 @@ const LOGO_SRC =
 
 const NAV_LINKS = [
   { label: "Product", href: "/product" },
-  { label: "Why enSaio", href: "/why" },
+  { label: "Why enSaio", href: "/ensai_why" },
   { label: "Competitive Edge", href: "/gap" },
   { label: "Resources", href: "/resources" },
 ];

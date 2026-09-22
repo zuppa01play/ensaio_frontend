@@ -10,6 +10,7 @@ import HomeCase from "./Components/HomeCaseStudies/HomeCase";
 import FooterPage from "./Components/FooterPage/FooterPage";
 import HomeUddanVideo from "./Components/HomeUddanVideo/HomeUddanVideo";
 import Error from "./Components/PageNotFound/Error";
+import WhyEnSai from "./Pages/WhyEnSai/WhyEnSai";
 
 const Home = () => (
   <>
@@ -32,7 +33,7 @@ function App() {
         <main className="zuppa_app_content">
           <Routes>
             <Route path="/" element={<Home />} />
-            {/* <Route path="/case_fly" element={<CaseFly />} /> */}
+            <Route path="/ensai_why" element={<WhyEnSai />} />
             {/* <Route path="/case_native_posting" element={<CaseNativePosting />} /> */}
             {/* <Route path="/case_pipeline" element={<CasePipeline />} /> */}
             {/* <Route path="/case_sop" element={<CaseSop />} /> */}

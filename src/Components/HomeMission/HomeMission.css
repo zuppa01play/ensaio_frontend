@@ -22,10 +22,6 @@ html {
   display: block;
 }
 
-/* ---------------- Horizon / ground plane ----------------
-   A full-bleed layer that never carries opacity:0 in CSS — if JS
-   never runs for any reason this still reads as a finished, static
-   background rather than a blank section. */
 
 .ensai_flightpath_horizon {
   position: absolute;
@@ -163,8 +159,6 @@ html {
     display: none;
   }
 }
-
-/* ---------------- Intro ---------------- */
 
 .ensai_flightpath_intro {
   position: relative;
