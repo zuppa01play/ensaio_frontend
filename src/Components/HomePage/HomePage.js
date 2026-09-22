@@ -126,17 +126,15 @@ const HomePage = () => {
           }`}
         >
           <h1 className="ensai_home_pg_hero_title ensai_home_pg_anim_item">
-            Master the drone,
+        Rehearse the mission, 
             <br />
             <span className="ensai_home_pg_hero_title_accent">
-              before you fly it.
+         before you fly it.
             </span>
           </h1>
 
           <p className="ensai_home_pg_hero_description ensai_home_pg_anim_item">
-            enSaio puts India's own Ajeet fleet through real-world scenarios,
-            dynamic weather, and full flight telemetry — so pilots build muscle
-            memory long before a real airframe leaves the ground.
+        enSaio enables professional drone operators to practice real missions before reaching the actual site. Simply enter the GPS location, simulate the environment and mission conditions, and validate the flight with realistic telemetry — before the real drone takes off.
           </p>
 
           <div className="ensai_home_pg_hero_actions ensai_home_pg_anim_item">
