@@ -1,381 +1,454 @@
-/* HomeMission.css — mission section, no decorative shape
-   Font: Orbitron (display) — index.html-la load pannirukeengana podhum */
+/* HomeMission.css — "Flight Path" mission section
+   Font: PP Mori. No :root / component custom properties — every
+   color and size is written directly per project convention.
+   Brand blue #2563eb is the single accent color throughout. */
 
-/* Anchor jumps native-a smooth-a irukkanum-nu; scrub animations
-   ScrollTrigger vera scrub value-la thaan smooth aagum (below) */
 html {
   scroll-behavior: smooth;
 }
 
-.ensai_mission_ho_wrapper {
-  --mh-bg: #000000;
-  --mh-blue: #0044ff;
-  --mh-green: #9bfd6e;
-  --mh-ink: #ffffff;
-  --mh-mute: rgba(255, 255, 255, 0.55);
-  --mh-gutter: clamp(20px, 5vw, 80px);
-
+.ensai_flightpath_wrapper {
   position: relative;
   width: 100%;
-  margin: 0 auto;
-  padding: clamp(60px, 10vw, 140px) 0;
-  background-color: var(--mh-bg);
+  padding: clamp(72px, 11vw, 160px) 0 clamp(60px, 9vw, 120px);
+  background-color: #030405;
   overflow: clip;
   box-sizing: border-box;
+  isolation: isolate;
 }
 
-.ensai_mission_ho_wrapper * {
+.ensai_flightpath_wrapper * {
   box-sizing: border-box;
 }
 
-.ensai_mission_ho_wrapper img {
+.ensai_flightpath_wrapper img {
   width: 100%;
   display: block;
 }
 
-/* Background grid — depth-ku oru subtle floor */
-.ensai_mission_ho_grid {
+/* ---------------- Horizon / ground plane ----------------
+   A full-bleed layer that never carries opacity:0 in CSS — if JS
+   never runs for any reason this still reads as a finished, static
+   background rather than a blank section. */
+
+.ensai_flightpath_horizon {
   position: absolute;
   inset: 0;
+  z-index: 0;
   pointer-events: none;
-  background-image: linear-gradient(
-      rgba(255, 255, 255, 0.045) 1px,
-      transparent 1px
-    ),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
-  background-size: 72px 72px;
-  mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, #000 30%, transparent 78%);
-  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, #000 30%, transparent 78%);
+  overflow: hidden;
 }
 
-/* ---------------- Row ---------------- */
-
-.ensai_mission_ho_row {
-  position: relative;
-  width: 100%;
-  margin: 0 auto;
-  padding: clamp(40px, 7vw, 90px) var(--mh-gutter);
+.ensai_flightpath_sky {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 90% 55% at 50% 0%, rgba(37, 99, 235, 0.16), transparent 60%),
+    linear-gradient(180deg, #05070a 0%, #030405 55%, #000000 100%);
 }
 
-/* ---------------- Head ---------------- */
-
-.ensai_mission_ho_head {
-  width: 100%;
-  margin: 0 0 clamp(32px, 5vw, 64px);
+.ensai_flightpath_glow {
+  position: absolute;
+  left: 50%;
+  top: 18%;
+  width: 70%;
+  height: 40%;
+  translate: -50% 0;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.32), transparent 70%);
+  filter: blur(70px);
+  transform-origin: 50% 50%;
 }
 
-.ensai_mission_ho_row_alt .ensai_mission_ho_head {
+.ensai_flightpath_runway {
+  position: absolute;
+  left: -20%;
+  right: -20%;
+  bottom: -30%;
+  height: 130%;
+  background-image: repeating-linear-gradient(
+    rgba(37, 99, 235, 0.16) 0px,
+    rgba(37, 99, 235, 0.16) 1px,
+    transparent 1px,
+    transparent 120px
+  );
+  background-size: 100% 120px;
+  transform: perspective(700px) rotateX(62deg);
+  transform-origin: 50% 100%;
+  mask-image: linear-gradient(180deg, transparent, #000 30%, #000 75%, transparent);
+  -webkit-mask-image: linear-gradient(180deg, transparent, #000 30%, #000 75%, transparent);
+}
+
+@media (max-width: 640px) {
+  .ensai_flightpath_glow {
+    width: 110%;
+    height: 26%;
+    filter: blur(46px);
+  }
+  .ensai_flightpath_runway {
+    background-size: 100% 80px;
+  }
+}
+
+/* ---------------- HUD strip ---------------- */
+
+.ensai_flightpath_hud {
+  position: absolute;
+  top: clamp(28px, 5vw, 56px);
+  right: clamp(20px, 5vw, 80px);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  font-family: "PP Mori", monospace;
+  pointer-events: none;
+}
+
+.ensai_flightpath_hud_readout {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  font-variant-numeric: tabular-nums;
+}
+
+.ensai_flightpath_hud_label {
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.ensai_flightpath_hud_value {
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+  min-width: 3ch;
   text-align: right;
 }
 
-.ensai_mission_ho_meta {
+.ensai_flightpath_hud_unit {
+  font-size: 11px;
+  color: #2563eb;
+}
+
+.ensai_flightpath_hud_track {
+  position: relative;
+  width: 1px;
+  height: 160px;
+  margin-top: 10px;
+  background: linear-gradient(180deg, transparent, rgba(255, 255, 255, 0.2) 15%, rgba(255, 255, 255, 0.2) 85%, transparent);
+}
+
+.ensai_flightpath_hud_marker {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  width: 9px;
+  height: 9px;
+  translate: -50% -50%;
+  border-radius: 50%;
+  background: #2563eb;
+  box-shadow: 0 0 10px 2px rgba(37, 99, 235, 0.7);
+}
+
+@media (max-width: 900px) {
+  .ensai_flightpath_hud {
+    top: 20px;
+    right: 16px;
+  }
+  .ensai_flightpath_hud_value {
+    font-size: 15px;
+  }
+  .ensai_flightpath_hud_track {
+    height: 110px;
+  }
+}
+
+@media (max-width: 640px) {
+  .ensai_flightpath_hud_track {
+    display: none;
+  }
+}
+
+/* ---------------- Intro ---------------- */
+
+.ensai_flightpath_intro {
+  position: relative;
+  z-index: 1;
+  max-width: 760px;
+  margin: 0 auto clamp(64px, 9vw, 120px);
+  padding: 0 clamp(20px, 5vw, 80px);
+  text-align: center;
+}
+
+.ensai_flightpath_kicker {
+  margin: 0 0 14px;
+  font-family: "PP Mori", monospace;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #2563eb;
+}
+
+.ensai_flightpath_headline {
+  margin: 0;
+  font-family: "PP Mori", sans-serif;
+  font-weight: 600;
+  font-size: clamp(26px, 4vw, 42px);
+  line-height: 1.28;
+  color: #ffffff;
+}
+
+@media (max-width: 640px) {
+  .ensai_flightpath_headline {
+    font-size: clamp(22px, 6.4vw, 28px);
+  }
+}
+
+/* ---------------- Track of waypoints ---------------- */
+
+.ensai_flightpath_track {
+  position: relative;
+  z-index: 1;
+}
+
+.ensai_flightpath_bay {
+  position: relative;
+  width: 100%;
+  padding: clamp(50px, 8vw, 110px) clamp(20px, 5vw, 80px);
+}
+
+.ensai_flightpath_tag {
   display: flex;
   align-items: center;
-  gap: 14px;
-  margin: 0 0 18px;
-  font-family: "Orbitron", sans-serif;
+  gap: 10px;
+  max-width: 980px;
+  margin: 0 auto 22px;
+  font-family: "PP Mori", monospace;
   font-size: 12px;
-  letter-spacing: 0.18em;
-  color: var(--mh-mute);
+  letter-spacing: 0.16em;
+  color: rgba(255, 255, 255, 0.5);
 }
 
-.ensai_mission_ho_row_alt .ensai_mission_ho_meta {
+.ensai_flightpath_bay_alt .ensai_flightpath_tag {
   flex-direction: row-reverse;
-  justify-content: flex-end;
 }
 
-.ensai_mission_ho_num {
-  color: #ffffff;
+.ensai_flightpath_tag_index {
+  color: #2563eb;
   font-weight: 700;
 }
 
-.ensai_mission_ho_rule {
-  flex: 0 0 48px;
-  height: 1px;
-  background: linear-gradient(90deg, #ffffff, transparent);
+.ensai_flightpath_tag_dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+  flex: 0 0 auto;
 }
 
-.ensai_mission_ho_row_alt .ensai_mission_ho_rule {
-  background: linear-gradient(90deg, transparent, #ffffff);
-}
-
-/* Title — full width of the row, fluid size across breakpoints */
-.ensai_mission_ho_title {
-  width: 100%;
-  margin: 0;
+.ensai_flightpath_tag_name {
   color: #ffffff;
-  font-family: "Orbitron", sans-serif;
-  font-size: clamp(26px, 4.6vw, 44px);
-  line-height: 1.28;
-  font-weight: 600;
-  text-align: justify;
-}
-
-.ensai_mission_ho_title::after {
-  content: "";
-  display: inline-block;
-  width: 100%;
-}
-
-.ensai_mission_ho_word {
-  display: inline-block;
-  white-space: nowrap;
-}
-
-.ensai_mission_ho_char {
-  display: inline-block;
-  transform-origin: 50% 100%;
-  will-change: transform, opacity, filter;
 }
 
 /* ---------------- 3D stage ---------------- */
 
-.ensai_mission_ho_stage {
-  perspective: 1400px;
-  perspective-origin: 50% 45%;
+.ensai_flightpath_stage {
+  perspective: 1600px;
+  perspective-origin: 50% 30%;
   width: 100%;
 }
 
-.ensai_mission_ho_cluster {
+.ensai_flightpath_card {
   position: relative;
   width: 100%;
-  max-width: 880px;
+  max-width: 980px;
   margin: 0 auto;
-  aspect-ratio: 16 / 11;
   transform-style: preserve-3d;
-  will-change: transform, opacity;
+  will-change: transform, opacity, filter;
 }
 
-.ensai_mission_ho_tilt {
-  position: absolute;
-  inset: 0;
-  transform-style: preserve-3d;
-  will-change: transform;
-  backface-visibility: hidden;
-}
-
-.ensai_mission_ho_glow {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 80%;
-  height: 80%;
-  translate: -50% -50%;
-  background: radial-gradient(
-    circle,
-    rgba(0, 68, 255, 0.22),
-    rgba(155, 253, 110, 0.08) 45%,
-    transparent 72%
-  );
-  filter: blur(46px);
-  pointer-events: none;
-}
-
-.ensai_mission_ho_dots {
-  position: absolute;
-  left: 4%;
-  top: 8%;
-  width: 34%;
-  height: 34%;
-  background-image: radial-gradient(var(--mh-green) 2px, transparent 2.5px);
-  background-size: 26px 26px;
-  opacity: 0.6;
-}
-
-.ensai_mission_ho_row_alt .ensai_mission_ho_dots {
-  left: auto;
-  right: 4%;
-  top: auto;
-  bottom: 8%;
-}
-
-/* Image card — center-weighted, wider now that the shape is gone */
-
-.ensai_mission_ho_card {
-  position: relative;
-  width: 82%;
-  margin: 6% auto 0;
-}
-
-.ensai_mission_ho_frame {
+.ensai_flightpath_frame {
   position: relative;
   overflow: hidden;
-  border-radius: 2px;
-  box-shadow: 0 40px 90px rgba(0, 0, 0, 0.65),
-    0 0 0 1px rgba(255, 255, 255, 0.08);
-  will-change: transform;
+  border-radius: 3px;
+  background-color: #0a0a0a;
+  aspect-ratio: 880 / 605;
+  box-shadow: 0 50px 100px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.08);
 }
 
-.ensai_mission_ho_sheen {
+.ensai_flightpath_frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.ensai_flightpath_sheen {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    115deg,
-    transparent 40%,
-    rgba(255, 255, 255, 0.14) 50%,
-    transparent 60%
-  );
+  background: linear-gradient(115deg, transparent 42%, rgba(255, 255, 255, 0.12) 50%, transparent 58%);
   pointer-events: none;
 }
 
-.ensai_mission_ho_reticle {
+/* Targeting-reticle corner brackets */
+.ensai_flightpath_bracket {
   position: absolute;
-  right: 16px;
+  width: 22px;
+  height: 22px;
+  border: 1.5px solid rgba(37, 99, 235, 0.85);
+  pointer-events: none;
+}
+
+.ensai_flightpath_bracket_tl {
+  top: 14px;
+  left: 14px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.ensai_flightpath_bracket_tr {
+  top: 14px;
+  right: 14px;
+  border-left: none;
+  border-bottom: none;
+}
+
+.ensai_flightpath_bracket_bl {
+  bottom: 14px;
+  left: 14px;
+  border-right: none;
+  border-top: none;
+}
+
+.ensai_flightpath_bracket_br {
+  bottom: 14px;
+  right: 14px;
+  border-left: none;
+  border-top: none;
+}
+
+.ensai_flightpath_telemetry {
+  position: absolute;
+  left: 16px;
   bottom: 16px;
-  width: 44px;
-  height: 44px;
-  border: 1px solid rgba(255, 136, 0, 0.8);
-  border-radius: 50%;
-  pointer-events: none;
+  font-family: "PP Mori", monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.75);
+  background: rgba(3, 4, 5, 0.55);
+  padding: 4px 8px;
+  border-radius: 2px;
+  border: 1px solid rgba(37, 99, 235, 0.35);
 }
 
-.ensai_mission_ho_reticle::before,
-.ensai_mission_ho_reticle::after {
-  content: "";
-  position: absolute;
-  background: rgba(255, 136, 0, 0.8);
-}
-
-.ensai_mission_ho_reticle::before {
-  left: 50%;
-  top: -8px;
-  width: 1px;
-  height: calc(100% + 16px);
-}
-
-.ensai_mission_ho_reticle::after {
-  top: 50%;
-  left: -8px;
-  height: 1px;
-  width: calc(100% + 16px);
-}
-
-.ensai_mission_ho_caption {
+.ensai_flightpath_caption {
   display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-  margin-top: 14px;
-  font-family: "Orbitron", sans-serif;
+  align-items: baseline;
+  gap: 16px;
+  max-width: 980px;
+  margin: 18px auto 0;
+}
+
+.ensai_flightpath_bay_alt .ensai_flightpath_caption {
+  flex-direction: row-reverse;
+  text-align: right;
+}
+
+.ensai_flightpath_caption_num {
+  flex: 0 0 auto;
+  font-family: "PP Mori", monospace;
   font-size: 13px;
-  line-height: 1.3;
-  letter-spacing: 0.06em;
-  color: var(--mh-ink);
+  color: #2563eb;
 }
 
-.ensai_mission_ho_row_alt .ensai_mission_ho_caption {
-  justify-content: flex-start;
+.ensai_flightpath_desc {
+  margin: 0;
+  font-family: "PP Mori", sans-serif;
+  font-size: clamp(15px, 1.6vw, 18px);
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.78);
 }
 
-.ensai_mission_ho_caption_num {
-  color: #ffffff;
+/* ---------------- Breakpoint: large desktop ---------------- */
+
+@media (min-width: 1440px) {
+  .ensai_flightpath_bay,
+  .ensai_flightpath_intro {
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
-/* ---------------- Tablet ---------------- */
+/* ---------------- Breakpoint: tablet (641–1024) ---------------- */
 
 @media (min-width: 641px) and (max-width: 1024px) {
-  .ensai_mission_ho_cluster {
-    max-width: 640px;
+  .ensai_flightpath_stage {
+    perspective: 1100px;
+  }
+
+  .ensai_flightpath_frame {
     aspect-ratio: 4 / 3;
-  }
-
-  .ensai_mission_ho_card {
-    width: 88%;
-  }
-
-  .ensai_mission_ho_dots {
-    width: 30%;
-    height: 30%;
-  }
-
-  .ensai_mission_ho_title {
-    font-size: clamp(24px, 3.6vw, 34px);
   }
 }
 
-/* ---------------- Mobile ---------------- */
+/* ---------------- Breakpoint: mobile (≤640) ---------------- */
 
 @media (max-width: 640px) {
-  .ensai_mission_ho_row,
-  .ensai_mission_ho_row_alt {
-    padding: 40px var(--mh-gutter);
+  .ensai_flightpath_bay {
+    padding: 44px 20px;
   }
 
-  /* Mobile-la 3D off — scroll smooth-a irukanum */
-  .ensai_mission_ho_stage {
+  /* No 3D perspective on mobile — the .jsx swaps to a translateY +
+     scale entrance at this breakpoint, so this just keeps the
+     stacking context flat and prevents any accidental clipping. */
+  .ensai_flightpath_stage {
     perspective: none;
   }
 
-  .ensai_mission_ho_head,
-  .ensai_mission_ho_row_alt .ensai_mission_ho_head {
-    margin: 0 0 24px;
-    text-align: left;
-  }
-
-  .ensai_mission_ho_title {
-    font-size: clamp(22px, 6.4vw, 28px);
-    line-height: 1.35;
-    text-align: left;
-  }
-
-  .ensai_mission_ho_row_alt .ensai_mission_ho_meta {
-    flex-direction: row;
-    justify-content: flex-start;
-  }
-
-  .ensai_mission_ho_row_alt .ensai_mission_ho_rule {
-    background: linear-gradient(90deg, #ffffff, transparent);
-  }
-
-  .ensai_mission_ho_cluster,
-  .ensai_mission_ho_tilt {
-    position: relative;
-    inset: auto;
-    max-width: 100%;
-    aspect-ratio: auto;
+  .ensai_flightpath_card {
     transform-style: flat;
   }
 
-  .ensai_mission_ho_card {
-    width: 100%;
-    margin: 0;
+  .ensai_flightpath_frame {
+    aspect-ratio: 4 / 3;
   }
 
-  .ensai_mission_ho_dots {
-    display: none;
+  .ensai_flightpath_tag {
+    flex-wrap: wrap;
   }
 
-  .ensai_mission_ho_glow {
-    width: 120%;
-    height: 60%;
+  .ensai_flightpath_bay_alt .ensai_flightpath_tag,
+  .ensai_flightpath_bay_alt .ensai_flightpath_caption {
+    flex-direction: row;
+    text-align: left;
   }
 
-  .ensai_mission_ho_caption,
-  .ensai_mission_ho_row_alt .ensai_mission_ho_caption {
-    justify-content: flex-start;
+  .ensai_flightpath_bracket {
+    width: 16px;
+    height: 16px;
   }
 
-  .ensai_mission_ho_grid {
-    background-size: 44px 44px;
+  .ensai_flightpath_telemetry {
+    font-size: 10px;
   }
 }
 
-/* ---------------- Small mobile ---------------- */
+/* ---------------- Breakpoint: small mobile (≤380) ---------------- */
 
 @media (max-width: 380px) {
-  .ensai_mission_ho_row,
-  .ensai_mission_ho_row_alt {
-    padding: 32px 16px;
+  .ensai_flightpath_bay {
+    padding: 36px 16px;
   }
 
-  .ensai_mission_ho_title {
-    font-size: 20px;
+  .ensai_flightpath_desc {
+    font-size: 14px;
   }
 }
 
 /* ---------------- Reduced motion ---------------- */
 
 @media (prefers-reduced-motion: reduce) {
-  .ensai_mission_ho_wrapper * {
+  .ensai_flightpath_wrapper * {
     animation: none !important;
     transition: none !important;
   }
