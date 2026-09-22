@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import { Link } from "react-router-dom";
 import "./FooterPage.css";
 
 const FooterPage = () => {
@@ -9,54 +10,193 @@ const FooterPage = () => {
 
       <div className="ensai_footer_pg_container">
         <div className="ensai_footer_pg_top">
+
+          {/* =========================
+              BRAND
+          ========================== */}
           <div className="ensai_footer_pg_brand_col">
-            <p className="ensai_footer_pg_logo">EnSai</p>
+            <Link
+              to="/"
+              className="ensai_footer_pg_logo"
+              aria-label="EnSai Home"
+            >
+              EnSai
+            </Link>
+
             <p className="ensai_footer_pg_tagline">
               Mission rehearsal and digital-twin simulation for drone
               operators, before a single blade turns in the field.
             </p>
+
             <div className="ensai_footer_pg_social_row">
-              <a href="#" className="ensai_footer_pg_social_link" aria-label="LinkedIn">in</a>
-              <a href="#" className="ensai_footer_pg_social_link" aria-label="X / Twitter">X</a>
-              <a href="#" className="ensai_footer_pg_social_link" aria-label="GitHub">gh</a>
+              {/* Replace these URLs with your actual social profiles */}
+              <a
+                href="https://www.linkedin.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ensai_footer_pg_social_link"
+                aria-label="LinkedIn"
+              >
+                in
+              </a>
+
+              <a
+                href="https://x.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ensai_footer_pg_social_link"
+                aria-label="X / Twitter"
+              >
+                X
+              </a>
+
+              <a
+                href="https://github.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ensai_footer_pg_social_link"
+                aria-label="GitHub"
+              >
+                gh
+              </a>
             </div>
           </div>
 
+          {/* =========================
+              PRODUCT
+          ========================== */}
           <div className="ensai_footer_pg_link_col">
-            <p className="ensai_footer_pg_col_title">Product</p>
+            <p className="ensai_footer_pg_col_title">
+              Product
+            </p>
+
             <ul className="ensai_footer_pg_link_list">
-              <li><a href="#" className="ensai_footer_pg_link">Digital Twin</a></li>
-              <li><a href="#" className="ensai_footer_pg_link">Mission Rehearsal</a></li>
-              <li><a href="#" className="ensai_footer_pg_link">Pricing</a></li>
+              <li>
+                <Link
+                  to="/product"
+                  className="ensai_footer_pg_link"
+                >
+                  Digital Twin
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  to="/product"
+                  className="ensai_footer_pg_link"
+                >
+                  Mission Rehearsal
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  to="/pricing"
+                  className="ensai_footer_pg_link"
+                >
+                  Pricing
+                </Link>
+              </li>
             </ul>
           </div>
 
+          {/* =========================
+              COMPANY
+          ========================== */}
           <div className="ensai_footer_pg_link_col">
-            <p className="ensai_footer_pg_col_title">Company</p>
+            <p className="ensai_footer_pg_col_title">
+              Company
+            </p>
+
             <ul className="ensai_footer_pg_link_list">
-              <li><a href="#" className="ensai_footer_pg_link">About</a></li>
-              <li><a href="#" className="ensai_footer_pg_link">Case Studies</a></li>
-              <li><a href="#" className="ensai_footer_pg_link">Contact</a></li>
+              <li>
+                <Link
+                  to="/about"
+                  className="ensai_footer_pg_link"
+                >
+                  About
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  to="/case-studies"
+                  className="ensai_footer_pg_link"
+                >
+                  Case Studies
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  to="/contact"
+                  className="ensai_footer_pg_link"
+                >
+                  Contact
+                </Link>
+              </li>
             </ul>
           </div>
 
+          {/* =========================
+              RESOURCES
+          ========================== */}
           <div className="ensai_footer_pg_link_col">
-            <p className="ensai_footer_pg_col_title">Resources</p>
+            <p className="ensai_footer_pg_col_title">
+              Resources
+            </p>
+
             <ul className="ensai_footer_pg_link_list">
-              <li><a href="#" className="ensai_footer_pg_link">Documentation</a></li>
-              <li><a href="#" className="ensai_footer_pg_link">Support</a></li>
-              <li><a href="#" className="ensai_footer_pg_link">Blog</a></li>
+              <li>
+                <Link
+                  to="/documentation"
+                  className="ensai_footer_pg_link"
+                >
+                  Documentation
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  to="/support"
+                  className="ensai_footer_pg_link"
+                >
+                  Support
+                </Link>
+              </li>
+
+              <li>
+                <Link
+                  to="/blog"
+                  className="ensai_footer_pg_link"
+                >
+                  Blog
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
 
+        {/* =========================
+            FOOTER BOTTOM
+        ========================== */}
         <div className="ensai_footer_pg_bottom">
           <p className="ensai_footer_pg_copyright">
             © {new Date().getFullYear()} EnSai. All rights reserved.
           </p>
+
           <ul className="ensai_footer_pg_bottom_links">
-            <li><a href="#">Privacy Policy</a></li>
-            <li><a href="#">Terms of Service</a></li>
+            <li>
+              <Link to="/privacy" className="ensai_footer_pg_link">
+                Privacy Policy
+              </Link>
+            </li>
+
+            <li>
+              <Link to="/terms" className="ensai_footer_pg_link">
+                Terms of Service
+              </Link>
+            </li>
           </ul>
         </div>
       </div>

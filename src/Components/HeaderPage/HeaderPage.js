@@ -7,23 +7,24 @@ import Box from "@mui/material/Box";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import { Link } from "react-router-dom";
 import "./HeaderPage.css";
 
 const LOGO_SRC =
   "https://res.cloudinary.com/dk50cmtps/image/upload/v1789454511/ChatGPT_Image_Sep_15_2026_12_11_34_PM_m3uujm.png";
 
 const NAV_LINKS = [
-  { label: "Product", href: "#product" },
-  { label: "Why enSaio", href: "#why" },
-  { label: "Competitive Edge", href: "#gap" },
-  { label: "Resources", href: "#resources" },
+  { label: "Product", href: "/product" },
+  { label: "Why enSaio", href: "/why" },
+  { label: "Competitive Edge", href: "/gap" },
+  { label: "Resources", href: "/resources" },
 ];
 
 const HeaderPage = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  // Scroll state: throttled with requestAnimationFrame, works on mobile too
+  // Scroll state
   useEffect(() => {
     let ticking = false;
 
@@ -33,6 +34,7 @@ const HeaderPage = () => {
         document.documentElement.scrollTop ||
         document.body.scrollTop ||
         0;
+
       setIsScrolled(y > 20);
       ticking = false;
     };
@@ -45,18 +47,31 @@ const HeaderPage = () => {
     };
 
     update();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+
+    window.addEventListener("scroll", handleScroll, {
+      passive: true,
+    });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
-  // Close the drawer automatically when the screen grows to tablet/laptop
+  // Close drawer when screen becomes tablet/desktop
   useEffect(() => {
     const mq = window.matchMedia("(min-width: 768px)");
+
     const handleChange = (e) => {
-      if (e.matches) setMobileOpen(false);
+      if (e.matches) {
+        setMobileOpen(false);
+      }
     };
+
     mq.addEventListener("change", handleChange);
-    return () => mq.removeEventListener("change", handleChange);
+
+    return () => {
+      mq.removeEventListener("change", handleChange);
+    };
   }, []);
 
   const toggleDrawer = (open) => () => {
@@ -71,12 +86,18 @@ const HeaderPage = () => {
         isScrolled ? "ensai_head_pg_appbar_scrolled" : ""
       }`}
     >
-      <Toolbar className="ensai_head_pg_toolbar" disableGutters>
+      <Toolbar
+        className="ensai_head_pg_toolbar"
+        disableGutters
+      >
         <Box className="ensai_head_pg_container">
-          {/* Logo */}
+
+          {/* =========================
+              LOGO
+          ========================== */}
           <Box className="ensai_head_pg_logo_wrap">
-            <a
-              href="/"
+            <Link
+              to="/"
               className="ensai_head_pg_logo_link"
               aria-label="enSaio home"
             >
@@ -86,27 +107,31 @@ const HeaderPage = () => {
                 className="ensai_head_pg_logo_img"
                 decoding="async"
               />
-            </a>
+            </Link>
           </Box>
 
-          {/* Desktop / Tablet nav */}
+          {/* =========================
+              DESKTOP / TABLET NAV
+          ========================== */}
           <Box
             component="nav"
             aria-label="Main navigation"
             className="ensai_head_pg_nav_desktop"
           >
             {NAV_LINKS.map((link) => (
-              <a
+              <Link
                 key={link.href}
-                href={link.href}
+                to={link.href}
                 className="ensai_head_pg_nav_link"
               >
                 {link.label}
-              </a>
+              </Link>
             ))}
           </Box>
 
-          {/* Mobile menu icon */}
+          {/* =========================
+              MOBILE MENU BUTTON
+          ========================== */}
           <Box className="ensai_head_pg_menu_icon_wrap">
             <IconButton
               aria-label="Open menu"
@@ -119,15 +144,23 @@ const HeaderPage = () => {
         </Box>
       </Toolbar>
 
-      {/* Mobile drawer */}
+      {/* =========================
+          MOBILE DRAWER
+      ========================== */}
       <Drawer
         anchor="top"
         open={mobileOpen}
         onClose={toggleDrawer(false)}
-        transitionDuration={{ enter: 350, exit: 250 }}
+        transitionDuration={{
+          enter: 350,
+          exit: 250,
+        }}
         className="ensai_head_pg_drawer"
-        PaperProps={{ className: "ensai_head_pg_drawer_paper" }}
+        PaperProps={{
+          className: "ensai_head_pg_drawer_paper",
+        }}
       >
+        {/* Drawer Header */}
         <Box className="ensai_head_pg_drawer_header">
           <IconButton
             aria-label="Close menu"
@@ -138,24 +171,28 @@ const HeaderPage = () => {
           </IconButton>
         </Box>
 
+        {/* Drawer Navigation */}
         <Box
           component="nav"
           aria-label="Mobile navigation"
           className="ensai_head_pg_drawer_nav"
         >
           {NAV_LINKS.map((link, index) => (
-            <a
+            <Link
               key={link.href}
-              href={link.href}
+              to={link.href}
               className="ensai_head_pg_drawer_link"
-              style={{ animationDelay: `${120 + index * 70}ms` }}
+              style={{
+                animationDelay: `${120 + index * 70}ms`,
+              }}
               onClick={toggleDrawer(false)}
             >
               <span className="ensai_head_pg_drawer_link_label">
                 {link.label}
               </span>
+
               <ChevronRightIcon className="ensai_head_pg_drawer_link_icon" />
-            </a>
+            </Link>
           ))}
         </Box>
       </Drawer>
