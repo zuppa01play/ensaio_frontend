@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from "./Components/HomePage/HomePage";
 import HeaderPage from "./Components/HeaderPage/HeaderPage";
 import HomeCard from "./Components/HomeCard/HomeCard";
-import HomeCount from "./Components/HomeCount/HomeCount";
 import HomeMission from "./Components/HomeMission/HomeMission";
 import HomeWeather from "./Components/HomeWeather/HomeWeather";
 import HomeSimulatorVideo from "./Components/HomeSimulatorVideo/HomeSimulatorVideo";
@@ -20,7 +19,6 @@ const Home = () => (
     <HomeWeather />
     <HomeSimulatorVideo />
     <HomeCase />
-    {/* <HomeCount /> */}
     <HomeUddanVideo />
   </>
 );
