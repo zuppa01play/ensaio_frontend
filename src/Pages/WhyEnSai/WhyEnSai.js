@@ -184,6 +184,13 @@ const WhyEnSai = () => {
     card.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)";
   };
 
+
+  useEffect(() => {
+    document.querySelector("#root")?.scrollIntoView({ behavior: "smooth" });
+  }, []);
+
+
+
   return (
     <div className="ensai_why_pg_wrap">
       <div className="ensai_why_pg_progress_track">

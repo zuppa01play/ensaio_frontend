@@ -4,44 +4,64 @@ import "./HomeCase.css";
 
 const books = [
   {
-    title: "Rehearse Before You Fly",
+    title: "Geographic Information Systems (GIS)",
     coverUrl:
       "https://res.cloudinary.com/dk50cmtps/image/upload/v1789631893/203608d9-9629-49cb-9824-e750d25a0813_m1pser.png",
-    shortText:
-      "Autonomous Beyond Visual Line of Sight (BVLOS) Unmanned Aerial Systems (UAS) have become essential for high-precision infrastructure monitoring, utility grid inspections, and defense operations. However, legacy simulation software remains tethered to a legacy, asset-centric paradigm: modeling basic aerodynamic stability, motor RPMs, and synthetic pilot hand-eye coordination in generic virtual environments.",
+
+    discipline: "Geographic Information Systems",
+    tagline:
+      "Binding multi-dimensional spatial geometries with relational databases.",
+    metrics: [
+      { label: "Spatial Accuracy", value: "±1.2 cm RMSE" },
+      { label: "Data Models", value: "Vector & Raster" },
+      { label: "Datum Reference", value: "WGS84 / UTM / EPSG" },
+    ],
+    checklist: [
+      "Sub-centimeter GNSS georeferencing",
+      "Parcel / TIN integration",
+      "Enterprise GIS database connectivity",
+    ],
     nav: "/case_fly",
   },
   {
-    title: "NATIVE POSITIONING ARCHITECTURE",
+    title: "PHOTOGRAMMETRIC SURVEYING",
     coverUrl:
       "https://res.cloudinary.com/dk50cmtps/image/upload/v1789630638/54b186e5-d3cd-4af1-a641-ae12c47444c3_rvl2xs.png",
-    shortText:
-      "De-risk the deal before you sign it.Certainty before contact.Beyond simulation. Into certainty.",
+
+    discipline: "Photogrammetric Surveying",
+    tagline:
+      "Airborne imagery transformed into millimeter-accurate 3D measurements and surface models.",
+    metrics: [
+      { label: "Forward Overlap", value: "70% – 80%" },
+      { label: "Side Overlap", value: "30% – 60%" },
+      { label: "Ground Sample Distance", value: "1.2 – 2.5 cm/px" },
+    ],
+    checklist: [
+      "SIFT keypoint matching",
+      "Bundle Block Adjustment (BBA)",
+      "True orthorectification eliminating perspective distortion",
+    ],
     nav: "/case_native_posting",
   },
   {
-    title: "PIPELINE INSPECTION",
+    title: " MISSION PLANNING",
     coverUrl:
       "https://res.cloudinary.com/dk50cmtps/image/upload/v1789630359/b4b884d4-94e6-4df1-85d7-f09ab1fc7361_v0xluu.png",
-    shortText:
-      "To examine the real-world operational and commercial mechanics of enSaio, consider an industrial corridor monitoring operation executed by an aerial geomatics division on behalf of a Tier-1 Interstate Energy Pipeline Operator.",
+
+    discipline: "Mission Planning",
+    tagline:
+      "UAV trajectory design, overlap convergence & pre-flight rehearsal.",
+    metrics: [
+      { label: "Planning Stage", value: "Pre-Flight" },
+      { label: "Focus", value: "Flight Dynamics" },
+      { label: "Risk Control", value: "Hazard Mitigation" },
+    ],
+    checklist: [
+      "UAV trajectory design",
+      "Overlap convergence planning",
+      "Pre-flight rehearsal",
+    ],
     nav: "/case_pipeline",
-  },
-  {
-    title: "SOP INTEGRATION",
-    coverUrl:
-      "https://res.cloudinary.com/dk50cmtps/image/upload/v1784608191/Ajeet_Eagle_drone_banner_lvro83.png",
-    shortText:
-      "Rather than disrupting established enterprise tooling or introducing friction into field operations, enSaio inserts seamlessly into standard operating procedures (SOPs) as an automated, objective decision gate. The platform operationalizes compliance across ISO 9001 (Quality Management), ISO 19157 (Geospatial Data Quality), and EASA SORA / FAA Part 107 BVLOS risk standards.",
-    nav: "/case_sop",
-  },
-  {
-    title: "STRATEGIC VALUE",
-    coverUrl:
-      "https://res.cloudinary.com/dk50cmtps/image/upload/v1784608191/Ajeet_Eagle_drone_banner_lvro83.png",
-    shortText:
-      "Deploying enSaio transforms drone operations from an unpredictable, liability-heavy flight activity into a deterministic, auditable enterprise workflow.",
-    nav: "/case_strategic",
   },
 ];
 
@@ -52,8 +72,27 @@ const getVisibleCount = () => {
   return 3;
 };
 
-const HomeCase = () => {
+const CheckIcon = () => (
+  <svg
+    className="ensai_home_case_pg_info_check_icon"
+    viewBox="0 0 16 16"
+    width="14"
+    height="14"
+    aria-hidden="true"
+  >
+    <circle cx="8" cy="8" r="7.2" fill="rgba(77,216,255,0.12)" stroke="rgba(77,216,255,0.45)" strokeWidth="0.8" />
+    <path
+      d="M4.8 8.3l2.2 2.2 4.2-4.4"
+      fill="none"
+      stroke="#4dd8ff"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
 
+const HomeCase = () => {
   const [openCards, setOpenCards] = useState(() => books.map(() => false));
   const [visible, setVisible] = useState(getVisibleCount);
   const [current, setCurrent] = useState(0);
@@ -87,10 +126,11 @@ const HomeCase = () => {
     }
   };
 
-const handleReadMore = (event, nav) => {
-  event.stopPropagation();
-  window.location.assign(nav);
-};
+  const handleReadMore = (event, nav) => {
+    event.stopPropagation();
+    window.location.assign(nav);
+  };
+
   const onTouchStart = (e) => {
     touchStartX.current = e.touches[0].clientX;
   };
@@ -167,10 +207,45 @@ const handleReadMore = (event, nav) => {
                         <div className="ensai_home_case_pg_notebook_page">
                           <div className="ensai_home_case_pg_notebook_quote_container">
                             <div className="ensai_home_case_pg_notebook_quote_scroll">
-                              <p className="ensai_home_case_pg_notebook_quote_text">
-                                {book.shortText}
-                              </p>
+                              <div className="ensai_home_case_pg_info">
+                                <h3 className="ensai_home_case_pg_info_title">
+                                  {book.discipline}
+                                </h3>
+
+                                <p className="ensai_home_case_pg_info_tagline">
+                                  {book.tagline}
+                                </p>
+
+                                <div className="ensai_home_case_pg_info_metrics">
+                                  {book.metrics.map((metric) => (
+                                    <div
+                                      key={metric.label}
+                                      className="ensai_home_case_pg_info_metric"
+                                    >
+                                      <span className="ensai_home_case_pg_info_metric_label">
+                                        {metric.label}
+                                      </span>
+                                      <span className="ensai_home_case_pg_info_metric_value">
+                                        {metric.value}
+                                      </span>
+                                    </div>
+                                  ))}
+                                </div>
+
+                                <ul className="ensai_home_case_pg_info_checklist">
+                                  {book.checklist.map((item) => (
+                                    <li
+                                      key={item}
+                                      className="ensai_home_case_pg_info_check_item"
+                                    >
+                                      <CheckIcon />
+                                      <span>{item}</span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
                             </div>
+
                             <button
                               type="button"
                               className="ensai_home_case_pg_read_more_btn"

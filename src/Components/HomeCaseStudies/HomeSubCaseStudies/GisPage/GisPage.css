@@ -1,0 +1,965 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800&display=swap");
+
+.ensai_gis_pg_section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  padding: 6rem 1rem 3.5rem;
+  background: #05070b;
+  color: #eaf1f7;
+  font-family: "Times New Roman", Times, serif;
+  box-sizing: border-box;
+  isolation: isolate;
+}
+
+.ensai_gis_pg_section *,
+.ensai_gis_pg_section *::before,
+.ensai_gis_pg_section *::after {
+  box-sizing: border-box;
+}
+
+/* ---------------------------------------------------------------- */
+/* Background                                                        */
+/* ---------------------------------------------------------------- */
+
+.ensai_gis_pg_bg_grid {
+  position: absolute;
+  left: -10%;
+  right: -10%;
+  bottom: -4%;
+  height: 55%;
+  background-image: linear-gradient(
+      rgba(77, 216, 255, 0.13) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(77, 216, 255, 0.13) 1px, transparent 1px);
+  background-size: 56px 56px;
+  transform: perspective(480px) rotateX(64deg);
+  transform-origin: bottom center;
+  -webkit-mask-image: linear-gradient(to top, black 5%, transparent 85%);
+  mask-image: linear-gradient(to top, black 5%, transparent 85%);
+  pointer-events: none;
+  z-index: 0;
+  animation: ensai_gis_pg_grid_scroll 5s linear infinite;
+}
+
+@keyframes ensai_gis_pg_grid_scroll {
+  from {
+    background-position: 0 0, 0 0;
+  }
+  to {
+    background-position: 0 56px, 0 0;
+  }
+}
+
+.ensai_gis_pg_bg_orb {
+  position: absolute;
+  top: -120px;
+  right: -120px;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: rgba(37, 99, 235, 0.22);
+  filter: blur(90px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.ensai_gis_pg_bg_scanline {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 2px;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(77, 216, 255, 0.55),
+    transparent
+  );
+  opacity: 0.6;
+  animation: ensai_gis_pg_scanline_sweep 8s ease-in-out infinite;
+}
+
+@keyframes ensai_gis_pg_scanline_sweep {
+  0% {
+    top: 0%;
+    opacity: 0;
+  }
+  8% {
+    opacity: 0.6;
+  }
+  50% {
+    top: 100%;
+    opacity: 0.25;
+  }
+  58% {
+    opacity: 0;
+  }
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
+}
+
+.ensai_gis_pg_bg_crt {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.025) 0px,
+    rgba(255, 255, 255, 0.025) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  mix-blend-mode: overlay;
+  opacity: 0.5;
+}
+
+/* ---------------------------------------------------------------- */
+/* Layout                                                            */
+/* ---------------------------------------------------------------- */
+
+.ensai_gis_pg_container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1180px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.75rem;
+}
+
+/* Back button now sits at the bottom, centered */
+.ensai_gis_pg_back_btn {
+  align-self: center;
+  margin-top: 0.75rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 11px 22px;
+  font-family: "Orbitron", sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #4dd8ff;
+  background: rgba(77, 216, 255, 0.06);
+  border: 1px solid rgba(77, 216, 255, 0.4);
+  border-radius: 2px;
+  cursor: pointer;
+  clip-path: polygon(
+    10px 0,
+    100% 0,
+    100% calc(100% - 10px),
+    calc(100% - 10px) 100%,
+    0 100%,
+    0 10px
+  );
+  transition: color 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+}
+
+.ensai_gis_pg_back_btn:hover,
+.ensai_gis_pg_back_btn:focus-visible {
+  color: #04141c;
+  background: #4dd8ff;
+  border-color: #4dd8ff;
+  outline: none;
+}
+
+/* ---------------------------------------------------------------- */
+/* Hero                                                              */
+/* ---------------------------------------------------------------- */
+
+.ensai_gis_pg_hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+  gap: 2rem;
+}
+
+.ensai_gis_pg_hero_text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.9rem;
+  animation: ensai_gis_pg_rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.ensai_gis_pg_badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  font-family: "Orbitron", sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: #ffb454;
+  border: 1px solid rgba(255, 180, 84, 0.4);
+  background: rgba(255, 180, 84, 0.08);
+  border-radius: 999px;
+}
+
+.ensai_gis_pg_badge_dot {
+  flex: 0 0 6px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ffb454;
+  box-shadow: 0 0 8px #ffb454;
+  animation: ensai_gis_pg_pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes ensai_gis_pg_pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+
+.ensai_gis_pg_eyebrow {
+  font-family: "Orbitron", sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #4dd8ff;
+}
+
+.ensai_gis_pg_title {
+  margin: 0;
+  font-family: "Orbitron", sans-serif;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 1px;
+  color: #f3f7fb;
+  text-shadow: 0 0 28px rgba(77, 216, 255, 0.25);
+}
+
+.ensai_gis_pg_summary {
+  margin: 0;
+  max-width: 640px;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #a9b6c4;
+}
+
+/* ---------- hero visual ---------- */
+.ensai_gis_pg_visual {
+  position: relative;
+  justify-self: center;
+  width: 100%;
+  max-width: 260px;
+  padding: 22px 22px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(165deg, #0e1729 0%, #080d18 100%);
+  border: 1px solid rgba(77, 216, 255, 0.16);
+  border-radius: 4px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.55);
+  animation: ensai_gis_pg_rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both;
+}
+
+.ensai_gis_pg_corner {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: rgba(77, 216, 255, 0.55);
+  pointer-events: none;
+}
+
+.ensai_gis_pg_corner_tl {
+  top: 8px;
+  left: 8px;
+  border-top: 1.5px solid;
+  border-left: 1.5px solid;
+}
+
+.ensai_gis_pg_corner_tr {
+  top: 8px;
+  right: 8px;
+  border-top: 1.5px solid;
+  border-right: 1.5px solid;
+}
+
+.ensai_gis_pg_corner_bl {
+  bottom: 8px;
+  left: 8px;
+  border-bottom: 1.5px solid;
+  border-left: 1.5px solid;
+}
+
+.ensai_gis_pg_corner_br {
+  bottom: 8px;
+  right: 8px;
+  border-bottom: 1.5px solid;
+  border-right: 1.5px solid;
+}
+
+.ensai_gis_pg_globe {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.ensai_gis_pg_globe_ring {
+  transform-origin: 100px 100px;
+  animation: ensai_gis_pg_spin 40s linear infinite;
+}
+
+.ensai_gis_pg_globe_pulse {
+  transform-origin: 128px 80px;
+  animation: ensai_gis_pg_ping 2.2s ease-out infinite;
+}
+
+@keyframes ensai_gis_pg_spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ensai_gis_pg_ping {
+  0% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+.ensai_gis_pg_visual_tags {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.ensai_gis_pg_visual_tag {
+  padding: 4px 10px;
+  font-family: "Orbitron", sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #4dd8ff;
+  border: 1px solid rgba(77, 216, 255, 0.35);
+  border-radius: 2px;
+  background: rgba(77, 216, 255, 0.06);
+}
+
+/* ---------------------------------------------------------------- */
+/* Brief panel                                                       */
+/* ---------------------------------------------------------------- */
+
+.ensai_gis_pg_panel {
+  position: relative;
+  padding: 24px 16px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  background: linear-gradient(165deg, #0d1626 0%, #080d18 100%);
+  border: 1px solid rgba(77, 216, 255, 0.16);
+  border-radius: 4px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  animation: ensai_gis_pg_rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.25s both;
+}
+
+.ensai_gis_pg_panel::before,
+.ensai_gis_pg_panel::after {
+  content: "";
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+}
+
+.ensai_gis_pg_panel::before {
+  top: 8px;
+  left: 8px;
+  border-top: 1.5px solid rgba(255, 180, 84, 0.7);
+  border-left: 1.5px solid rgba(255, 180, 84, 0.7);
+}
+
+.ensai_gis_pg_panel::after {
+  bottom: 8px;
+  right: 8px;
+  border-bottom: 1.5px solid rgba(255, 180, 84, 0.7);
+  border-right: 1.5px solid rgba(255, 180, 84, 0.7);
+}
+
+.ensai_gis_pg_panel_title {
+  margin: 0;
+  font-family: "Orbitron", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #ffb454;
+}
+
+/* ---------- metric strip: mobile rows ---------- */
+.ensai_gis_pg_metrics {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(77, 216, 255, 0.35);
+  border-radius: 2px;
+  background: rgba(77, 216, 255, 0.05);
+}
+
+.ensai_gis_pg_metric {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  min-height: 50px;
+  padding: 10px 14px;
+}
+
+.ensai_gis_pg_metric + .ensai_gis_pg_metric {
+  border-top: 1px solid rgba(77, 216, 255, 0.16);
+}
+
+.ensai_gis_pg_metric_label {
+  font-family: "Orbitron", sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: #7f8fa0;
+}
+
+.ensai_gis_pg_metric_value {
+  font-family: "Orbitron", sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.4;
+  text-align: right;
+  color: #4dd8ff;
+}
+
+/* ---------- checklist ---------- */
+.ensai_gis_pg_checklist {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ensai_gis_pg_check_item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #eaf1f7;
+}
+
+.ensai_gis_pg_check_icon {
+  flex: 0 0 16px;
+  margin-top: 3px;
+}
+
+/* ---------------------------------------------------------------- */
+/* Detail cards (always visible)                                     */
+/* ---------------------------------------------------------------- */
+
+.ensai_gis_pg_cards {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 18px;
+}
+
+.ensai_gis_pg_card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 22px 16px 20px;
+  background: linear-gradient(165deg, #0d1626 0%, #080d18 100%);
+  border: 1px solid rgba(77, 216, 255, 0.16);
+  border-radius: 4px;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45);
+  transition: border-color 0.4s ease, box-shadow 0.4s ease;
+  animation: ensai_gis_pg_rise 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.ensai_gis_pg_card:nth-child(1) {
+  animation-delay: 0.35s;
+}
+
+.ensai_gis_pg_card:nth-child(2) {
+  animation-delay: 0.45s;
+}
+
+.ensai_gis_pg_card:nth-child(3) {
+  animation-delay: 0.55s;
+}
+
+.ensai_gis_pg_card:nth-child(4) {
+  animation-delay: 0.65s;
+}
+
+.ensai_gis_pg_card:hover {
+  border-color: rgba(77, 216, 255, 0.4);
+  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.55), 0 0 26px rgba(77, 216, 255, 0.12);
+}
+
+.ensai_gis_pg_card_num {
+  font-family: "Orbitron", sans-serif;
+  font-size: 26px;
+  font-weight: 800;
+  line-height: 1;
+  color: #ffb454;
+  text-shadow: 0 0 16px rgba(255, 180, 84, 0.35);
+}
+
+.ensai_gis_pg_card_title {
+  margin: 0;
+  font-family: "Orbitron", sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  color: #f3f7fb;
+}
+
+.ensai_gis_pg_card_intro {
+  margin: 0;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 16px;
+  line-height: 1.65;
+  color: #a9b6c4;
+}
+
+.ensai_gis_pg_points {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ensai_gis_pg_point {
+  position: relative;
+  padding-left: 22px;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 16px;
+  line-height: 1.55;
+  color: #eaf1f7;
+}
+
+.ensai_gis_pg_point::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.8em;
+  width: 12px;
+  height: 2px;
+  background: #4dd8ff;
+  box-shadow: 0 0 6px rgba(77, 216, 255, 0.6);
+}
+
+/* ---------- formula ---------- */
+.ensai_gis_pg_formula_box {
+  margin-top: auto;
+  padding: 14px 14px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border: 1px solid rgba(255, 180, 84, 0.35);
+  border-left-width: 3px;
+  border-radius: 2px;
+  background: rgba(255, 180, 84, 0.05);
+}
+
+.ensai_gis_pg_formula_label {
+  font-family: "Orbitron", sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #ffb454;
+}
+
+.ensai_gis_pg_formula_scroll {
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 180, 84, 0.4) transparent;
+}
+
+.ensai_gis_pg_formula_scroll::-webkit-scrollbar {
+  height: 3px;
+}
+
+.ensai_gis_pg_formula_scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 180, 84, 0.4);
+  border-radius: 2px;
+}
+
+.ensai_gis_pg_formula {
+  margin: 0;
+  width: max-content;
+  min-width: 100%;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 19px;
+  line-height: 1.9;
+  white-space: nowrap;
+  color: #f3f7fb;
+}
+
+.ensai_gis_pg_formula sub,
+.ensai_gis_pg_formula sup {
+  font-size: 0.68em;
+  line-height: 0;
+}
+
+.ensai_gis_pg_legend {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ensai_gis_pg_legend li {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #a9b6c4;
+}
+
+.ensai_gis_pg_legend li i {
+  color: #4dd8ff;
+  font-weight: 700;
+}
+
+/* ---------- chips ---------- */
+.ensai_gis_pg_chips_wrap {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ensai_gis_pg_chips_label {
+  font-family: "Orbitron", sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #ffb454;
+}
+
+.ensai_gis_pg_chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.ensai_gis_pg_chip {
+  padding: 7px 11px;
+  font-family: "Orbitron", sans-serif;
+  font-size: 9.5px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: 1px;
+  color: #4dd8ff;
+  border: 1px solid rgba(77, 216, 255, 0.4);
+  border-radius: 2px;
+  background: rgba(77, 216, 255, 0.07);
+  transition: color 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+}
+
+.ensai_gis_pg_chip:hover {
+  color: #1a1004;
+  background: #ffb454;
+  border-color: #ffb454;
+}
+
+/* ---------- entrance animation ---------- */
+@keyframes ensai_gis_pg_rise {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 24px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+/* ---------------------------------------------------------------- */
+/* Responsive                                                        */
+/* ---------------------------------------------------------------- */
+
+/* 360px Android */
+@media only screen and (max-width: 360px) {
+  .ensai_gis_pg_section {
+    padding: 5.5rem 0.75rem 3rem;
+  }
+
+  .ensai_gis_pg_title {
+    font-size: 19px;
+    letter-spacing: 0.6px;
+  }
+
+  .ensai_gis_pg_summary,
+  .ensai_gis_pg_check_item,
+  .ensai_gis_pg_card_intro,
+  .ensai_gis_pg_point {
+    font-size: 15px;
+  }
+
+  .ensai_gis_pg_panel {
+    padding: 22px 12px 22px;
+  }
+
+  .ensai_gis_pg_metric {
+    padding: 10px 10px;
+  }
+
+  .ensai_gis_pg_metric_value {
+    font-size: 11px;
+  }
+
+  .ensai_gis_pg_card {
+    padding: 20px 12px 18px;
+  }
+
+  .ensai_gis_pg_card_title {
+    font-size: 13px;
+  }
+
+  .ensai_gis_pg_formula {
+    font-size: 17px;
+  }
+
+  .ensai_gis_pg_back_btn {
+    width: 100%;
+  }
+}
+
+/* Large mobile */
+@media only screen and (min-width: 480px) {
+  .ensai_gis_pg_section {
+    padding: 6.5rem 1.5rem 4rem;
+  }
+
+  .ensai_gis_pg_title {
+    font-size: 26px;
+  }
+
+  .ensai_gis_pg_panel {
+    padding: 26px 22px 28px;
+  }
+
+  .ensai_gis_pg_card {
+    padding: 24px 22px 22px;
+  }
+}
+
+/* Tablet */
+@media only screen and (min-width: 768px) {
+  .ensai_gis_pg_section {
+    padding: 7rem 2rem 4.5rem;
+  }
+
+  .ensai_gis_pg_container {
+    gap: 2.25rem;
+  }
+
+  .ensai_gis_pg_title {
+    font-size: 32px;
+  }
+
+  .ensai_gis_pg_summary {
+    font-size: 17px;
+  }
+
+  .ensai_gis_pg_visual {
+    max-width: 280px;
+  }
+
+  .ensai_gis_pg_panel {
+    padding: 30px 28px 32px;
+    gap: 22px;
+  }
+
+  /* metric strip becomes 3 equal tiles */
+  .ensai_gis_pg_metrics {
+    flex-direction: row;
+  }
+
+  .ensai_gis_pg_metric {
+    flex: 1 1 0;
+    min-width: 0;
+    min-height: 88px;
+    flex-direction: column-reverse;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 8px;
+    padding: 14px 16px;
+  }
+
+  .ensai_gis_pg_metric + .ensai_gis_pg_metric {
+    border-top: none;
+    border-left: 1px solid rgba(77, 216, 255, 0.16);
+  }
+
+  .ensai_gis_pg_metric_value {
+    font-size: 13px;
+    text-align: left;
+  }
+
+  /* checklist becomes 3 equal tiles */
+  .ensai_gis_pg_checklist {
+    flex-direction: row;
+    align-items: stretch;
+    gap: 14px;
+  }
+
+  .ensai_gis_pg_check_item {
+    flex: 1 1 0;
+    min-width: 0;
+    padding: 14px 14px;
+    border: 1px solid rgba(77, 216, 255, 0.16);
+    border-radius: 2px;
+    background: rgba(77, 216, 255, 0.03);
+  }
+
+  .ensai_gis_pg_cards {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+    align-items: stretch;
+  }
+
+  .ensai_gis_pg_card_title {
+    font-size: 14px;
+    min-height: 3em;
+  }
+}
+
+/* Laptop */
+@media only screen and (min-width: 1024px) {
+  .ensai_gis_pg_section {
+    padding: 8rem 3rem 5rem;
+  }
+
+  .ensai_gis_pg_container {
+    gap: 2.75rem;
+  }
+
+  .ensai_gis_pg_hero {
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    gap: 3.5rem;
+  }
+
+  .ensai_gis_pg_title {
+    font-size: 40px;
+    letter-spacing: 1.4px;
+  }
+
+  .ensai_gis_pg_summary {
+    font-size: 18px;
+  }
+
+  .ensai_gis_pg_visual {
+    max-width: 320px;
+    justify-self: end;
+    padding: 28px 28px 20px;
+  }
+
+  .ensai_gis_pg_panel {
+    padding: 36px 40px 38px;
+    gap: 26px;
+  }
+
+  .ensai_gis_pg_metric {
+    min-height: 96px;
+    padding: 16px 20px;
+  }
+
+  .ensai_gis_pg_metric_value {
+    font-size: 15px;
+  }
+
+  .ensai_gis_pg_check_item {
+    font-size: 17px;
+    padding: 16px 16px;
+  }
+
+  .ensai_gis_pg_card {
+    padding: 28px 28px 26px;
+  }
+
+  .ensai_gis_pg_card_intro,
+  .ensai_gis_pg_point {
+    font-size: 17px;
+  }
+
+  .ensai_gis_pg_card_title {
+    font-size: 15px;
+  }
+
+  .ensai_gis_pg_bg_orb {
+    width: 460px;
+    height: 460px;
+  }
+}
+
+/* Large desktop */
+@media only screen and (min-width: 1440px) {
+  .ensai_gis_pg_container {
+    max-width: 1280px;
+  }
+
+  .ensai_gis_pg_title {
+    font-size: 46px;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .ensai_gis_pg_bg_grid,
+  .ensai_gis_pg_bg_scanline,
+  .ensai_gis_pg_badge_dot,
+  .ensai_gis_pg_globe_ring,
+  .ensai_gis_pg_globe_pulse,
+  .ensai_gis_pg_hero_text,
+  .ensai_gis_pg_visual,
+  .ensai_gis_pg_panel,
+  .ensai_gis_pg_card {
+    animation: none !important;
+  }
+
+  .ensai_gis_pg_card,
+  .ensai_gis_pg_back_btn,
+  .ensai_gis_pg_chip {
+    transition: none !important;
+  }
+}

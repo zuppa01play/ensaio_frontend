@@ -13,7 +13,7 @@
   width: 100%;
   background: var(--hc-bg);
   color: var(--hc-text);
-font-family: "Orbitron", sans-serif;
+  font-family: "Orbitron", sans-serif;
   padding: 6.5rem 2rem 5.5rem;
   box-sizing: border-box;
   overflow: hidden;
@@ -224,7 +224,7 @@ font-family: "Orbitron", sans-serif;
   display: inline-flex;
   align-items: center;
   gap: 8px;
-font-family: "Orbitron", sans-serif;
+  font-family: "Orbitron", sans-serif;
   font-size: 11px;
   letter-spacing: 2px;
   color: var(--hc-cyan);
@@ -265,10 +265,6 @@ font-family: "Orbitron", sans-serif;
   margin: 0;
   text-shadow: 0 0 30px rgba(77, 216, 255, 0.25);
 }
-
-/* ---------------------------------------------------------------- */
-/* Carousel                                                          */
-/* ---------------------------------------------------------------- */
 
 .ensai_home_case_pg_carousel {
   width: 100%;
@@ -372,10 +368,6 @@ font-family: "Orbitron", sans-serif;
   box-shadow: 0 0 10px rgba(255, 180, 84, 0.45);
 }
 
-/* ---------------------------------------------------------------- */
-/* Card                                                              */
-/* ---------------------------------------------------------------- */
-
 .ensai_home_case_pg_moleskine_wrapper {
   display: block;
   position: relative;
@@ -400,10 +392,11 @@ font-family: "Orbitron", sans-serif;
   outline-offset: 5px;
 }
 
+/* taller frame so Badge, Title, Tagline, Metrics, Checklist and button fit */
 .ensai_home_case_pg_moleskine_notebook {
   position: relative;
   width: 100%;
-  aspect-ratio: 3 / 4.3;
+  aspect-ratio: 3 / 4.7;
   border-radius: 4px;
   background: var(--hc-panel);
   border: 1px solid var(--hc-panel-edge);
@@ -494,8 +487,8 @@ font-family: "Orbitron", sans-serif;
   flex-direction: column;
   align-items: stretch;
   justify-content: space-between;
-  gap: 16px;
-  padding: 34px 24px 28px;
+  gap: 14px;
+  padding: 30px 20px 22px;
   box-sizing: border-box;
   opacity: 0;
   filter: blur(6px);
@@ -517,12 +510,12 @@ font-family: "Orbitron", sans-serif;
   }
 }
 
-/* Paragraph: full text visible, scrolls inside the card if it is long */
+/* Content area: fits fully, scrolls inside the card only if screen is very small */
 .ensai_home_case_pg_notebook_quote_scroll {
   flex: 1 1 auto;
   min-height: 0;
   overflow-y: auto;
-  padding-right: 8px;
+  padding-right: 6px;
   scrollbar-width: thin;
   scrollbar-color: var(--hc-cyan-dim) transparent;
 }
@@ -536,17 +529,100 @@ font-family: "Orbitron", sans-serif;
   border-radius: 2px;
 }
 
-.ensai_home_case_pg_notebook_quote_text {
-  font-family: "Orbitron", sans-serif;
-  font-size: 12.5px;
-  line-height: 1.7;
-  color: var(--hc-text);
+/* ---------------------------------------------------------------- */
+/* Card content: Badge / Title / Tagline / Metric Strip / Checklist  */
+/* ---------------------------------------------------------------- */
+
+.ensai_home_case_pg_info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
+}
+
+
+.ensai_home_case_pg_info_title {
   margin: 0;
-  text-align: justify;
-  text-justify: inter-word;
-  hyphens: auto;
-  -webkit-hyphens: auto;
-  overflow-wrap: anywhere;
+  font-family: "Orbitron", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: #f3f7fb;
+  text-shadow: 0 0 16px rgba(77, 216, 255, 0.25);
+}
+
+.ensai_home_case_pg_info_tagline {
+  margin: 0;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--hc-text-dim);
+}
+
+.ensai_home_case_pg_info_metrics {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--hc-cyan-dim);
+  border-radius: 2px;
+  background: rgba(77, 216, 255, 0.05);
+}
+
+.ensai_home_case_pg_info_metric {
+  display: grid;
+  grid-template-columns: 44% 1fr;
+  align-items: center;
+  gap: 10px;
+  min-height: 34px;
+  padding: 7px 10px;
+}
+
+.ensai_home_case_pg_info_metric + .ensai_home_case_pg_info_metric {
+  border-top: 1px solid rgba(77, 216, 255, 0.16);
+}
+
+.ensai_home_case_pg_info_metric_label {
+  font-family: "Orbitron", sans-serif;
+  font-size: 7.5px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--hc-text-dim);
+}
+
+.ensai_home_case_pg_info_metric_value {
+  font-family: "Orbitron", sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 1.35;
+  text-align: right;
+  color: var(--hc-cyan);
+}
+
+.ensai_home_case_pg_info_checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.ensai_home_case_pg_info_check_item {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 14px;
+  line-height: 1.45;
+  color: var(--hc-text);
+}
+
+.ensai_home_case_pg_info_check_icon {
+  flex: 0 0 14px;
+  margin-top: 2px;
 }
 
 /* Read More button */
@@ -671,7 +747,7 @@ font-family: "Orbitron", sans-serif;
   }
 }
 
-/* bottom title label on the cover (replaces the old "Access Log") */
+/* bottom title label on the cover */
 .ensai_home_case_pg_notebook_title {
   position: absolute;
   left: 0;
@@ -760,8 +836,8 @@ font-family: "Orbitron", sans-serif;
     padding: 0 10px;
   }
 
-  .ensai_home_case_pg_notebook_quote_text {
-    font-size: 11.5px;
+  .ensai_home_case_pg_notebook_quote_container {
+    padding: 28px 18px 20px;
   }
 
   .ensai_home_case_pg_bg_radar {
@@ -783,6 +859,27 @@ font-family: "Orbitron", sans-serif;
   .ensai_home_case_pg_notebook_title {
     font-size: 11.5px;
     letter-spacing: 1px;
+  }
+
+  .ensai_home_case_pg_notebook_quote_container {
+    padding: 26px 14px 18px;
+  }
+
+  .ensai_home_case_pg_info {
+    gap: 10px;
+  }
+
+  .ensai_home_case_pg_info_title {
+    font-size: 12px;
+  }
+
+  .ensai_home_case_pg_info_tagline,
+  .ensai_home_case_pg_info_check_item {
+    font-size: 13px;
+  }
+
+  .ensai_home_case_pg_info_metric {
+    padding: 6px 8px;
   }
 }
 
