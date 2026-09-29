@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/ensaio_frontend/static/css/main.86df1416.css",
-    "main.js": "/ensaio_frontend/static/js/main.3a309c36.js",
+    "main.js": "/ensaio_frontend/static/js/main.221c5443.js",
     "static/js/453.38564b24.chunk.js": "/ensaio_frontend/static/js/453.38564b24.chunk.js",
     "static/media/hero.mp4": "/ensaio_frontend/static/media/hero.ebb0a3aa11d765c0b0f7.mp4",
     "index.html": "/ensaio_frontend/index.html",
     "main.86df1416.css.map": "/ensaio_frontend/static/css/main.86df1416.css.map",
-    "main.3a309c36.js.map": "/ensaio_frontend/static/js/main.3a309c36.js.map",
+    "main.221c5443.js.map": "/ensaio_frontend/static/js/main.221c5443.js.map",
     "453.38564b24.chunk.js.map": "/ensaio_frontend/static/js/453.38564b24.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.86df1416.css",
-    "static/js/main.3a309c36.js"
+    "static/js/main.221c5443.js"
   ]
 }
