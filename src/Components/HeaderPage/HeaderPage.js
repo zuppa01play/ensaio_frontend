@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "./HeaderPage.css";
 
 const NAV_LINKS = [
-  { label: "Product", href: "#product" },
+  { label: "Product", href: "/product" },
   { label: "About", href: "/about" },
   { label: "Why enSaio", href: "/ensai_why" },
-  { label: "Resources", href: "#resources" },
+  { label: "Resources", href: "/resources" },
 ];
 
 const LOGO_URL =
@@ -16,6 +17,7 @@ const HeaderPage = () => {
 
   useEffect(() => {
     document.body.style.overflow = isMenuOpen ? "hidden" : "";
+
     return () => {
       document.body.style.overflow = "";
     };
@@ -26,32 +28,51 @@ const HeaderPage = () => {
   return (
     <header className="ensai_head_pg_header">
       <div className="ensai_head_pg_bar">
-        <a href="/" className="ensai_head_pg_logo_link" onClick={closeMenu}>
+
+        {/* Logo */}
+        <Link
+          to="/"
+          className="ensai_head_pg_logo_link"
+          onClick={closeMenu}
+        >
           <img
             src={LOGO_URL}
             alt="enSAIO"
             className="ensai_head_pg_logo_img"
           />
-        </a>
+        </Link>
 
+        {/* Desktop Navigation */}
         <nav className="ensai_head_pg_nav_desktop">
           <ul className="ensai_head_pg_nav_list">
             {NAV_LINKS.map((link) => (
-              <li key={link.label} className="ensai_head_pg_nav_item">
-                <a href={link.href} className="ensai_head_pg_nav_link">
+              <li
+                key={link.label}
+                className="ensai_head_pg_nav_item"
+              >
+                <Link
+                  to={link.href}
+                  className="ensai_head_pg_nav_link"
+                  onClick={closeMenu}
+                >
                   {link.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
         </nav>
 
+        {/* Desktop CTA */}
         <div className="ensai_head_pg_actions_desktop">
-          <a href="#get-started" className="ensai_head_pg_cta_btn">
+          <a
+            href="#get-started"
+            className="ensai_head_pg_cta_btn"
+          >
             Get started
           </a>
         </div>
 
+        {/* Mobile Menu Button */}
         <button
           type="button"
           className="ensai_head_pg_menu_toggle"
@@ -65,6 +86,7 @@ const HeaderPage = () => {
         </button>
       </div>
 
+      {/* Mobile Menu Overlay */}
       <div
         className={`ensai_head_pg_overlay ${
           isMenuOpen ? "ensai_head_pg_overlay_open" : ""
@@ -77,38 +99,49 @@ const HeaderPage = () => {
           }`}
           onClick={(e) => e.stopPropagation()}
         >
+
+          {/* Close Button */}
           <button
             type="button"
             className="ensai_head_pg_close_btn"
             aria-label="Close menu"
             onClick={closeMenu}
           >
-            <svg viewBox="0 0 24 24" className="ensai_head_pg_close_icon">
+            <svg
+              viewBox="0 0 24 24"
+              className="ensai_head_pg_close_icon"
+            >
               <line x1="5" y1="5" x2="19" y2="19" />
               <line x1="19" y1="5" x2="5" y2="19" />
             </svg>
           </button>
 
+          {/* Mobile Navigation */}
           <ul className="ensai_head_pg_panel_list">
             {NAV_LINKS.map((link) => (
-              <li key={link.label} className="ensai_head_pg_panel_item">
-                <a
-                  href={link.href}
+              <li
+                key={link.label}
+                className="ensai_head_pg_panel_item"
+              >
+                <Link
+                  to={link.href}
                   className="ensai_head_pg_panel_link"
                   onClick={closeMenu}
                 >
                   <span>{link.label}</span>
+
                   <svg
                     viewBox="0 0 24 24"
                     className="ensai_head_pg_panel_chevron"
                   >
                     <polyline points="9 6 15 12 9 18" />
                   </svg>
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
 
+          {/* Mobile CTA */}
           <a
             href="#get-started"
             className="ensai_head_pg_panel_cta"
