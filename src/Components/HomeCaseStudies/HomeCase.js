@@ -41,7 +41,7 @@ const books = [
       "Bundle Block Adjustment (BBA)",
       "True orthorectification eliminating perspective distortion",
     ],
-    nav: "/case_native_posting",
+    nav: "/case_photogrammatric",
   },
   {
     title: " MISSION PLANNING",

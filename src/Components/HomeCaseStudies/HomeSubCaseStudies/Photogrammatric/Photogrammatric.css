@@ -1,0 +1,914 @@
+/* =========================================================
+   Photogrammatric.css  —  enSaio Photogrammetric Surveying page
+   Mobile-first | Dark theme | Blue + Orange | 360px → 4K
+   ========================================================= */
+
+.ensai_photo_grammatric_pg_section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 88px 14px 48px;
+  background: #050a14;
+  background-image: linear-gradient(180deg, #08111f 0%, #050a14 55%, #03060c 100%);
+  color: #e8eef8;
+  font-family: "Times New Roman", Times, serif;
+  overflow-x: hidden;
+  isolation: isolate;
+}
+
+.ensai_photo_grammatric_pg_section *,
+.ensai_photo_grammatric_pg_section *::before,
+.ensai_photo_grammatric_pg_section *::after {
+  box-sizing: border-box;
+}
+
+/* ---------------- Background layers ---------------- */
+.ensai_photo_grammatric_pg_bg_grid {
+  position: absolute;
+  inset: 0;
+  z-index: -4;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(59, 157, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 157, 255, 0.07) 1px, transparent 1px);
+  background-size: 32px 32px;
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 30%, transparent 85%);
+  mask-image: radial-gradient(ellipse at center, #000 30%, transparent 85%);
+}
+
+.ensai_photo_grammatric_pg_bg_orb {
+  position: absolute;
+  top: -120px;
+  right: -140px;
+  width: 320px;
+  height: 320px;
+  z-index: -3;
+  pointer-events: none;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 138, 31, 0.22) 0%, rgba(255, 138, 31, 0) 70%);
+  filter: blur(30px);
+}
+
+.ensai_photo_grammatric_pg_bg_scanline {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 120px;
+  z-index: -2;
+  pointer-events: none;
+  background: linear-gradient(180deg, rgba(59, 157, 255, 0) 0%, rgba(59, 157, 255, 0.07) 50%, rgba(59, 157, 255, 0) 100%);
+  animation: ensai_photo_grammatric_pg_scan 9s linear infinite;
+}
+
+.ensai_photo_grammatric_pg_bg_crt {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.015) 0px,
+    rgba(255, 255, 255, 0.015) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+}
+
+@keyframes ensai_photo_grammatric_pg_scan {
+  0% {
+    transform: translateY(-140px);
+  }
+  100% {
+    transform: translateY(100vh);
+  }
+}
+
+/* ---------------- Container ---------------- */
+.ensai_photo_grammatric_pg_container {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* ---------------- Hero ---------------- */
+.ensai_photo_grammatric_pg_hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+  gap: 20px;
+}
+
+.ensai_photo_grammatric_pg_hero_text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.ensai_photo_grammatric_pg_badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 14px;
+  font-family: "Orbitron", sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: #ff8a1f;
+  border: 1px solid rgba(255, 138, 31, 0.45);
+  background: rgba(255, 138, 31, 0.08);
+  border-radius: 999px;
+}
+
+.ensai_photo_grammatric_pg_badge_dot {
+  flex: 0 0 6px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #ff8a1f;
+  box-shadow: 0 0 8px #ff8a1f;
+  animation: ensai_photo_grammatric_pg_pulse 1.8s ease-in-out infinite;
+}
+
+@keyframes ensai_photo_grammatric_pg_pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+
+.ensai_photo_grammatric_pg_eyebrow {
+  font-family: "Orbitron", sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #3b9dff;
+}
+
+.ensai_photo_grammatric_pg_title {
+  margin: 0;
+  font-family: "Orbitron", sans-serif;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0.8px;
+  color: #ffffff;
+  text-shadow: 0 0 28px rgba(59, 157, 255, 0.25);
+}
+
+.ensai_photo_grammatric_pg_summary {
+  margin: 0;
+  max-width: 640px;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 15px;
+  line-height: 1.7;
+  color: #b9c7dc;
+}
+
+/* ---------- hero visual ---------- */
+.ensai_photo_grammatric_pg_visual {
+  position: relative;
+  justify-self: center;
+  width: 100%;
+  max-width: 240px;
+  padding: 20px 20px 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  background: rgba(10, 20, 38, 0.8);
+  border: 1px solid rgba(59, 157, 255, 0.28);
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+.ensai_photo_grammatric_pg_corner {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: rgba(59, 157, 255, 0.55);
+  pointer-events: none;
+}
+
+.ensai_photo_grammatric_pg_corner_tl {
+  top: 8px;
+  left: 8px;
+  border-top: 1.5px solid;
+  border-left: 1.5px solid;
+}
+
+.ensai_photo_grammatric_pg_corner_tr {
+  top: 8px;
+  right: 8px;
+  border-top: 1.5px solid;
+  border-right: 1.5px solid;
+}
+
+.ensai_photo_grammatric_pg_corner_bl {
+  bottom: 8px;
+  left: 8px;
+  border-bottom: 1.5px solid;
+  border-left: 1.5px solid;
+}
+
+.ensai_photo_grammatric_pg_corner_br {
+  bottom: 8px;
+  right: 8px;
+  border-bottom: 1.5px solid;
+  border-right: 1.5px solid;
+}
+
+.ensai_photo_grammatric_pg_camera {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.ensai_photo_grammatric_pg_camera_pulse {
+  transform-origin: 100px 52px;
+  animation: ensai_photo_grammatric_pg_ping 2.2s ease-out infinite;
+}
+
+@keyframes ensai_photo_grammatric_pg_ping {
+  0% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+
+.ensai_photo_grammatric_pg_visual_tags {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.ensai_photo_grammatric_pg_visual_tag {
+  padding: 4px 10px;
+  font-family: "Orbitron", sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: #3b9dff;
+  border: 1px solid rgba(59, 157, 255, 0.4);
+  border-radius: 2px;
+  background: rgba(59, 157, 255, 0.07);
+}
+
+/* ---------------- Brief overview panel ---------------- */
+.ensai_photo_grammatric_pg_panel {
+  width: 100%;
+  padding: 18px 14px;
+  border: 1px solid rgba(59, 157, 255, 0.28);
+  border-radius: 14px;
+  background: rgba(10, 20, 38, 0.8);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45), inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+}
+
+.ensai_photo_grammatric_pg_panel_title {
+  margin: 0 0 14px;
+  font-family: "Orbitron", sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #ffffff;
+  line-height: 1.3;
+}
+
+/* ---------------- Metrics ---------------- */
+.ensai_photo_grammatric_pg_metrics {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.ensai_photo_grammatric_pg_metric {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  padding: 12px 14px;
+  border: 1px solid rgba(59, 157, 255, 0.25);
+  border-left: 3px solid #ff8a1f;
+  border-radius: 10px;
+  background: rgba(59, 157, 255, 0.06);
+}
+
+.ensai_photo_grammatric_pg_metric_label {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 13px;
+  letter-spacing: 0.6px;
+  text-transform: uppercase;
+  color: #93a7c4;
+}
+
+.ensai_photo_grammatric_pg_metric_value {
+  font-family: "Orbitron", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: #3b9dff;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+/* ---------------- Checklist ---------------- */
+.ensai_photo_grammatric_pg_checklist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 8px;
+}
+
+.ensai_photo_grammatric_pg_check_item {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  font-size: 15px;
+  line-height: 1.5;
+  color: #d8e2f0;
+}
+
+.ensai_photo_grammatric_pg_check_item::before {
+  content: "✓";
+  flex: 0 0 20px;
+  width: 20px;
+  height: 20px;
+  margin-top: 1px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(255, 138, 31, 0.15);
+  border: 1px solid #ff8a1f;
+  color: #ff8a1f;
+  font-family: Arial, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* ---------------- Detailed cards ---------------- */
+.ensai_photo_grammatric_pg_cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  width: 100%;
+}
+
+.ensai_photo_grammatric_pg_card {
+  position: relative;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 20px 14px 18px;
+  border: 1px solid rgba(59, 157, 255, 0.25);
+  border-radius: 14px;
+  background: linear-gradient(160deg, rgba(14, 26, 46, 0.94) 0%, rgba(8, 15, 28, 0.94) 100%);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45);
+  overflow: hidden;
+  transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ensai_photo_grammatric_pg_card_num {
+  position: static;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  font-family: "Orbitron", sans-serif;
+  font-size: 22px;
+  font-weight: 800;
+  line-height: 1;
+  color: #ff8a1f;
+  letter-spacing: 2px;
+  pointer-events: none;
+  user-select: none;
+}
+
+.ensai_photo_grammatric_pg_card_num::after {
+  content: "";
+  flex: 1;
+  height: 2px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #ff8a1f 0%, rgba(59, 157, 255, 0.5) 45%, rgba(59, 157, 255, 0) 100%);
+}
+
+.ensai_photo_grammatric_pg_card_title {
+  margin: 0;
+  width: 100%;
+  padding: 0;
+  font-family: "Orbitron", sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.45;
+  letter-spacing: 0.6px;
+  color: #ffffff;
+  overflow-wrap: anywhere;
+}
+
+.ensai_photo_grammatric_pg_card_intro {
+  margin: 0;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 15px;
+  line-height: 1.65;
+  color: #b9c7dc;
+}
+
+.ensai_photo_grammatric_pg_points {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ensai_photo_grammatric_pg_point {
+  position: relative;
+  padding-left: 18px;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 15px;
+  line-height: 1.55;
+  color: #d8e2f0;
+  overflow-wrap: anywhere;
+}
+
+.ensai_photo_grammatric_pg_point::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #3b9dff;
+  box-shadow: 0 0 8px rgba(59, 157, 255, 0.85);
+}
+
+/* ---------------- Formula box ---------------- */
+.ensai_photo_grammatric_pg_formula_box {
+  width: 100%;
+  min-width: 0;
+  padding: 12px;
+  border: 1px dashed rgba(255, 138, 31, 0.5);
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.35);
+}
+
+.ensai_photo_grammatric_pg_formula_label {
+  display: inline-block;
+  margin-bottom: 8px;
+  font-family: "Orbitron", sans-serif;
+  font-size: 11px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: #ff8a1f;
+}
+
+.ensai_photo_grammatric_pg_formula_scroll {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  padding-bottom: 6px;
+}
+
+.ensai_photo_grammatric_pg_formula_scroll::-webkit-scrollbar {
+  height: 4px;
+}
+
+.ensai_photo_grammatric_pg_formula_scroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 138, 31, 0.6);
+  border-radius: 4px;
+}
+
+.ensai_photo_grammatric_pg_formula {
+  margin: 0;
+  width: max-content;
+  min-width: 100%;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 16px;
+  line-height: 1.8;
+  white-space: nowrap;
+  color: #ffffff;
+}
+
+.ensai_photo_grammatric_pg_formula sub,
+.ensai_photo_grammatric_pg_formula sup {
+  font-size: 0.68em;
+  line-height: 0;
+}
+
+.ensai_photo_grammatric_pg_legend {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 14px;
+  line-height: 1.5;
+  color: #a3b4cd;
+}
+
+.ensai_photo_grammatric_pg_legend li i {
+  color: #3b9dff;
+  font-weight: 700;
+}
+
+/* ---------------- Chips ---------------- */
+.ensai_photo_grammatric_pg_chips_wrap {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.ensai_photo_grammatric_pg_chips_label {
+  font-family: "Orbitron", sans-serif;
+  font-size: 11px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  color: #ff8a1f;
+}
+
+.ensai_photo_grammatric_pg_chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.ensai_photo_grammatric_pg_chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 12px;
+  border: 1px solid rgba(59, 157, 255, 0.5);
+  border-radius: 999px;
+  background: rgba(59, 157, 255, 0.1);
+  font-family: "Times New Roman", Times, serif;
+  font-size: 13px;
+  line-height: 1.2;
+  color: #dcecff;
+  white-space: nowrap;
+}
+
+/* ---------------- Back button (bottom) ---------------- */
+.ensai_photo_grammatric_pg_back_btn {
+  align-self: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 8px;
+  padding: 12px 26px;
+  min-height: 44px;
+  border: 1px solid #ff8a1f;
+  border-radius: 999px;
+  background: rgba(255, 138, 31, 0.08);
+  color: #ff8a1f;
+  font-family: "Orbitron", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.ensai_photo_grammatric_pg_back_btn svg {
+  transition: transform 0.25s ease;
+}
+
+.ensai_photo_grammatric_pg_back_btn:hover,
+.ensai_photo_grammatric_pg_back_btn:focus-visible {
+  background: #ff8a1f;
+  color: #050a14;
+  box-shadow: 0 0 18px rgba(255, 138, 31, 0.55);
+  outline: none;
+}
+
+.ensai_photo_grammatric_pg_back_btn:hover svg,
+.ensai_photo_grammatric_pg_back_btn:focus-visible svg {
+  transform: translateX(-4px);
+}
+
+.ensai_photo_grammatric_pg_back_btn:active {
+  transform: scale(0.97);
+}
+
+/* =========================================================
+   360px Android (small phones)
+   ========================================================= */
+@media (max-width: 360px) {
+  .ensai_photo_grammatric_pg_section {
+    padding: 80px 10px 40px;
+  }
+
+  .ensai_photo_grammatric_pg_title {
+    font-size: 18px;
+  }
+
+  .ensai_photo_grammatric_pg_summary {
+    font-size: 13.5px;
+  }
+
+  .ensai_photo_grammatric_pg_panel {
+    padding: 14px 10px;
+  }
+
+  .ensai_photo_grammatric_pg_panel_title {
+    font-size: 15px;
+    letter-spacing: 1px;
+  }
+
+  .ensai_photo_grammatric_pg_metric_value {
+    font-size: 13px;
+  }
+
+  .ensai_photo_grammatric_pg_card {
+    padding: 18px 11px 16px;
+  }
+
+  .ensai_photo_grammatric_pg_card_num {
+    font-size: 19px;
+  }
+
+  .ensai_photo_grammatric_pg_card_title {
+    font-size: 13px;
+  }
+
+  .ensai_photo_grammatric_pg_card_intro,
+  .ensai_photo_grammatric_pg_point,
+  .ensai_photo_grammatric_pg_check_item {
+    font-size: 14px;
+  }
+
+  .ensai_photo_grammatric_pg_formula {
+    font-size: 14px;
+  }
+
+  .ensai_photo_grammatric_pg_chip {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+}
+
+/* =========================================================
+   Large phones / small tablets  (≥ 600px)
+   ========================================================= */
+@media (min-width: 600px) {
+  .ensai_photo_grammatric_pg_section {
+    padding: 100px 24px 56px;
+  }
+
+  .ensai_photo_grammatric_pg_container {
+    gap: 22px;
+  }
+
+  .ensai_photo_grammatric_pg_title {
+    font-size: 26px;
+  }
+
+  .ensai_photo_grammatric_pg_summary {
+    font-size: 16px;
+  }
+
+  .ensai_photo_grammatric_pg_panel {
+    padding: 24px 22px;
+  }
+
+  .ensai_photo_grammatric_pg_panel_title {
+    font-size: 20px;
+  }
+
+  .ensai_photo_grammatric_pg_metrics {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .ensai_photo_grammatric_pg_metric_value {
+    font-size: 16px;
+  }
+
+  .ensai_photo_grammatric_pg_card {
+    padding: 24px 22px 22px;
+  }
+
+  .ensai_photo_grammatric_pg_card_num {
+    font-size: 26px;
+  }
+
+  .ensai_photo_grammatric_pg_card_title {
+    font-size: 17px;
+  }
+
+  .ensai_photo_grammatric_pg_card_intro,
+  .ensai_photo_grammatric_pg_point,
+  .ensai_photo_grammatric_pg_check_item {
+    font-size: 16px;
+  }
+
+  .ensai_photo_grammatric_pg_formula {
+    font-size: 18px;
+  }
+}
+
+/* =========================================================
+   Tablet  (≥ 768px)
+   ========================================================= */
+@media (min-width: 768px) {
+  .ensai_photo_grammatric_pg_bg_grid {
+    background-size: 40px 40px;
+  }
+
+  .ensai_photo_grammatric_pg_bg_orb {
+    width: 480px;
+    height: 480px;
+    top: -160px;
+    right: -160px;
+  }
+
+  .ensai_photo_grammatric_pg_hero {
+    grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+    gap: 32px;
+  }
+
+  .ensai_photo_grammatric_pg_title {
+    font-size: 30px;
+  }
+
+  .ensai_photo_grammatric_pg_visual {
+    max-width: 260px;
+    justify-self: end;
+  }
+
+  .ensai_photo_grammatric_pg_metrics {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+
+  .ensai_photo_grammatric_pg_checklist {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  .ensai_photo_grammatric_pg_check_item {
+    padding: 12px 14px;
+  }
+
+  .ensai_photo_grammatric_pg_cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .ensai_photo_grammatric_pg_card_title {
+    font-size: 16px;
+    min-height: 3em;
+  }
+
+  .ensai_photo_grammatric_pg_legend {
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 6px 18px;
+  }
+}
+
+/* =========================================================
+   Laptop  (≥ 1024px)
+   ========================================================= */
+@media (min-width: 1024px) {
+  .ensai_photo_grammatric_pg_section {
+    padding: 116px 40px 72px;
+  }
+
+  .ensai_photo_grammatric_pg_container {
+    gap: 28px;
+  }
+
+  .ensai_photo_grammatric_pg_title {
+    font-size: 36px;
+  }
+
+  .ensai_photo_grammatric_pg_summary {
+    font-size: 17px;
+  }
+
+  .ensai_photo_grammatric_pg_visual {
+    max-width: 300px;
+  }
+
+  .ensai_photo_grammatric_pg_panel {
+    padding: 30px 30px;
+  }
+
+  .ensai_photo_grammatric_pg_panel_title {
+    font-size: 22px;
+  }
+
+  .ensai_photo_grammatric_pg_metric {
+    padding: 16px 18px;
+  }
+
+  .ensai_photo_grammatric_pg_metric_value {
+    font-size: 18px;
+  }
+
+  .ensai_photo_grammatric_pg_cards {
+    gap: 26px;
+  }
+
+  .ensai_photo_grammatric_pg_card {
+    padding: 28px 28px 26px;
+  }
+
+  .ensai_photo_grammatric_pg_card:hover {
+    transform: translateY(-4px);
+    border-color: rgba(255, 138, 31, 0.6);
+    box-shadow: 0 16px 38px rgba(0, 0, 0, 0.55), 0 0 22px rgba(255, 138, 31, 0.15);
+  }
+
+  .ensai_photo_grammatric_pg_card_num {
+    font-size: 28px;
+  }
+
+  .ensai_photo_grammatric_pg_card_title {
+    font-size: 18px;
+  }
+
+  .ensai_photo_grammatric_pg_back_btn {
+    font-size: 13px;
+    padding: 13px 32px;
+  }
+}
+
+/* =========================================================
+   Large desktop / 4K  (≥ 1440px)
+   ========================================================= */
+@media (min-width: 1440px) {
+  .ensai_photo_grammatric_pg_container {
+    max-width: 1320px;
+  }
+
+  .ensai_photo_grammatric_pg_card_intro,
+  .ensai_photo_grammatric_pg_point {
+    font-size: 17px;
+  }
+}
+
+/* =========================================================
+   Landscape phones (short height)
+   ========================================================= */
+@media (max-height: 480px) and (orientation: landscape) {
+  .ensai_photo_grammatric_pg_section {
+    padding-top: 72px;
+  }
+}
+
+/* =========================================================
+   Reduced motion
+   ========================================================= */
+@media (prefers-reduced-motion: reduce) {
+  .ensai_photo_grammatric_pg_bg_scanline,
+  .ensai_photo_grammatric_pg_badge_dot,
+  .ensai_photo_grammatric_pg_camera_pulse {
+    animation: none;
+  }
+
+  .ensai_photo_grammatric_pg_card,
+  .ensai_photo_grammatric_pg_back_btn,
+  .ensai_photo_grammatric_pg_back_btn svg {
+    transition: none;
+  }
+}

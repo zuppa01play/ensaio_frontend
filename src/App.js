@@ -4,7 +4,7 @@ import HomePage from "./Components/HomePage/HomePage";
 import HeaderPage from "./Components/HeaderPage/HeaderPage";
 import HomeCard from "./Components/HomeCard/HomeCard";
 import HomeMission from "./Components/HomeMission/HomeMission";
-import HomeWeather from "./Components/HomeWeather/HomeWeather";
+
 import HomeSimulatorVideo from "./Components/HomeSimulatorVideo/HomeSimulatorVideo";
 import HomeCase from "./Components/HomeCaseStudies/HomeCase";
 import FooterPage from "./Components/FooterPage/FooterPage";
@@ -12,13 +12,15 @@ import HomeUddanVideo from "./Components/HomeUddanVideo/HomeUddanVideo";
 import Error from "./Components/PageNotFound/Error";
 import WhyEnSai from "./Pages/WhyEnSai/WhyEnSai";
 import GisPage from "./Components/HomeCaseStudies/HomeSubCaseStudies/GisPage/GisPage";
+import Photogrammatric from "./Components/HomeCaseStudies/HomeSubCaseStudies/Photogrammatric/Photogrammatric";
+import CaseMissionPlanning from "./Components/HomeCaseStudies/HomeSubCaseStudies/CaseMissionPlanning/CaseMissionPlanning";
 
 const Home = () => (
   <>
     <HomePage />
     <HomeCard />
     <HomeMission />
-    {/* <HomeWeather /> */}
+   
     <HomeSimulatorVideo />
     <HomeCase />
     <HomeUddanVideo />
@@ -36,10 +38,11 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/ensai_why" element={<WhyEnSai />} />
                 <Route path="/case_fly" element={<GisPage />} />
-          
-            {/* <Route path="/case_native_posting" element={<CaseNativePosting />} /> */}
-            {/* <Route path="/case_pipeline" element={<CasePipeline />} /> */}
-            {/* <Route path="/case_sop" element={<CaseSop />} /> */}
+           <Route path="/case_photogrammatric" element={<Photogrammatric />} />
+<Route path="/case_pipeline" element={<CaseMissionPlanning />} />
+
+
+   
           
           
             <Route path="/*" element={<Error />} />
