@@ -16,10 +16,12 @@ import WhyEnSai from "./Pages/WhyEnSai/WhyEnSai";
 import GisPage from "./Components/HomeCaseStudies/HomeSubCaseStudies/GisPage/GisPage";
 import Photogrammatric from "./Components/HomeCaseStudies/HomeSubCaseStudies/Photogrammatric/Photogrammatric";
 import CaseMissionPlanning from "./Components/HomeCaseStudies/HomeSubCaseStudies/CaseMissionPlanning/CaseMissionPlanning";
-
+import HomeTextPage from "./Components/HomeTextPage/HomeTextPage";
+import Dronesection from "./Components/DroneGPS/Dronesection"
 const Home = () => (
   <>
-    <HomePage />
+    <Dronesection />
+    <HomeTextPage/>
     <HomeCard />
     <HomeMission />
     <HomeSimulatorVideo />
