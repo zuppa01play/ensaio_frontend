@@ -1,403 +1,309 @@
+/* =========================================================
+   enSAIO Header — floating glass bar + top-drop mobile menu
+   ========================================================= */
 
-.ensai_head_pg_appbar.MuiAppBar-root {
-  background-color: rgba(255, 255, 255, 0);
-  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
-  -webkit-backdrop-filter: blur(0px);
-  backdrop-filter: blur(0px);
-  color: #111111;
-  transition:
-    background-color 0.45s ease,
-    box-shadow 0.45s ease,
-    -webkit-backdrop-filter 0.45s ease,
-    backdrop-filter 0.45s ease;
-  animation: ensai_head_pg_slide_down 0.7s ease backwards;
+.ensai_head_pg_header {
+  --ensai-bg: #0a0d14;
+  --ensai-glass: rgba(16, 20, 30, 0.72);
+  --ensai-border: rgba(255, 255, 255, 0.09);
+  --ensai-text: #f3f5f9;
+  --ensai-muted: #97a0b3;
+  --ensai-accent: #ff9d2e;
+  --ensai-accent-dim: rgba(255, 157, 46, 0.16);
+  --ensai-panel-bg: #ffffff;
+  --ensai-panel-text: #14161c;
+  --ensai-panel-divider: #ececef;
+  --ensai-scrim: rgba(6, 7, 11, 0.6);
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  font-family: "Orbitron", sans-serif;
 }
 
-.ensai_head_pg_appbar.MuiAppBar-root.ensai_head_pg_appbar_scrolled {
-  background-color: rgba(255, 255, 255, 0.96);
-  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+.ensai_head_pg_header * {
+  box-sizing: border-box;
 }
 
-@keyframes ensai_head_pg_slide_down {
-  from {
-    opacity: 0;
-    transform: translateY(-14px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
+/* ---------- floating bar ---------- */
 
-.ensai_head_pg_appbar .ensai_head_pg_toolbar {
-  width: 100%;
-  min-height: 0;
-  padding: 0;
-}
-
-.ensai_head_pg_container {
-  width: 100%;
-  max-width: 1280px;
-  margin: 0 auto;
+.ensai_head_pg_bar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
-  padding: 12px 16px;
-  box-sizing: border-box;
-  transition: padding 0.35s ease;
-}
-
-.ensai_head_pg_appbar_scrolled .ensai_head_pg_container {
-  padding-top: 8px;
-  padding-bottom: 8px;
-}
-
-/* ---------- Logo (white glow behind it by default) ---------- */
-.ensai_head_pg_logo_wrap {
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
+  gap: 20px;
+  max-width: 1180px;
+  margin: 16px auto 0;
+  padding: 10px 16px 10px 20px;
+  background: var(--ensai-glass);
+  border: 1px solid var(--ensai-border);
+  border-radius: 999px;
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
 }
 
 .ensai_head_pg_logo_link {
-  position: relative;
-  isolation: isolate;
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  font-family: "Orbitron", sans-serif;
-  text-decoration: none;
-}
-
-.ensai_head_pg_logo_link::before {
-  content: "";
-  position: absolute;
-  inset: -10px -18px;
-  z-index: -1;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.85);
-  filter: blur(14px);
-  opacity: 1;
-  transition: opacity 0.45s ease;
-  pointer-events: none;
+  flex-shrink: 0;
+  border-radius: 50%;
+  padding: 5px;
+  background-color: rgb(252, 249, 249);
 }
 
 .ensai_head_pg_logo_img {
-  display: block;
-  height: 46px;
+  height: 40px;
   width: auto;
-  max-width: none;
-  object-fit: contain;
-  transition: filter 0.45s ease;
+  display: block;
 }
 
-/* once the header turns white, the glow fades out smoothly */
-.ensai_head_pg_appbar_scrolled .ensai_head_pg_logo_link::before {
-  opacity: 0;
-}
+/* ---------- desktop / tablet nav ---------- */
 
-.ensai_head_pg_appbar_scrolled .ensai_head_pg_logo_img {
-  filter: drop-shadow(0 0 0 rgba(255, 255, 255, 0));
-}
-
-/* ---------- Desktop nav (hidden on mobile) ---------- */
 .ensai_head_pg_nav_desktop {
-  display: none;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.ensai_head_pg_nav_list {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ensai_head_pg_nav_item {
+  margin: 0;
 }
 
 .ensai_head_pg_nav_link {
-  position: relative;
-  padding: 6px 0;
-  font-family: "Orbitron", sans-serif;
-  font-size: 14px;
-  font-weight: 500;
-  color: #111111;
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-size: 13px;
+  letter-spacing: 0.03em;
+  color: var(--ensai-muted);
   text-decoration: none;
   white-space: nowrap;
-  transition: color 0.25s ease;
+  transition: color 0.2s ease, background-color 0.2s ease;
 }
 
-.ensai_head_pg_nav_link::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 2px;
-  background: #111111;
-  transform: scaleX(0);
-  transform-origin: left center;
-  transition: transform 0.3s ease;
-}
-
-.ensai_head_pg_nav_link:hover::after,
-.ensai_head_pg_nav_link:focus-visible::after {
-  transform: scaleX(1);
-}
-
+.ensai_head_pg_nav_link:hover,
 .ensai_head_pg_nav_link:focus-visible {
-  outline: 2px solid #111111;
-  outline-offset: 4px;
-  border-radius: 2px;
+  color: var(--ensai-text);
+  background: var(--ensai-accent-dim);
 }
 
-/* ---------- Mobile menu icon (visible by default) ---------- */
-.ensai_head_pg_menu_icon_wrap {
-  display: flex;
+.ensai_head_pg_actions_desktop {
+  flex-shrink: 0;
+}
+
+.ensai_head_pg_cta_btn {
+  display: inline-block;
+  padding: 10px 22px;
+  border-radius: 999px;
+  background: var(--ensai-accent);
+  color: #16130b;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+.ensai_head_pg_cta_btn:hover,
+.ensai_head_pg_cta_btn:focus-visible {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
+/* ---------- hamburger (hidden until mobile) ---------- */
+
+.ensai_head_pg_menu_toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-}
-
-.ensai_head_pg_menu_icon_wrap .ensai_head_pg_menu_icon_btn {
-  width: 44px;
-  height: 44px;
-  padding: 8px;
-  background: rgba(255, 255, 255, 0.85);
-  transition: background-color 0.3s ease;
-}
-
-.ensai_head_pg_appbar_scrolled .ensai_head_pg_menu_icon_wrap .ensai_head_pg_menu_icon_btn {
-  background: transparent;
-}
-
-.ensai_head_pg_menu_icon_btn .ensai_head_pg_menu_icon {
-  font-size: 28px;
-  color: #111111;
-}
-
-/* ---------- Drawer (mobile sidebar) ---------- */
-/* Blurred dim over the whole page behind the open menu */
-.ensai_head_pg_drawer .MuiBackdrop-root {
-  background-color: rgba(6, 8, 12, 0.45);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-}
-
-/* Compact panel docked to the top-right, fixed at 500px tall on mobile.
-   No CTA at the bottom anymore, so it only needs to be as tall as the links. */
-.MuiDrawer-paper.ensai_head_pg_drawer_paper {
-  width: 100%;
-  max-width: 100%;
-  min-width: 0;
-  max-height: 500px;
-  max-height: min(500px, 90vh);
-  overflow-y: auto;
-  box-sizing: border-box;
-  padding: calc(14px + env(safe-area-inset-top, 0px)) 20px
-    calc(18px + env(safe-area-inset-bottom, 0px));
-  border-radius: 0 0 24px 24px;
-  background: #ffffff;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3);
-}
-
-.ensai_head_pg_drawer_header {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  margin-bottom: 8px;
-}
-
-.ensai_head_pg_drawer_header .ensai_head_pg_drawer_close_btn {
+  gap: 5px;
   width: 40px;
   height: 40px;
-  padding: 8px;
-  background: #f3f4f6;
-  transition: background-color 0.25s ease, transform 0.25s ease;
+  border-radius: 50%;
+  border: 1px solid var(--ensai-border);
+  background: rgba(255, 255, 255, 0.04);
+  cursor: pointer;
+  flex-shrink: 0;
 }
 
-.ensai_head_pg_drawer_header .ensai_head_pg_drawer_close_btn:hover {
-  background: #ffedd5;
-  transform: rotate(90deg);
+.ensai_head_pg_menu_bar {
+  width: 18px;
+  height: 2px;
+  background: var(--ensai-text);
+  border-radius: 2px;
+  transition: transform 0.2s ease, opacity 0.2s ease;
 }
 
-.ensai_head_pg_drawer_close_btn .ensai_head_pg_drawer_close_icon {
-  font-size: 22px;
-  color: #111111;
+/* ---------- mobile top-drop overlay ---------- */
+
+.ensai_head_pg_overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--ensai-scrim);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  z-index: 998;
 }
 
-.ensai_head_pg_drawer_nav {
+.ensai_head_pg_overlay_open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.ensai_head_pg_panel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: var(--ensai-panel-bg);
+  border-radius: 0 0 24px 24px;
+  padding: 76px 20px 28px;
+  transform: translateY(-100%);
+  transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.35);
+}
+
+.ensai_head_pg_panel_open {
+  transform: translateY(0);
+}
+
+.ensai_head_pg_close_btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: none;
+  background: #f1f2f5;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 }
 
-.ensai_head_pg_drawer_link {
-  position: relative;
+.ensai_head_pg_close_icon {
+  width: 16px;
+  height: 16px;
+  stroke: var(--ensai-panel-text);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+
+.ensai_head_pg_panel_list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ensai_head_pg_panel_item {
+  border-bottom: 1px solid var(--ensai-panel-divider);
+}
+
+.ensai_head_pg_panel_item:first-child {
+  border-top: 1px solid var(--ensai-panel-divider);
+}
+
+.ensai_head_pg_panel_link {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  min-height: 52px;
-  padding: 0 4px 0 12px;
+  padding: 16px 4px;
   font-family: "Orbitron", sans-serif;
   font-size: 15px;
-  font-weight: 500;
-  color: #111111;
+  color: var(--ensai-panel-text);
   text-decoration: none;
-  border-bottom: 1px solid rgba(17, 17, 17, 0.07);
-  -webkit-tap-highlight-color: transparent;
-  transition: background-color 0.25s ease;
-  animation: ensai_head_pg_link_in 0.4s ease both;
 }
 
-.ensai_head_pg_drawer_link:last-child {
-  border-bottom: none;
+.ensai_head_pg_panel_chevron {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: #b7bac2;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
 }
 
-/* orange accent bar on hover / focus / tap */
-.ensai_head_pg_drawer_link::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 12px;
-  bottom: 12px;
-  width: 3px;
-  border-radius: 3px;
-  background: #e8830c;
-  transform: scaleY(0);
-  transition: transform 0.25s ease;
+.ensai_head_pg_panel_cta {
+  display: block;
+  text-align: center;
+  margin-top: 24px;
+  padding: 14px;
+  border-radius: 999px;
+  background: var(--ensai-accent);
+  color: #16130b;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
 }
 
-.ensai_head_pg_drawer_link:hover,
-.ensai_head_pg_drawer_link:focus-visible,
-.ensai_head_pg_drawer_link:active {
-  background-color: #fff7ed;
-}
+/* =========================================================
+   Responsive breakpoints
+   Desktop & tablet: full inline nav in the floating pill
+   Mobile (<768px): only logo + menu icon in the header
+   ========================================================= */
 
-.ensai_head_pg_drawer_link:hover::before,
-.ensai_head_pg_drawer_link:focus-visible::before,
-.ensai_head_pg_drawer_link:active::before {
-  transform: scaleY(1);
-}
-
-.ensai_head_pg_drawer_link:focus-visible {
-  outline: 2px solid #e8830c;
-  outline-offset: -2px;
-}
-
-.ensai_head_pg_drawer_link_label {
-  transition: transform 0.25s ease;
-}
-
-.ensai_head_pg_drawer_link:hover .ensai_head_pg_drawer_link_label,
-.ensai_head_pg_drawer_link:active .ensai_head_pg_drawer_link_label {
-  transform: translateX(4px);
-}
-
-.ensai_head_pg_drawer_link .ensai_head_pg_drawer_link_icon {
-  flex-shrink: 0;
-  font-size: 22px;
-  color: #a3a9b3;
-  transition: color 0.25s ease, transform 0.25s ease;
-}
-
-.ensai_head_pg_drawer_link:hover .ensai_head_pg_drawer_link_icon,
-.ensai_head_pg_drawer_link:active .ensai_head_pg_drawer_link_icon {
-  color: #e8830c;
-  transform: translateX(3px);
-}
-
-@keyframes ensai_head_pg_link_in {
-  from {
-    opacity: 0;
-    transform: translateX(16px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-/* ---------- Extra-small Android (360px and below) ---------- */
-@media (max-width: 360px) {
-  .ensai_head_pg_container {
-    padding: 10px 12px;
-    gap: 10px;
-  }
-
-  .ensai_head_pg_logo_img {
-    height: 40px;
-  }
-
-  .MuiDrawer-paper.ensai_head_pg_drawer_paper {
-    max-height: min(500px, 90vh);
-    padding: calc(12px + env(safe-area-inset-top, 0px)) 16px
-      calc(16px + env(safe-area-inset-bottom, 0px));
-  }
-
-  .ensai_head_pg_drawer_link {
-    min-height: 48px;
-    font-size: 14px;
-  }
-}
-
-/* ---------- Short-height phones in landscape: 50vh can get tight, allow a bit more ---------- */
-@media (max-height: 480px) and (max-width: 900px) {
-  .MuiDrawer-paper.ensai_head_pg_drawer_paper {
-    max-height: 70vh;
-    max-height: 70dvh;
-  }
-}
-
-/* ---------- Tablet and up: show nav, hide hamburger ---------- */
-@media (min-width: 768px) {
-  .ensai_head_pg_container {
-    padding: 14px 24px;
-  }
-
-  .ensai_head_pg_logo_img {
-    height: 56px;
-  }
-
-  .ensai_head_pg_nav_desktop {
-    display: flex;
-    align-items: center;
-    gap: 28px;
-  }
-
-  .ensai_head_pg_menu_icon_wrap {
-    display: none;
-  }
-}
-
-/* ---------- Laptop and up ---------- */
-@media (min-width: 1024px) {
-  .ensai_head_pg_container {
-    padding: 16px 32px;
-  }
-
-  .ensai_head_pg_appbar_scrolled .ensai_head_pg_container {
-    padding-top: 10px;
-    padding-bottom: 10px;
-  }
-
-  .ensai_head_pg_logo_img {
-    height: 64px;
-  }
-
-  .ensai_head_pg_nav_desktop {
-    gap: 40px;
+@media (max-width: 1023px) {
+  .ensai_head_pg_bar {
+    margin-top: 12px;
+    padding: 9px 14px 9px 18px;
+    gap: 12px;
   }
 
   .ensai_head_pg_nav_link {
-    font-size: 15px;
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  .ensai_head_pg_cta_btn {
+    padding: 9px 18px;
+    font-size: 12px;
   }
 }
 
-/* ---------- Reduced motion ---------- */
+@media (max-width: 767px) {
+  .ensai_head_pg_bar {
+    margin: 10px 12px 0;
+    padding: 8px 10px 8px 16px;
+  }
+
+  .ensai_head_pg_nav_desktop,
+  .ensai_head_pg_actions_desktop {
+    display: none;
+  }
+
+  .ensai_head_pg_menu_toggle {
+    display: flex;
+  }
+
+  .ensai_head_pg_logo_img {
+    height: 26px;
+  }
+
+  .ensai_head_pg_panel {
+    padding-top: 68px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .ensai_head_pg_appbar.MuiAppBar-root,
-  .ensai_head_pg_container,
-  .ensai_head_pg_logo_link::before,
-  .ensai_head_pg_logo_img,
-  .ensai_head_pg_nav_link,
-  .ensai_head_pg_nav_link::after,
-  .ensai_head_pg_drawer_header .ensai_head_pg_drawer_close_btn,
-  .ensai_head_pg_drawer_link,
-  .ensai_head_pg_drawer_link::before,
-  .ensai_head_pg_drawer_link_label,
-  .ensai_head_pg_drawer_link .ensai_head_pg_drawer_link_icon {
-    animation: none;
+  .ensai_head_pg_panel,
+  .ensai_head_pg_overlay,
+  .ensai_head_pg_cta_btn {
     transition: none;
   }
 }

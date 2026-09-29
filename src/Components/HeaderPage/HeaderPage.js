@@ -1,202 +1,124 @@
-import React, { useState, useEffect } from "react";
-import AppBar from "@mui/material/AppBar";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Drawer from "@mui/material/Drawer";
-import Box from "@mui/material/Box";
-import MenuIcon from "@mui/icons-material/Menu";
-import CloseIcon from "@mui/icons-material/Close";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import "./HeaderPage.css";
 
-const LOGO_SRC =
-  "https://res.cloudinary.com/dk50cmtps/image/upload/v1789454511/ChatGPT_Image_Sep_15_2026_12_11_34_PM_m3uujm.png";
-
 const NAV_LINKS = [
-  { label: "Product", href: "/product" },
+  { label: "Product", href: "#product" },
+  { label: "About", href: "/about" },
   { label: "Why enSaio", href: "/ensai_why" },
-  { label: "Competitive Edge", href: "/gap" },
-  { label: "Resources", href: "/resources" },
+  { label: "Resources", href: "#resources" },
 ];
 
+const LOGO_URL =
+  "https://res.cloudinary.com/dk50cmtps/image/upload/v1789454511/ChatGPT_Image_Sep_15_2026_12_11_34_PM_m3uujm.png";
+
 const HeaderPage = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // Scroll state
   useEffect(() => {
-    let ticking = false;
-
-    const update = () => {
-      const y =
-        window.pageYOffset ||
-        document.documentElement.scrollTop ||
-        document.body.scrollTop ||
-        0;
-
-      setIsScrolled(y > 20);
-      ticking = false;
-    };
-
-    const handleScroll = () => {
-      if (!ticking) {
-        ticking = true;
-        window.requestAnimationFrame(update);
-      }
-    };
-
-    update();
-
-    window.addEventListener("scroll", handleScroll, {
-      passive: true,
-    });
-
+    document.body.style.overflow = isMenuOpen ? "hidden" : "";
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      document.body.style.overflow = "";
     };
-  }, []);
+  }, [isMenuOpen]);
 
-  // Close drawer when screen becomes tablet/desktop
-  useEffect(() => {
-    const mq = window.matchMedia("(min-width: 768px)");
-
-    const handleChange = (e) => {
-      if (e.matches) {
-        setMobileOpen(false);
-      }
-    };
-
-    mq.addEventListener("change", handleChange);
-
-    return () => {
-      mq.removeEventListener("change", handleChange);
-    };
-  }, []);
-
-  const toggleDrawer = (open) => () => {
-    setMobileOpen(open);
-  };
+  const closeMenu = () => setIsMenuOpen(false);
 
   return (
-    <AppBar
-      position="fixed"
-      elevation={0}
-      className={`ensai_head_pg_appbar ${
-        isScrolled ? "ensai_head_pg_appbar_scrolled" : ""
-      }`}
-    >
-      <Toolbar
-        className="ensai_head_pg_toolbar"
-        disableGutters
-      >
-        <Box className="ensai_head_pg_container">
+    <header className="ensai_head_pg_header">
+      <div className="ensai_head_pg_bar">
+        <a href="/" className="ensai_head_pg_logo_link" onClick={closeMenu}>
+          <img
+            src={LOGO_URL}
+            alt="enSAIO"
+            className="ensai_head_pg_logo_img"
+          />
+        </a>
 
-          {/* =========================
-              LOGO
-          ========================== */}
-          <Box className="ensai_head_pg_logo_wrap">
-            <Link
-              to="/"
-              className="ensai_head_pg_logo_link"
-              aria-label="enSaio home"
-            >
-              <img
-                src={LOGO_SRC}
-                alt="enSaio Logo"
-                className="ensai_head_pg_logo_img"
-                decoding="async"
-              />
-            </Link>
-          </Box>
-
-          {/* =========================
-              DESKTOP / TABLET NAV
-          ========================== */}
-          <Box
-            component="nav"
-            aria-label="Main navigation"
-            className="ensai_head_pg_nav_desktop"
-          >
+        <nav className="ensai_head_pg_nav_desktop">
+          <ul className="ensai_head_pg_nav_list">
             {NAV_LINKS.map((link) => (
-              <Link
-                key={link.href}
-                to={link.href}
-                className="ensai_head_pg_nav_link"
-              >
-                {link.label}
-              </Link>
+              <li key={link.label} className="ensai_head_pg_nav_item">
+                <a href={link.href} className="ensai_head_pg_nav_link">
+                  {link.label}
+                </a>
+              </li>
             ))}
-          </Box>
+          </ul>
+        </nav>
 
-          {/* =========================
-              MOBILE MENU BUTTON
-          ========================== */}
-          <Box className="ensai_head_pg_menu_icon_wrap">
-            <IconButton
-              aria-label="Open menu"
-              onClick={toggleDrawer(true)}
-              className="ensai_head_pg_menu_icon_btn"
-            >
-              <MenuIcon className="ensai_head_pg_menu_icon" />
-            </IconButton>
-          </Box>
-        </Box>
-      </Toolbar>
+        <div className="ensai_head_pg_actions_desktop">
+          <a href="#get-started" className="ensai_head_pg_cta_btn">
+            Get started
+          </a>
+        </div>
 
-      {/* =========================
-          MOBILE DRAWER
-      ========================== */}
-      <Drawer
-        anchor="top"
-        open={mobileOpen}
-        onClose={toggleDrawer(false)}
-        transitionDuration={{
-          enter: 350,
-          exit: 250,
-        }}
-        className="ensai_head_pg_drawer"
-        PaperProps={{
-          className: "ensai_head_pg_drawer_paper",
-        }}
-      >
-        {/* Drawer Header */}
-        <Box className="ensai_head_pg_drawer_header">
-          <IconButton
-            aria-label="Close menu"
-            onClick={toggleDrawer(false)}
-            className="ensai_head_pg_drawer_close_btn"
-          >
-            <CloseIcon className="ensai_head_pg_drawer_close_icon" />
-          </IconButton>
-        </Box>
-
-        {/* Drawer Navigation */}
-        <Box
-          component="nav"
-          aria-label="Mobile navigation"
-          className="ensai_head_pg_drawer_nav"
+        <button
+          type="button"
+          className="ensai_head_pg_menu_toggle"
+          aria-label="Open menu"
+          aria-expanded={isMenuOpen}
+          onClick={() => setIsMenuOpen(true)}
         >
-          {NAV_LINKS.map((link, index) => (
-            <Link
-              key={link.href}
-              to={link.href}
-              className="ensai_head_pg_drawer_link"
-              style={{
-                animationDelay: `${120 + index * 70}ms`,
-              }}
-              onClick={toggleDrawer(false)}
-            >
-              <span className="ensai_head_pg_drawer_link_label">
-                {link.label}
-              </span>
+          <span className="ensai_head_pg_menu_bar" />
+          <span className="ensai_head_pg_menu_bar" />
+          <span className="ensai_head_pg_menu_bar" />
+        </button>
+      </div>
 
-              <ChevronRightIcon className="ensai_head_pg_drawer_link_icon" />
-            </Link>
-          ))}
-        </Box>
-      </Drawer>
-    </AppBar>
+      <div
+        className={`ensai_head_pg_overlay ${
+          isMenuOpen ? "ensai_head_pg_overlay_open" : ""
+        }`}
+        onClick={closeMenu}
+      >
+        <div
+          className={`ensai_head_pg_panel ${
+            isMenuOpen ? "ensai_head_pg_panel_open" : ""
+          }`}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <button
+            type="button"
+            className="ensai_head_pg_close_btn"
+            aria-label="Close menu"
+            onClick={closeMenu}
+          >
+            <svg viewBox="0 0 24 24" className="ensai_head_pg_close_icon">
+              <line x1="5" y1="5" x2="19" y2="19" />
+              <line x1="19" y1="5" x2="5" y2="19" />
+            </svg>
+          </button>
+
+          <ul className="ensai_head_pg_panel_list">
+            {NAV_LINKS.map((link) => (
+              <li key={link.label} className="ensai_head_pg_panel_item">
+                <a
+                  href={link.href}
+                  className="ensai_head_pg_panel_link"
+                  onClick={closeMenu}
+                >
+                  <span>{link.label}</span>
+                  <svg
+                    viewBox="0 0 24 24"
+                    className="ensai_head_pg_panel_chevron"
+                  >
+                    <polyline points="9 6 15 12 9 18" />
+                  </svg>
+                </a>
+              </li>
+            ))}
+          </ul>
+
+          <a
+            href="#get-started"
+            className="ensai_head_pg_panel_cta"
+            onClick={closeMenu}
+          >
+            Get started
+          </a>
+        </div>
+      </div>
+    </header>
   );
 };
 

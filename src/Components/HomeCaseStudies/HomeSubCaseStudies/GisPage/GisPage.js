@@ -110,91 +110,6 @@ const SECTIONS = [
   },
 ];
 
-const GlobeIcon = () => (
-  <svg
-    className="ensai_gis_pg_globe"
-    viewBox="0 0 200 200"
-    role="img"
-    aria-label="Globe with latitude and longitude grid"
-  >
-    <circle
-      className="ensai_gis_pg_globe_ring"
-      cx="100"
-      cy="100"
-      r="94"
-      fill="none"
-      stroke="rgba(77,216,255,0.35)"
-      strokeWidth="1"
-      strokeDasharray="3 7"
-    />
-    <circle
-      cx="100"
-      cy="100"
-      r="72"
-      fill="rgba(77,216,255,0.05)"
-      stroke="#4dd8ff"
-      strokeWidth="1.4"
-    />
-    <g fill="none" stroke="rgba(77,216,255,0.55)" strokeWidth="1">
-      <ellipse cx="100" cy="100" rx="30" ry="72" />
-      <ellipse cx="100" cy="100" rx="56" ry="72" />
-      <line x1="100" y1="28" x2="100" y2="172" />
-      <line x1="28" y1="100" x2="172" y2="100" />
-      <path d="M36 68 Q100 86 164 68" />
-      <path d="M36 132 Q100 150 164 132" />
-    </g>
-    <g stroke="#4dd8ff" strokeWidth="1.4" strokeLinecap="round">
-      <line x1="100" y1="8" x2="100" y2="18" />
-      <line x1="100" y1="182" x2="100" y2="192" />
-      <line x1="8" y1="100" x2="18" y2="100" />
-      <line x1="182" y1="100" x2="192" y2="100" />
-    </g>
-    <circle
-      className="ensai_gis_pg_globe_pulse"
-      cx="128"
-      cy="80"
-      r="6"
-      fill="none"
-      stroke="#ffb454"
-      strokeWidth="1.4"
-    />
-    <circle cx="128" cy="80" r="4" fill="#ffb454" />
-    <g stroke="#ffb454" strokeWidth="1.2" strokeLinecap="round">
-      <line x1="128" y1="66" x2="128" y2="73" />
-      <line x1="128" y1="87" x2="128" y2="94" />
-      <line x1="114" y1="80" x2="121" y2="80" />
-      <line x1="135" y1="80" x2="142" y2="80" />
-    </g>
-  </svg>
-);
-
-const CheckIcon = () => (
-  <svg
-    className="ensai_gis_pg_check_icon"
-    viewBox="0 0 16 16"
-    width="16"
-    height="16"
-    aria-hidden="true"
-  >
-    <circle
-      cx="8"
-      cy="8"
-      r="7.2"
-      fill="rgba(77,216,255,0.12)"
-      stroke="rgba(77,216,255,0.45)"
-      strokeWidth="0.8"
-    />
-    <path
-      d="M4.8 8.3l2.2 2.2 4.2-4.4"
-      fill="none"
-      stroke="#4dd8ff"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
-  </svg>
-);
-
 const GisPage = () => {
   const handleBack = () => {
     if (window.history.length > 1) {
@@ -226,8 +141,12 @@ const GisPage = () => {
           <div className="ensai_gis_pg_metrics">
             {METRICS.map((metric) => (
               <div key={metric.label} className="ensai_gis_pg_metric">
-                <span className="ensai_gis_pg_metric_label">{metric.label}</span>
-                <span className="ensai_gis_pg_metric_value">{metric.value}</span>
+                <span className="ensai_gis_pg_metric_label">
+                  {metric.label}
+                </span>
+                <span className="ensai_gis_pg_metric_value">
+                  {metric.value}
+                </span>
               </div>
             ))}
           </div>
@@ -235,7 +154,6 @@ const GisPage = () => {
           <ul className="ensai_gis_pg_checklist">
             {CHECKLIST.map((item) => (
               <li key={item} className="ensai_gis_pg_check_item">
-                <CheckIcon />
                 <span>{item}</span>
               </li>
             ))}
@@ -253,7 +171,9 @@ const GisPage = () => {
 
               <ul className="ensai_gis_pg_points">
                 {section.points.map((point) => (
-                  <li key={point} className="ensai_gis_pg_point">{point}</li>
+                  <li key={point} className="ensai_gis_pg_point">
+                    {point}
+                  </li>
                 ))}
               </ul>
 
@@ -268,7 +188,9 @@ const GisPage = () => {
                   )}
                   <div className="ensai_gis_pg_chips">
                     {section.chips.map((chip) => (
-                      <span key={chip} className="ensai_gis_pg_chip">{chip}</span>
+                      <span key={chip} className="ensai_gis_pg_chip">
+                        {chip}
+                      </span>
                     ))}
                   </div>
                 </div>
@@ -305,4 +227,3 @@ const GisPage = () => {
 };
 
 export default GisPage;
-
