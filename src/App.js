@@ -17,13 +17,18 @@ import GisPage from "./Components/HomeCaseStudies/HomeSubCaseStudies/GisPage/Gis
 import Photogrammatric from "./Components/HomeCaseStudies/HomeSubCaseStudies/Photogrammatric/Photogrammatric";
 import CaseMissionPlanning from "./Components/HomeCaseStudies/HomeSubCaseStudies/CaseMissionPlanning/CaseMissionPlanning";
 import HomeTextPage from "./Components/HomeTextPage/HomeTextPage";
-import Dronesection from "./Components/DroneGPS/Dronesection"
+import Dronesection from "./Components/DroneGPS/Dronesection";
 import AboutPage from "./Pages/AboutPage/AboutPage";
+
+
+
+
+
 const Home = () => (
   <>
     <Dronesection />
-    <HomeTextPage/>
-  
+    <HomeTextPage />
+
     <HomeCard />
     <HomeMission />
     <HomeSimulatorVideo />
@@ -33,28 +38,25 @@ const Home = () => (
 );
 
 function App() {
+
+  
   return (
     <BrowserRouter basename="/ensaio_frontend">
       <div className="zuppa_app">
         <HeaderPage />
+
 
         <main className="zuppa_app_content">
           <Routes>
             <Route path="/" element={<Home />} />
 
             <Route path="/ensai_why" element={<WhyEnSai />} />
-  <Route path="/about" element={<AboutPage />} />
+            <Route path="/about" element={<AboutPage />} />
             <Route path="/case_fly" element={<GisPage />} />
 
-            <Route
-              path="/case_photogrammatric"
-              element={<Photogrammatric />}
-            />
+            <Route path="/case_photogrammatric" element={<Photogrammatric />} />
 
-            <Route
-              path="/case_pipeline"
-              element={<CaseMissionPlanning />}
-            />
+            <Route path="/case_pipeline" element={<CaseMissionPlanning />} />
 
             <Route path="*" element={<Error />} />
           </Routes>

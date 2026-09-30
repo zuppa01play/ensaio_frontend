@@ -1,6 +1,10 @@
 import React, { useEffect, useRef } from "react";
 import "./AboutPage.css";
 
+// Replace with your own About-page hero image any time
+const HERO_IMG =
+  "https://res.cloudinary.com/dk50cmtps/image/upload/v1790750756/ChatGPT_Image_Sep_30_2026_12_15_21_PM_g1de50.png";
+
 const PILLARS = [
   {
     id: "01",
@@ -22,7 +26,7 @@ const PILLARS = [
       "Place the exact flight path into a high-fidelity 3D digital surface twin.",
       "Simulate forward overlap (70%–80%) and side overlap (30%–60%) across steep relief.",
       "Model solar ephemeris to detect terrain shadows and BVLOS radio line-of-sight masking.",
-      "Simulate wind, terrain gradients and temperature to calculate battery reserve envelopes.",
+      
     ],
   },
   {
@@ -63,10 +67,7 @@ const AUDIENCE = [
     title: "Open-Pit Mining & Aggregates",
     text: "Guaranteeing highwall monitoring, bench progression mapping and precise inventory volumetrics.",
   },
-  {
-    title: "Government, Defense & Public Safety",
-    text: "Disaster recovery assessments, flood mitigation modeling, urban zoning and infrastructure security.",
-  },
+ 
 ];
 
 const TECH = [
@@ -94,8 +95,60 @@ const TECH = [
 
 const AboutPage = () => {
   const pageRef = useRef(null);
+  const heroRef = useRef(null);
+  const bgRef = useRef(null);
+  const innerRef = useRef(null);
 
-  // Reveal-on-scroll
+  // Hero parallax (image drifts down slowly) + hero text fades up while scrolling
+  useEffect(() => {
+    const reduce =
+      window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) return;
+
+    let ticking = false;
+
+    const update = () => {
+      const hero = heroRef.current;
+      if (!hero) {
+        ticking = false;
+        return;
+      }
+      const rect = hero.getBoundingClientRect();
+      const progress = Math.min(1, Math.max(0, -rect.top / rect.height));
+
+      if (bgRef.current) {
+        bgRef.current.style.transform = `translate3d(0, ${
+          progress * rect.height * 0.28
+        }px, 0) scale(1.12)`;
+      }
+      if (innerRef.current) {
+        innerRef.current.style.transform = `translate3d(0, ${
+          -progress * 70
+        }px, 0)`;
+        innerRef.current.style.opacity = String(
+          Math.max(0, 1 - progress * 1.5)
+        );
+      }
+      ticking = false;
+    };
+
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      window.requestAnimationFrame(update);
+    };
+
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, []);
+
+  // Fade-up reveal for every section / card
   useEffect(() => {
     const root = pageRef.current;
     if (!root) return;
@@ -122,36 +175,44 @@ const AboutPage = () => {
     return () => observer.disconnect();
   }, []);
 
+
+  useEffect(() => {
+    document.querySelector("#root")?.scrollIntoView({ behavior: "smooth" });
+  }, []);
+
+
+
   return (
     <div className="ensai_about_pg_page" ref={pageRef}>
       {/* ================= HERO ================= */}
-      <section className="ensai_about_pg_hero">
-        <div className="ensai_about_pg_bg_grid" />
-        <div className="ensai_about_pg_bg_orb ensai_about_pg_bg_orb_one" />
-        <div className="ensai_about_pg_bg_orb ensai_about_pg_bg_orb_two" />
+      <section className="ensai_about_pg_hero" ref={heroRef}>
+        <div
+          className="ensai_about_pg_hero_bg"
+          ref={bgRef}
+          style={{ backgroundImage: `url(${HERO_IMG})` }}
+        />
+        <div className="ensai_about_pg_hero_overlay" />
 
         <div className="ensai_about_pg_container">
-          <span className="ensai_about_pg_eyebrow ensai_about_pg_reveal">
-            <span className="ensai_about_pg_eyebrow_dot" />
-            About enSaio
-          </span>
+          <div className="ensai_about_pg_hero_inner" ref={innerRef}>
+          
 
-          <h1 className="ensai_about_pg_h1 ensai_about_pg_reveal">
-            Beyond Simulation.
-            <span className="ensai_about_pg_h1_accent"> Into Certainty.</span>
-          </h1>
+            <h1 className="ensai_about_pg_h1 ensai_about_pg_reveal">
+             FROM GEOSPATIAL UNCERTAINTY. INTO OPERATIONAL CERTAINTY.
+              <span className="ensai_about_pg_h1_accent"> Into Certainty.</span>
+            </h1>
 
-          <p className="ensai_about_pg_motto ensai_about_pg_reveal">
-            Prove it before you fly it.
-          </p>
+      <br/>
+        <br/>
 
-          <blockquote className="ensai_about_pg_thesis ensai_about_pg_reveal">
-            <span className="ensai_about_pg_thesis_label">
-              Core Operational Thesis
-            </span>
-            &ldquo;The most important time to discover a mission problem is
-            before the mission begins.&rdquo;
-          </blockquote>
+            <blockquote className="ensai_about_pg_thesis ensai_about_pg_reveal">
+              <span className="ensai_about_pg_thesis_label">
+                Core Operational Thesis
+              </span>
+              &ldquo;The most important time to discover a mission problem is
+              before the mission begins.&rdquo;
+            </blockquote>
+          </div>
         </div>
       </section>
 

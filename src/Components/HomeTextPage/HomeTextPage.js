@@ -90,6 +90,7 @@ const HomeTextPage = () => {
             <p className="ensai_home_text_pg_compat_label">
               Rehearsal profiles ready for
             </p>
+            <br/>
             <div className="ensai_home_text_pg_compat_track">
               {DRONES.map((drone) => (
                 <span key={drone} className="ensai_home_text_pg_compat_chip">

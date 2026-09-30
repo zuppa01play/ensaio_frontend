@@ -2,12 +2,17 @@ import React, { useState, useEffect, useRef } from "react";
 
 import "./HomeCase.css";
 import { useNavigate } from "react-router-dom";
+import Gis from "./HomeCaseStudiesImages/gis.png";
+import photogrammatric from "./HomeCaseStudiesImages/photogrammatric.png";
+import missionplaning from "./HomeCaseStudiesImages/missionplaning.png";
+
+
+
 
 const books = [
   {
     title: "Geographic Information Systems (GIS)",
-    coverUrl:
-      "https://res.cloudinary.com/dk50cmtps/image/upload/v1789631893/203608d9-9629-49cb-9824-e750d25a0813_m1pser.png",
+    coverUrl:Gis,
 
     discipline: "Geographic Information Systems",
     tagline:
@@ -27,7 +32,7 @@ const books = [
   {
     title: "PHOTOGRAMMETRIC SURVEYING",
     coverUrl:
-      "https://res.cloudinary.com/dk50cmtps/image/upload/v1789630638/54b186e5-d3cd-4af1-a641-ae12c47444c3_rvl2xs.png",
+     photogrammatric,
 
     discipline: "Photogrammetric Surveying",
     tagline:
@@ -47,7 +52,7 @@ const books = [
   {
     title: " MISSION PLANNING",
     coverUrl:
-      "https://res.cloudinary.com/dk50cmtps/image/upload/v1789630359/b4b884d4-94e6-4df1-85d7-f09ab1fc7361_v0xluu.png",
+     missionplaning,
 
     discipline: "Mission Planning",
     tagline:
