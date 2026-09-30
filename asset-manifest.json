@@ -1,19 +1,20 @@
 {
   "files": {
-    "main.css": "/ensaio_frontend/static/css/main.22002ddd.css",
-    "main.js": "/ensaio_frontend/static/js/main.5731caea.js",
+    "main.css": "/ensaio_frontend/static/css/main.b09256ab.css",
+    "main.js": "/ensaio_frontend/static/js/main.64783cba.js",
     "static/js/453.38564b24.chunk.js": "/ensaio_frontend/static/js/453.38564b24.chunk.js",
     "static/media/hero.mp4": "/ensaio_frontend/static/media/hero.ebb0a3aa11d765c0b0f7.mp4",
     "static/media/photogrammatric.png": "/ensaio_frontend/static/media/photogrammatric.dfbe0bf656a2b5b1cc08.png",
     "static/media/gis.png": "/ensaio_frontend/static/media/gis.ec591869d5fe1f0030c2.png",
     "static/media/missionplaning.png": "/ensaio_frontend/static/media/missionplaning.ba3d91a3fd5d3eba1f78.png",
+    "static/media/header.png": "/ensaio_frontend/static/media/header.fff9542080a954d7d533.png",
     "index.html": "/ensaio_frontend/index.html",
-    "main.22002ddd.css.map": "/ensaio_frontend/static/css/main.22002ddd.css.map",
-    "main.5731caea.js.map": "/ensaio_frontend/static/js/main.5731caea.js.map",
+    "main.b09256ab.css.map": "/ensaio_frontend/static/css/main.b09256ab.css.map",
+    "main.64783cba.js.map": "/ensaio_frontend/static/js/main.64783cba.js.map",
     "453.38564b24.chunk.js.map": "/ensaio_frontend/static/js/453.38564b24.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.22002ddd.css",
-    "static/js/main.5731caea.js"
+    "static/css/main.b09256ab.css",
+    "static/js/main.64783cba.js"
   ]
 }
