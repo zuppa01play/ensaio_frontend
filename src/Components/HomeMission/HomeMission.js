@@ -41,6 +41,7 @@ const HomeMission = () => {
                 "ensai_mission_row" +
                 (index % 2 !== 0 ? " ensai_mission_row_reverse" : "")
               }
+              style={{ "--i": index }}
             >
               <div className="ensai_mission_media">
                 <img

@@ -6,6 +6,10 @@
 }
 
 .ensai_mission_section {
+  /* stacking controls - change these to tune the effect */
+  --stack-top: 110px; /* space below your fixed header */
+  --stack-step: 26px; /* how much of each previous card stays visible */
+
   width: 100%;
   padding: 96px 0;
   background: #0a0e14;
@@ -13,6 +17,7 @@
   font-family: "Inter", "Segoe UI", system-ui, -apple-system, Roboto, Arial,
     sans-serif;
   -webkit-font-smoothing: antialiased;
+  /* IMPORTANT: do NOT use overflow hidden/auto here, it breaks sticky */
 }
 
 .ensai_mission_section h2,
@@ -55,22 +60,28 @@
   color: #ffffff;
 }
 
-/* ---------- List ---------- */
+/* ---------- Stacked list ---------- */
 .ensai_mission_list {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 70px; /* scroll distance between cards */
+  padding-bottom: 40px;
 }
 
 .ensai_mission_row {
+  position: sticky;
+  top: calc(var(--stack-top) + var(--i) * var(--stack-step));
+  z-index: calc(var(--i) + 1);
+
   display: grid;
   grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
   align-items: center;
   gap: 40px;
   padding: 24px;
-  background: #121821;
+  background: #121821; /* must stay solid so cards hide the ones below */
   border: 1px solid #1f2836;
   border-radius: 18px;
+  box-shadow: 0 -18px 40px rgba(0, 0, 0, 0.45);
 }
 
 .ensai_mission_row_reverse .ensai_mission_media {
@@ -128,6 +139,8 @@
 /* ---------- Tablet ---------- */
 @media (max-width: 991px) {
   .ensai_mission_section {
+    --stack-top: 96px;
+    --stack-step: 22px;
     padding: 72px 0;
   }
 
@@ -135,11 +148,14 @@
     margin-bottom: 48px;
   }
 
+  .ensai_mission_list {
+    gap: 56px;
+  }
+
   .ensai_mission_row {
     grid-template-columns: 1fr;
     gap: 20px;
   }
-
   .ensai_mission_row_reverse .ensai_mission_media {
     order: 0;
   }
@@ -152,23 +168,28 @@
 /* ---------- Mobile ---------- */
 @media (max-width: 575px) {
   .ensai_mission_section {
+    --stack-top: 88px;
+    --stack-step: 16px;
     padding: 56px 0;
   }
 
   .ensai_mission_container {
     padding: 0 16px;
   }
-
   .ensai_mission_list {
-    gap: 24px;
+    gap: 40px;
   }
-
   .ensai_mission_row {
     padding: 14px;
     border-radius: 14px;
   }
-
   .ensai_mission_media {
     border-radius: 8px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ensai_mission_row {
+    position: relative;
+    top: auto;
   }
 }

@@ -386,7 +386,7 @@ const WhyEnSai = () => {
           <div className="ensai_why_pg_founder_tilt" ref={tiltRef}>
             <img
               className="ensai_why_pg_founder_img"
-              src={FOUNDER_IMG}
+              src="https://startupsuccessstories.in/wp-content/uploads/2025/06/Sai-Pattabiram-MD-Zuppa-Geo-Navigation-Technologies-Pvt-Ltd.jpeg"
               alt="Founder and Managing Director, Zuppa Geo Navigation Technologies"
               loading="lazy"
             />
