@@ -22,6 +22,7 @@ const Home = () => (
   <>
     <Dronesection />
     <HomeTextPage/>
+  
     <HomeCard />
     <HomeMission />
     <HomeSimulatorVideo />

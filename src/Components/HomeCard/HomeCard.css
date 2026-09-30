@@ -1,4 +1,3 @@
-
 .ensai_home_card_pg_wrapper {
   position: relative;
   width: 100%;
@@ -164,21 +163,21 @@
   background-color: rgba(63, 63, 63, 0.856);
   padding: 10px;
   border-radius: 10px;
-   font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
 }
 
 .ensai_home_card_pg_title {
   font-size: clamp(16px, 2.4vw, 22px);
   font-weight: 700;
   margin: 0 0 6px;
-   font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
   text-shadow: 0 4px 4px rgba(0, 0, 0, 0.3);
 }
 
 .ensai_home_card_pg_description {
   font-size: 12px;
   line-height: 1.5;
-   font-family: 'Orbitron', sans-serif;
+  font-family: "Orbitron", sans-serif;
   color: rgba(255, 255, 255, 0.85);
   margin: 0;
 }
@@ -219,18 +218,22 @@
 }
 
 /* =====================================================
-   Mobile: no top gap, no background, responsive grid
+   Mobile (<=767px): stacked cards
    - default (<=499px): 1 card per row
    - 500px-767px: 2 cards per row
+   NOTE: negative margin-top removed (it was overlapping
+   the previous HomeTextPage section)
    ===================================================== */
 .ensai_home_card_pg_mobile_section {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: 1fr;
   align-items: stretch;
   gap: 16px;
   margin: 0;
-  padding: 0 16px 24px;
-  background: transparent;
+  padding: 48px 16px 32px;
+  background: #0a0e14;
   box-sizing: border-box;
 }
 
@@ -288,28 +291,25 @@
   .ensai_home_card_pg_mobile_section {
     grid-template-columns: repeat(2, 1fr);
     gap: 18px;
-    padding: 0 20px 28px;
-      margin-top: -210px;
+    padding: 56px 20px 36px;
   }
 
   .ensai_home_card_pg_mobile_img {
-    height:210px;
+    height: 210px;
   }
 }
 
-/* 300px - 499px: 1 card per row (explicit, matches default) */
+/* 300px - 499px: 1 card per row */
 @media (min-width: 300px) and (max-width: 499px) {
   .ensai_home_card_pg_mobile_section {
     grid-template-columns: 1fr;
-      margin-top: -210px;
   }
 }
 
 /* Extra-small Android breakpoint */
 @media (max-width: 360px) {
   .ensai_home_card_pg_mobile_section {
-
-    margin-top: -210px;
+    padding: 40px 12px 28px;
   }
 
   .ensai_home_card_pg_mobile_img {

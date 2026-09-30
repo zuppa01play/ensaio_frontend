@@ -269,6 +269,7 @@
   margin-top: 20px;
   font-size: clamp(1rem, 1.6vw, 1.125rem);
   color: #9aa6b8;
+  text-align: justify;
 }
 
 /* ================= STATS ================= */
@@ -305,6 +306,7 @@
 .ensai_home_text_pg_stat_text {
   font-size: 15px;
   color: #a6b1c2;
+  text-align: justify;
 }
 
 /* ================= STEPS ================= */
