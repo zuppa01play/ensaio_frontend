@@ -20,7 +20,7 @@ const SECTIONS = [
     intro:
       "Every coordinate is anchored to a mathematical model of the Earth, so ground survey data and airborne data always agree.",
     points: [
-      "Mathematical reference ellipsoids: GRS80 and WGS84",
+      "Mathematical reference ellipsoids: ECEF (Earth Centered Earth Fixed) , NED-Z and WGS84",
       "Map projections: UTM and SPCS",
       "Geoid undulation models for converting GNSS heights",
     ],

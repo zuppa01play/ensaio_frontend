@@ -18,6 +18,7 @@ import Photogrammatric from "./Components/HomeCaseStudies/HomeSubCaseStudies/Pho
 import CaseMissionPlanning from "./Components/HomeCaseStudies/HomeSubCaseStudies/CaseMissionPlanning/CaseMissionPlanning";
 import HomeTextPage from "./Components/HomeTextPage/HomeTextPage";
 import Dronesection from "./Components/DroneGPS/Dronesection"
+import AboutPage from "./Pages/AboutPage/AboutPage";
 const Home = () => (
   <>
     <Dronesection />
@@ -42,7 +43,7 @@ function App() {
             <Route path="/" element={<Home />} />
 
             <Route path="/ensai_why" element={<WhyEnSai />} />
-
+  <Route path="/about" element={<AboutPage />} />
             <Route path="/case_fly" element={<GisPage />} />
 
             <Route
