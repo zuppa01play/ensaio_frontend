@@ -7,89 +7,89 @@ const HERO_IMG =
 
 const PILLARS = [
   {
-    id: "01",
-    name: "MISSION",
-    title: "Clear Objectives & Rigorous Parameters",
-    focus: "Understand exactly what needs to be achieved.",
-    points: [
-      "Ingest and define deliverables, local geodetic CRS and vertical datums.",
-      "Establish strict geodetic tolerances, GSD limits and ASPRS Class 1 accuracy thresholds.",
-      "Synchronize client deliverable specifications directly into the flight design.",
+
+   
+    title: "Exact Datums & Spatial Tolerances",
+   points: [
+      "Define Coordinate Reference Systems (CRS), horizontal datums (WGS84, ITRF, UTM, State Plane) and vertical height references.",
+      "Model geoid undulation separation (N) between ellipsoidal heights (h) and orthometric elevations (H) using EGM2008 and GEOID18.",
+      "Establish rigorous ASPRS Class 1 / Class 2 vertical and horizontal RMSE tolerances.",
     ],
   },
   {
-    id: "02",
-    name: "REHEARSAL",
-    title: "Full 3D Desktop Validation",
-    focus: "Validate the exact mission before physical crew deployment.",
+
+   
+    title: "Multi-Constellation Validation",
     points: [
-      "Place the exact flight path into a high-fidelity 3D digital surface twin.",
-      "Simulate forward overlap (70%–80%) and side overlap (30%–60%) across steep relief.",
-      "Model solar ephemeris to detect terrain shadows and BVLOS radio line-of-sight masking.",
-      
-    ],
+      "Forecast orbital ephemeris across GPS (USA), Galileo (EU), GLONASS (RU) and BeiDou (CN) for the exact mission time window.",
+      "Pre-calculate 3D Positional Dilution of Precision (PDOP), Horizontal DOP (HDOP) and Vertical DOP (VDOP) envelopes.",
+      "Identify satellite signal occlusion, mountain ridge shadowing and vegetation canopy cycle slip risks.",
+   ],
   },
   {
-    id: "03",
-    name: "CERTAINTY",
-    title: "Evidence-Based Decision Governance",
-    focus: "Make better-informed, auditable operational decisions.",
-    points: [
-      "Replace subjective pilot intuition with mathematical certainty.",
-      "Generate an auditable Digital Rehearsal Certificate and mission audit log.",
-      "Protect crew safety, eliminate re-flights and guarantee first-pass acceptance.",
+
+    name: "SUB-CENTIMETER CERTAINTY",
+    title: "Certified Geodetic Ground Truth",
+   points: [
+      "Eliminate multipath reflections and guarantee fixed carrier-phase integer ambiguity resolution.",
+      "Verify shutter-synchronized GNSS geotagging against camera Antenna Phase Center (APC) lever-arm offsets.",
+      "Issue an auditable Geodetic Rehearsal Certificate certifying zero field re-measurements.",
     ],
   },
 ];
 
 const AUDIENCE = [
   {
-    title: "Survey & Cadastral Mapping",
-    text: "Validating boundary surveys, geodetic control networks and high-precision base maps across complex terrain.",
+    title: "Licensed Geodetic & Cadastral Surveyors",
+    text: "Ensuring legal boundary surveys, control network monuments and basemaps meet statutory geodetic accuracy.",
   },
   {
-    title: "GIS Operations & Data Centers",
-    text: "Ensuring remote sensing datasets meet strict geodetic compliance before multi-terabyte ingestion.",
+    title: "RTK / PPK Drone & Aerial LiDAR Teams",
+    text: "Eliminating aerial geotagging drift, cycle slips and sensor lever-arm offsets before takeoff.",
   },
   {
-    title: "UAV / Drone Fleet Operators",
-    text: "Moving enterprise operations from VLOS to high-stakes Beyond Visual Line of Sight (BVLOS).",
+    title: "GIS Operations & Spatial Database Directors",
+    text: "Guaranteeing clean spatial alignment and seamless geodetic ingestion across enterprise GIS layers.",
   },
   {
-    title: "Civil Engineering & AEC",
-    text: "Pre-verifying cut-and-fill volumetrics, corridor rights-of-way and BIM / digital twin integrations.",
+    title: "Civil Engineering & AEC Survey Crews",
+    text: "Eliminating coordinate mismatch and cut-and-fill volumetric errors between site benchmarks and design models.",
   },
   {
-    title: "Energy & Power Utilities",
-    text: "Rehearsing transmission line inspections, pipeline rights-of-way and solar farm thermography.",
+    title: "Linear Infrastructure & Corridor Utilities",
+    text: "Rehearsing long-range pipeline and powerline BVLOS GPS baselines spanning multiple geodetic zones.",
   },
   {
-    title: "Open-Pit Mining & Aggregates",
-    text: "Guaranteeing highwall monitoring, bench progression mapping and precise inventory volumetrics.",
+    title: "Mining & Heavy Earthwork Operations",
+    text: "Maintaining continuous GNSS control across deep open pits and moving highwalls.",
   },
- 
+
 ];
 
 const TECH = [
   {
-    title: "True 3D Terrain Ingestion",
-    text: "Continuous high-resolution DSM/DTM integration with adaptive terrain-following AGL tracking.",
+    title: "Multi-Constellation Satellite Ephemeris Engine",
+    text: "Real-time orbital prediction across 4 major constellations (GPS, Galileo, GLONASS, BeiDou) to maximize visible satellite count and geometric strength.",
   },
   {
-    title: "Computational Photogrammetry Engine",
-    text: "Predicts stereoscopic base-to-height ratios (B/H), pixel scale shifts and dense point cloud density before flight.",
+    title: "PDOP & HDOP Degradation Forecaster",
+    text: "Calculates dilution of precision along the full survey corridor, flagging poor satellite geometry windows before mobilizing.",
   },
   {
-    title: "Solar Ephemeris & Lighting Simulator",
-    text: "Models sun azimuth and elevation for the exact hour of flight to prevent canyon shadows and radiometric blowout.",
+    title: "RTK / PPK Baseline Feasibility",
+    text: "Simulates dual-frequency (L1/L2/L5) carrier-phase baselines against CORS, VRS and physical base station setups.",
   },
   {
-    title: "Aerodynamic & Battery Fatigue Modeling",
-    text: "Accounts for climb rates, headwind vectors, payload draw and emergency return-to-home energy budgets.",
+    title: "Terrain Masking & Horizon Multipath Analysis",
+    text: "Integrates high-resolution elevation models (DEM/DTM) to expose satellite signal reflections off canyon walls, pit highwalls and urban structures.",
   },
   {
-    title: "Airspace & Obstacle Intelligence",
-    text: "Correlates transmission towers, communication masts, canopy heights and restricted airspace zones.",
+    title: "Datum & Geoid Transformation Verification",
+    text: "Pre-computes coordinate shifts between global ellipsoids and local ground control networks to avoid vertical datum errors.",
+  },
+  {
+    title: "ASPRS Class 1 Spatial Compliance Engine",
+    text: "Validates that combined GPS, sensor timing and Ground Control Point (GCP) distribution will achieve sub-centimeter (±1.5 cm) geodetic RMSE.",
   },
 ];
 
@@ -158,7 +158,6 @@ const AboutPage = () => {
       targets.forEach((el) => el.classList.add("ensai_about_pg_reveal_in"));
       return;
     }
-
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -175,12 +174,9 @@ const AboutPage = () => {
     return () => observer.disconnect();
   }, []);
 
-
   useEffect(() => {
     document.querySelector("#root")?.scrollIntoView({ behavior: "smooth" });
   }, []);
-
-
 
   return (
     <div className="ensai_about_pg_page" ref={pageRef}>
@@ -195,23 +191,10 @@ const AboutPage = () => {
 
         <div className="ensai_about_pg_container">
           <div className="ensai_about_pg_hero_inner" ref={innerRef}>
-          
-
             <h1 className="ensai_about_pg_h1 ensai_about_pg_reveal">
-             FROM GEOSPATIAL UNCERTAINTY. INTO OPERATIONAL CERTAINTY.
+              FROM GEOSPATIAL UNCERTAINTY. INTO OPERATIONAL CERTAINTY.
               <span className="ensai_about_pg_h1_accent"> Into Certainty.</span>
             </h1>
-
-      <br/>
-        <br/>
-
-            <blockquote className="ensai_about_pg_thesis ensai_about_pg_reveal">
-              <span className="ensai_about_pg_thesis_label">
-                Core Operational Thesis
-              </span>
-              &ldquo;The most important time to discover a mission problem is
-              before the mission begins.&rdquo;
-            </blockquote>
           </div>
         </div>
       </section>
@@ -223,27 +206,38 @@ const AboutPage = () => {
             <div className="ensai_about_pg_reveal">
               <span className="ensai_about_pg_kicker">Executive Overview</span>
               <h2 className="ensai_about_pg_h2">
-                The enterprise Digital Rehearsal platform for high-consequence
-                geospatial missions.
+                The enterprise GNSS Satellite Positioning &amp; Geodetic
+                Rehearsal platform for professional surveyors, geodesists, GIS
+                mapping teams and high-consequence drone operations.
               </h2>
+<br/>
+<br/>
+              <blockquote className="ensai_about_pg_quote">
+                <span className="ensai_about_pg_quote_label">
+                  Core Operational Mandate
+                </span>
+                &ldquo;Centimeter-level GPS accuracy begins before the rover,
+                sensor, or aircraft leaves the ground.&rdquo;
+              </blockquote>
             </div>
 
             <div className="ensai_about_pg_copy ensai_about_pg_reveal">
               <p>
-                enSaio serves GIS surveying, photogrammetric mapping, drone
-                operations and high-consequence geospatial missions. In
-                conventional workflows, teams plan in abstract 2D tools and only
-                discover failures — terrain-induced overlap collapse, shadow
-                voids, sensor motion blur and battery exhaustion — after the
-                aircraft is already in the air.
+                enSaio is not a flight simulator or stick-training game. It is a
+                computational geodetic validation engine. Traditional survey
+                workflows rely on static planning tools and only discover
+                positioning failures — such as loss of satellite lock, severe
+                multipath reflection, carrier-phase ambiguity drops and RTK base
+                station baseline degradation — after field crews are already
+                deployed.
               </p>
               <p>
-                enSaio introduces Digital Rehearsal as a pre-mobilization
-                decision layer. By ingesting true 3D topography, exact camera
-                optics, atmospheric factors and aircraft aerodynamics, it gives
-                chief pilots, survey managers and project executives the
-                verifiable evidence needed for confident go/no-go decisions
-                before crews deploy to the field.
+                enSaio introduces Pre-Mobilization GPS Rehearsal. By modeling
+                orbital satellite ephemeris, local terrain horizon obstructions,
+                atmospheric ionospheric delays and geodetic datum
+                transformations in true 3D, enSaio provides the mathematical
+                certainty required to eliminate spatial errors and costly field
+                re-surveys.
               </p>
             </div>
           </div>
@@ -256,7 +250,7 @@ const AboutPage = () => {
           <div className="ensai_about_pg_head ensai_about_pg_reveal">
             <span className="ensai_about_pg_kicker">Strategic Mandate</span>
             <h2 className="ensai_about_pg_h2">
-              Bridging planning and execution.
+              Eliminating field geodetic uncertainty.
             </h2>
           </div>
 
@@ -264,8 +258,9 @@ const AboutPage = () => {
             <div className="ensai_about_pg_card ensai_about_pg_reveal">
               <span className="ensai_about_pg_badge">Our Vision</span>
               <p className="ensai_about_pg_card_text">
-                To make mission rehearsal a standard, non-negotiable decision
-                point in professional geospatial and autonomous flight
+                To make multi-constellation GNSS satellite rehearsal and
+                geodetic integrity validation the universal pre-mobilization
+                standard across professional surveying and geospatial
                 operations worldwide.
               </p>
             </div>
@@ -276,10 +271,10 @@ const AboutPage = () => {
             >
               <span className="ensai_about_pg_badge">Our Mission</span>
               <p className="ensai_about_pg_card_text">
-                To empower geospatial teams to identify operational uncertainty,
-                aerodynamic boundaries and data-quality risks before they become
-                catastrophic field costs, schedule disruptions or client
-                re-flights.
+                Empower surveying and mapping teams to eliminate GPS
+                loss-of-lock, RTK baseline collapse and coordinate datum
+                distortions before physical mobilization — guaranteeing
+                sub-centimeter spatial accuracy on the first pass.
               </p>
             </div>
           </div>
@@ -290,10 +285,8 @@ const AboutPage = () => {
       <section className="ensai_about_pg_section">
         <div className="ensai_about_pg_container">
           <div className="ensai_about_pg_head ensai_about_pg_reveal">
-            <span className="ensai_about_pg_kicker">Operational Pillars</span>
-            <h2 className="ensai_about_pg_h2">
-              Three integrated pillars of pre-flight assurance.
-            </h2>
+            <span className="ensai_about_pg_kicker">Geodetic Pillars</span>
+            <h2 className="ensai_about_pg_h2">The three geodetic pillars.</h2>
           </div>
 
           <div className="ensai_about_pg_pillars">
@@ -303,10 +296,8 @@ const AboutPage = () => {
                 className="ensai_about_pg_pillar ensai_about_pg_reveal"
                 style={{ transitionDelay: `${i * 90}ms` }}
               >
-                <span className="ensai_about_pg_pillar_num">{p.id}</span>
-                <span className="ensai_about_pg_pillar_name">{p.name}</span>
                 <h3 className="ensai_about_pg_h3">{p.title}</h3>
-                <p className="ensai_about_pg_pillar_focus">{p.focus}</p>
+           <br/>
                 <ul className="ensai_about_pg_list">
                   {p.points.map((pt) => (
                     <li key={pt}>{pt}</li>
@@ -324,7 +315,7 @@ const AboutPage = () => {
           <div className="ensai_about_pg_head ensai_about_pg_reveal">
             <span className="ensai_about_pg_kicker">Who We Serve</span>
             <h2 className="ensai_about_pg_h2">
-              Built for teams where mapping failure and mobilization losses are
+              Built for teams where positioning failure and field re-surveys are
               unacceptable.
             </h2>
           </div>
@@ -344,13 +335,13 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* ================= TECHNOLOGY CORE ================= */}
+      {/* ================= TECHNOLOGY ENGINE ================= */}
       <section className="ensai_about_pg_section">
         <div className="ensai_about_pg_container">
           <div className="ensai_about_pg_head ensai_about_pg_reveal">
-            <span className="ensai_about_pg_kicker">Technology Core</span>
+            <span className="ensai_about_pg_kicker">Technology Engine</span>
             <h2 className="ensai_about_pg_h2">
-              A proprietary geospatial simulation architecture.
+              The enSaio GPS &amp; Geodetic Technology Engine.
             </h2>
           </div>
 
@@ -380,25 +371,28 @@ const AboutPage = () => {
           <div className="ensai_about_pg_cta_box ensai_about_pg_reveal">
             <span className="ensai_about_pg_kicker">Get Started</span>
             <h2 className="ensai_about_pg_h2">
-              Ready to rehearse your next mission?
+              Ready to validate your GPS parameters?
             </h2>
+            <br />
             <p className="ensai_about_pg_cta_text">
-              See how enSaio fits into your existing GIS and UAV flight
-              workflows, or test your own flight parameters in the cockpit.
+              Discover how enSaio integrates with your existing GNSS receivers,
+              CORS networks and GIS survey pipelines, or evaluate satellite
+              geometry, base station baselines and coordinate datums in the
+              Digital Rehearsal engine.
             </p>
 
             <div className="ensai_about_pg_cta_btns">
               <button type="button" className="ensai_about_pg_btn_primary">
-                Schedule an Enterprise Briefing
+                Schedule an Enterprise Technical Briefing
               </button>
               <button type="button" className="ensai_about_pg_btn_secondary">
-                Launch the Digital Rehearsal Cockpit
+                Test Your Geodetic Parameters
               </button>
             </div>
-
+            <br />
             <p className="ensai_about_pg_cta_meta">
-              ensaio.com &middot; Enterprise Geospatial Solutions &amp; Mission
-              Audit Operations
+              ensaio.com &middot; Enterprise GNSS Positioning &amp; Geodetic
+              Rehearsal Infrastructure
             </p>
           </div>
         </div>

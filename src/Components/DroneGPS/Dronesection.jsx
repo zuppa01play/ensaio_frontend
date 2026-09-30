@@ -64,25 +64,25 @@ export default function DroneMission() {
     setPhase("playing");
 
     /* once it is in place (or after a short wait), snap exactly and lock */
-    const t0 = performance.now();
-    const settle = setInterval(() => {
-      const top = node.getBoundingClientRect().top;
-      if (Math.abs(top) < 2 || performance.now() - t0 > 1500) {
-        clearInterval(settle);
-        node.scrollIntoView({ behavior: "auto", block: "start" });
-        lockScroll();
-      }
-    }, 50);
+    // const t0 = performance.now();
+    // const settle = setInterval(() => {
+    //   const top = node.getBoundingClientRect().top;
+    //   if (Math.abs(top) < 2 || performance.now() - t0 > 1500) {
+    //     clearInterval(settle);
+    //     node.scrollIntoView({ behavior: "auto", block: "start" });
+    //     //lockScroll();
+    //   }
+    // }, 50);
 
     /* safety net: never leave the page locked if something goes wrong */
-    const failsafe = setTimeout(unlockScroll, (DURATION + 10) * 1000);
-    timersRef.current.push(settle, failsafe);
-  }, [player, lockScroll, unlockScroll]);
+    // const failsafe = setTimeout(unlockScroll, (DURATION + 10) * 1000);
+    // timersRef.current.push(settle, failsafe);
+  }, [player]);
 
   const handleEnded = useCallback(() => {
     setPhase("done");
-    unlockScroll();
-  }, [unlockScroll]);
+   // unlockScroll();
+  },);
 
   useEffect(() => {
     const node = rootRef.current;
@@ -104,9 +104,9 @@ export default function DroneMission() {
         clearInterval(t);
         clearTimeout(t);
       });
-      unlockScroll();
+      ///unlockScroll();
     },
-    [unlockScroll]
+   // [unlockScroll]
   );
 
   return (

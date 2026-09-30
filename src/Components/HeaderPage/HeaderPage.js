@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./HeaderPage.css";
+import HeaderImage from "./header.png"
 
 const NAV_LINKS = [
   { label: "Product", href: "/product" },
@@ -9,8 +10,7 @@ const NAV_LINKS = [
   { label: "Resources", href: "/resources" },
 ];
 
-const LOGO_URL =
-  "https://res.cloudinary.com/dk50cmtps/image/upload/v1789454511/ChatGPT_Image_Sep_15_2026_12_11_34_PM_m3uujm.png";
+const LOGO_URL = HeaderImage
 
 const HeaderPage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

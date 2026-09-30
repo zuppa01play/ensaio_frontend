@@ -49,13 +49,13 @@
   display: inline-flex;
   align-items: center;
   flex-shrink: 0;
-  border-radius: 50%;
+  border-radius:45%;
   padding: 5px;
   background-color: rgb(252, 249, 249);
 }
 
 .ensai_head_pg_logo_img {
-  height: 40px;
+  height: 50px;
   width: auto;
   display: block;
 }
@@ -292,7 +292,7 @@
   }
 
   .ensai_head_pg_logo_img {
-    height: 26px;
+    height: 36px;
   }
 
   .ensai_head_pg_panel {
