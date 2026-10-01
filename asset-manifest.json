@@ -1,20 +1,25 @@
 {
   "files": {
-    "main.css": "/ensaio_frontend/static/css/main.b09256ab.css",
-    "main.js": "/ensaio_frontend/static/js/main.64783cba.js",
+    "main.css": "/ensaio_frontend/static/css/main.a0c59420.css",
+    "main.js": "/ensaio_frontend/static/js/main.2e022625.js",
     "static/js/453.38564b24.chunk.js": "/ensaio_frontend/static/js/453.38564b24.chunk.js",
-    "static/media/hero.mp4": "/ensaio_frontend/static/media/hero.ebb0a3aa11d765c0b0f7.mp4",
+    "static/media/RealWorld.png": "/ensaio_frontend/static/media/RealWorld.309064d57a09afe086d2.png",
+    "static/media/Dianomic.png": "/ensaio_frontend/static/media/Dianomic.e5ffa3f209a32bb8dd20.png",
     "static/media/photogrammatric.png": "/ensaio_frontend/static/media/photogrammatric.dfbe0bf656a2b5b1cc08.png",
+    "static/media/Precision.png": "/ensaio_frontend/static/media/Precision.13cf148347124eb824e4.png",
     "static/media/gis.png": "/ensaio_frontend/static/media/gis.ec591869d5fe1f0030c2.png",
     "static/media/missionplaning.png": "/ensaio_frontend/static/media/missionplaning.ba3d91a3fd5d3eba1f78.png",
-    "static/media/header.png": "/ensaio_frontend/static/media/header.fff9542080a954d7d533.png",
+    "static/media/whyensaiImage.png": "/ensaio_frontend/static/media/whyensaiImage.60033c284c43f5b7b034.png",
+    "static/media/underconstruction.png": "/ensaio_frontend/static/media/underconstruction.c2c376a82a574e9cf7f9.png",
+    "static/media/Footer.png": "/ensaio_frontend/static/media/Footer.5593eaaa77b6e7a2ef64.png",
+    "static/media/header.png": "/ensaio_frontend/static/media/header.5593eaaa77b6e7a2ef64.png",
     "index.html": "/ensaio_frontend/index.html",
-    "main.b09256ab.css.map": "/ensaio_frontend/static/css/main.b09256ab.css.map",
-    "main.64783cba.js.map": "/ensaio_frontend/static/js/main.64783cba.js.map",
+    "main.a0c59420.css.map": "/ensaio_frontend/static/css/main.a0c59420.css.map",
+    "main.2e022625.js.map": "/ensaio_frontend/static/js/main.2e022625.js.map",
     "453.38564b24.chunk.js.map": "/ensaio_frontend/static/js/453.38564b24.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b09256ab.css",
-    "static/js/main.64783cba.js"
+    "static/css/main.a0c59420.css",
+    "static/js/main.2e022625.js"
   ]
 }
