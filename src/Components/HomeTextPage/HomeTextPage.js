@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import "./HomeTextPage.css";
+import { useNavigate } from "react-router-dom";
 
 const DRONES = [
   "WingtraRAY",
@@ -42,15 +43,137 @@ const STEPS = [
   },
 ];
 
-const HomeTextPage = () => {
-  return (
-    <div className="ensai_home_text_pg_page">
-      {/* ================= HERO ================= */}
-      <section className="ensai_home_text_pg_hero">
-        <div className="ensai_home_text_pg_bg_grid" />
-        <div className="ensai_home_text_pg_bg_orb ensai_home_text_pg_bg_orb_one" />
-        <div className="ensai_home_text_pg_bg_orb ensai_home_text_pg_bg_orb_two" />
+/* ------------------------------------------------------------------
+   PARALLAX SPEEDS
+   Each item moves at its own speed while you scroll, which creates
+   the layered depth effect. Bigger number = bigger shift.
+   Keep chip speeds small so neighbouring chips never touch.
+------------------------------------------------------------------- */
+const DRONE_SPEEDS = [0.03, 0.06, 0.02, 0.07, 0.04];
+const STAT_SPEEDS = [0.04, 0.09, 0.14];
+const STEP_SPEEDS = [0.04, 0.09, 0.14];
 
+const MAX_SHIFT_DISTANCE = 350; /* clamp so items never drift too far */
+
+const HomeTextPage = () => {
+  const navigate = useNavigate();
+  const pageRef = useRef(null);
+
+  const handleRequestDemo = () => {
+    navigate("/demo");
+  };
+
+  /* Scroll reveal + parallax for DRONES, STATS and STEPS */
+  useEffect(() => {
+    const root = pageRef.current;
+    if (!root) return undefined;
+
+    const reduceMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+    /* 1. Reveal when an item enters the screen */
+    const revealItems = root.querySelectorAll(".ensai_home_text_pg_reveal");
+    let observer = null;
+
+    if (reduceMotion || !("IntersectionObserver" in window)) {
+      revealItems.forEach((el) =>
+        el.classList.add("ensai_home_text_pg_reveal_in")
+      );
+    } else {
+      observer = new IntersectionObserver(
+        (entries) => {
+          let order = 0;
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              /* items that appear together get a small stagger */
+              entry.target.style.animationDelay = `${order * 0.12}s`;
+              entry.target.classList.add("ensai_home_text_pg_reveal_in");
+              observer.unobserve(entry.target);
+              order += 1;
+            }
+          });
+        },
+        { threshold: 0.15, rootMargin: "0px 0px -8% 0px" }
+      );
+      revealItems.forEach((el) => observer.observe(el));
+    }
+
+    if (reduceMotion) {
+      return () => {
+        if (observer) observer.disconnect();
+      };
+    }
+
+    /* 2. Scroll-linked parallax */
+    const groups = Array.from(
+      root.querySelectorAll("[data-parallax-group]")
+    );
+    let ticking = false;
+
+    const update = () => {
+      const viewportHeight = window.innerHeight;
+      /* softer movement on tablet / mobile, where cards are stacked */
+      const factor = window.innerWidth < 992 ? 0.35 : 1;
+
+      groups.forEach((group) => {
+        const rect = group.getBoundingClientRect();
+        if (rect.bottom < -200 || rect.top > viewportHeight + 200) return;
+
+        const delta = Math.max(
+          -MAX_SHIFT_DISTANCE,
+          Math.min(
+            MAX_SHIFT_DISTANCE,
+            rect.top + rect.height / 2 - viewportHeight / 2
+          )
+        );
+
+        group
+          .querySelectorAll("[data-parallax-speed]")
+          .forEach((item) => {
+            const speed = parseFloat(item.getAttribute("data-parallax-speed"));
+            item.style.translate = `0 ${(delta * speed * factor).toFixed(1)}px`;
+          });
+      });
+
+      ticking = false;
+    };
+
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        window.requestAnimationFrame(update);
+      }
+    };
+
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+      if (observer) observer.disconnect();
+      groups.forEach((group) =>
+        group
+          .querySelectorAll("[data-parallax-speed]")
+          .forEach((item) => {
+            item.style.translate = "";
+          })
+      );
+    };
+  }, []);
+
+  return (
+    <div className="ensai_home_text_pg_page" ref={pageRef}>
+
+      {/* Fixed background: stays still while the content scrolls over it */}
+      <div className="ensai_home_text_pg_bg_fixed" aria-hidden="true">
+        <div className="ensai_home_text_pg_bg_grid" />
+        <div className="ensai_home_text_pg_bg_overlay" />
+      </div>
+
+      <section className="ensai_home_text_pg_hero">
         <div className="ensai_home_text_pg_container">
           <span className="ensai_home_text_pg_eyebrow">
             <span className="ensai_home_text_pg_eyebrow_dot" />
@@ -62,10 +185,14 @@ const HomeTextPage = () => {
           </h1>
 
           <div className="ensai_home_text_pg_hero_btns">
-            <button type="button" className="ensai_home_text_pg_btn_primary">
+            <button
+              type="button"
+              className="ensai_home_text_pg_btn_primary"
+              onClick={handleRequestDemo}
+            >
               Request a Demo
             </button>
-            <button 
+            <button
               type="button"
               className="ensai_home_text_pg_btn_secondary"
             >
@@ -90,10 +217,17 @@ const HomeTextPage = () => {
             <p className="ensai_home_text_pg_compat_label">
               Rehearsal profiles ready for
             </p>
-            <br/>
-            <div className="ensai_home_text_pg_compat_track">
-              {DRONES.map((drone) => (
-                <span key={drone} className="ensai_home_text_pg_compat_chip">
+            <br />
+            <div
+              className="ensai_home_text_pg_compat_track"
+              data-parallax-group
+            >
+              {DRONES.map((drone, index) => (
+                <span
+                  key={drone}
+                  className="ensai_home_text_pg_compat_chip ensai_home_text_pg_reveal"
+                  data-parallax-speed={DRONE_SPEEDS[index % DRONE_SPEEDS.length]}
+                >
                   {drone}
                 </span>
               ))}
@@ -118,9 +252,13 @@ const HomeTextPage = () => {
             </p>
           </div>
 
-          <div className="ensai_home_text_pg_stats">
-            {STATS.map((stat) => (
-              <div key={stat.value} className="ensai_home_text_pg_stat_card">
+          <div className="ensai_home_text_pg_stats" data-parallax-group>
+            {STATS.map((stat, index) => (
+              <div
+                key={stat.value}
+                className="ensai_home_text_pg_stat_card ensai_home_text_pg_reveal"
+                data-parallax-speed={STAT_SPEEDS[index % STAT_SPEEDS.length]}
+              >
                 <h3 className="ensai_home_text_pg_stat_value">
                   {stat.value}
                 </h3>
@@ -141,9 +279,13 @@ const HomeTextPage = () => {
             </h2>
           </div>
 
-          <div className="ensai_home_text_pg_steps">
+          <div className="ensai_home_text_pg_steps" data-parallax-group>
             {STEPS.map((step, index) => (
-              <div key={step.id} className="ensai_home_text_pg_step_card">
+              <div
+                key={step.id}
+                className="ensai_home_text_pg_step_card ensai_home_text_pg_reveal"
+                data-parallax-speed={STEP_SPEEDS[index % STEP_SPEEDS.length]}
+              >
                 <span className="ensai_home_text_pg_step_num">
                   {step.id}
                 </span>

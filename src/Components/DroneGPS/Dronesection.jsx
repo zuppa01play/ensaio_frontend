@@ -15,13 +15,8 @@ export default function DroneMission() {
   const lockRef = useRef(null);
   const timersRef = useRef([]);
 
-  /* ---------------- scroll lock ---------------- */
-  const unlockScroll = useCallback(() => {
-    if (lockRef.current) {
-      lockRef.current();
-      lockRef.current = null;
-    }
-  }, []);
+
+
 
   const lockScroll = useCallback(() => {
     if (lockRef.current) return;
@@ -58,25 +53,11 @@ export default function DroneMission() {
     if (!node || startedRef.current) return;
     startedRef.current = true;
 
-    /* glide the section to the top of the screen */
+  
     node.scrollIntoView({ behavior: "smooth", block: "start" });
     player.restart();
     setPhase("playing");
 
-    /* once it is in place (or after a short wait), snap exactly and lock */
-    // const t0 = performance.now();
-    // const settle = setInterval(() => {
-    //   const top = node.getBoundingClientRect().top;
-    //   if (Math.abs(top) < 2 || performance.now() - t0 > 1500) {
-    //     clearInterval(settle);
-    //     node.scrollIntoView({ behavior: "auto", block: "start" });
-    //     //lockScroll();
-    //   }
-    // }, 50);
-
-    /* safety net: never leave the page locked if something goes wrong */
-    // const failsafe = setTimeout(unlockScroll, (DURATION + 10) * 1000);
-    // timersRef.current.push(settle, failsafe);
   }, [player]);
 
   const handleEnded = useCallback(() => {

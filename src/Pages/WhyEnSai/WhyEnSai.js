@@ -1,12 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import "./WhyEnSai.css";
-
-/* ---------------------------------------------------------------
-   Content sourced from the "Why enSaio" strategic briefing
-   (WP-ENSAIO-2026-WHY) — six imperatives, the tri-layer engine,
-   stakeholder alignment, competitive positioning and the
-   deployment sequence, all pulled from the document.
---------------------------------------------------------------- */
+import whyensaiImage from "./whyensaiImage.png";
 
 const imperatives = [
   {
@@ -105,21 +99,13 @@ const deploySteps = [
   { tag: "STEP 04", title: "Certified Go / No-Go Gate", text: "Operations directors receive a deterministic pass/fail recommendation and a tamper-proof audit certificate." },
 ];
 
-const BG_IMG =
-  "https://res.cloudinary.com/dk50cmtps/image/upload/v1790061192/ChatGPT_Image_Sep_22_2026_12_42_59_PM_pw5jcy.png";
-const FOUNDER_IMG =
-  "https://res.cloudinary.com/dk50cmtps/image/upload/v1787305095/Sai_uudlzi.png";
-
+const BG_IMG = whyensaiImage;
 const WhyEnSai = () => {
   const heroRef = useRef(null);
   const bgRef = useRef(null);
   const progressRef = useRef(null);
   const tiltRef = useRef(null);
 
-  /* Top scroll-progress bar (whole page) + a bounded parallax drift
-     on the hero image panel, computed off the panel's own position
-     so it can never drift the image out of its frame on a long
-     page — unlike a raw window.scrollY offset would. */
   useEffect(() => {
     let ticking = false;
 
@@ -193,7 +179,9 @@ const WhyEnSai = () => {
 
   return (
     <div className="ensai_why_pg_wrap">
+         <br/>   <br/>   <br/>   <br/> 
       <div className="ensai_why_pg_progress_track">
+        <br/>
         <div className="ensai_why_pg_progress_bar" ref={progressRef} />
       </div>
 

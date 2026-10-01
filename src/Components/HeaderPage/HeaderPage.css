@@ -35,7 +35,7 @@
   justify-content: space-between;
   gap: 20px;
   max-width: 1180px;
-  margin: 16px auto 0;
+  margin: 1px auto 0;
   padding: 10px 16px 10px 20px;
   background: var(--ensai-glass);
   border: 1px solid var(--ensai-border);
@@ -49,13 +49,13 @@
   display: inline-flex;
   align-items: center;
   flex-shrink: 0;
-  border-radius:45%;
-  padding: 5px;
+border-radius:50%;
+  padding: 10px;
   background-color: rgb(252, 249, 249);
 }
 
 .ensai_head_pg_logo_img {
-  height: 50px;
+  height:47px;
   width: auto;
   display: block;
 }

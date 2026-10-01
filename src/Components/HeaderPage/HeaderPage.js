@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./HeaderPage.css";
-import HeaderImage from "./header.png"
+import HeaderImage from "./header.png";
 
 const NAV_LINKS = [
-  { label: "Product", href: "/product" },
+  { label: "Demo", href: "/demo" },
   { label: "About", href: "/about" },
   { label: "Why enSaio", href: "/ensai_why" },
-  { label: "Resources", href: "/resources" },
+  { label: "Tutorials", href: "/tutorials" },
 ];
 
-const LOGO_URL = HeaderImage
+const LOGO_URL = HeaderImage;
 
 const HeaderPage = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -64,12 +64,13 @@ const HeaderPage = () => {
 
         {/* Desktop CTA */}
         <div className="ensai_head_pg_actions_desktop">
-          <a
-            href="#get-started"
+          <Link
+            to="/demo"
             className="ensai_head_pg_cta_btn"
+            onClick={closeMenu}
           >
             Get started
-          </a>
+          </Link>
         </div>
 
         {/* Mobile Menu Button */}
@@ -142,13 +143,13 @@ const HeaderPage = () => {
           </ul>
 
           {/* Mobile CTA */}
-          <a
-            href="#get-started"
+          <Link
+            to="/demo"
             className="ensai_head_pg_panel_cta"
             onClick={closeMenu}
           >
             Get started
-          </a>
+          </Link>
         </div>
       </div>
     </header>

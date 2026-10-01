@@ -7,12 +7,14 @@
 }
 
 .ensai_home_text_pg_page {
+  position: relative;
+  isolation: isolate;
+  clip-path: inset(0);
   width: 100%;
   min-height: 100vh;
   background: #0a0e14;
   color: #e8edf5;
-  font-family: "Inter", "Segoe UI", system-ui, -apple-system, Roboto, Arial,
-    sans-serif;
+ font-family: "Orbitron", sans-serif;
   line-height: 1.6;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
@@ -34,9 +36,43 @@
   padding: 0 24px;
 }
 
+/* ================= FIXED BACKGROUND ================= */
+/* The image never moves; only the content scrolls above it. */
+.ensai_home_text_pg_bg_fixed {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.ensai_home_text_pg_bg_grid {
+  position: absolute;
+  /* negative inset hides the soft edges that blur creates */
+  inset: -24px;
+  background-image: url("https://plain-apac-prod-public.komododecks.com/202610/01/lZXDsT3XSXRzQica27Xj/image.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  /* blur + filter: tune these two numbers to taste */
+  filter: blur(1px) brightness(1.7) saturate(0.9);
+}
+
+.ensai_home_text_pg_bg_overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(10, 14, 20, 0.45) 0%,
+    rgba(10, 14, 20, 0.6) 55%,
+    rgba(10, 14, 20, 0.75) 100%
+  );
+}
+
 /* ================= HERO ================= */
 .ensai_home_text_pg_hero {
   position: relative;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -44,60 +80,13 @@
   padding: 120px 0 80px;
   text-align: center;
   overflow: hidden;
-  background: #0a0e14;
+  background: transparent;
 }
 
 .ensai_home_text_pg_hero .ensai_home_text_pg_container {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.ensai_home_text_pg_bg_grid {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  background-image: linear-gradient(
-      rgba(255, 255, 255, 0.035) 1px,
-      transparent 1px
-    ),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
-  background-size: 56px 56px;
-  -webkit-mask-image: radial-gradient(
-    ellipse at center,
-    #000 30%,
-    transparent 75%
-  );
-  mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
-  pointer-events: none;
-}
-
-.ensai_home_text_pg_bg_orb {
-  position: absolute;
-  z-index: 0;
-  border-radius: 50%;
-  filter: blur(110px);
-  opacity: 0.18;
-  pointer-events: none;
-}
-
-.ensai_home_text_pg_bg_orb_one {
-  top: -160px;
-  left: 50%;
-  width: 520px;
-  height: 520px;
-  margin-left: -420px;
-  background: #2f7bff;
-}
-
-.ensai_home_text_pg_bg_orb_two {
-  bottom: -200px;
-  left: 50%;
-  width: 460px;
-  height: 460px;
-  margin-left: 0;
-  background: #00d0b0;
-  opacity: 0.1;
 }
 
 .ensai_home_text_pg_eyebrow {
@@ -151,7 +140,7 @@
   gap: 10px;
   min-height: 50px;
   padding: 0 28px;
-  font-family: inherit;
+font-family: "Orbitron", sans-serif;
   font-size: 15px;
   font-weight: 600;
   line-height: 1;
@@ -226,16 +215,18 @@
 /* ================= SHARED SECTION ================= */
 .ensai_home_text_pg_why,
 .ensai_home_text_pg_how {
+  position: relative;
+  z-index: 1;
   padding: 96px 0;
-  background: #0a0e14;
 }
 
 .ensai_home_text_pg_why {
   border-top: 1px solid #161d29;
 }
 
+/* semi-transparent so the fixed background still shows through */
 .ensai_home_text_pg_how {
-  background: #0d1219;
+  background: rgba(13, 18, 25, 0.55);
   border-top: 1px solid #161d29;
 }
 
@@ -376,6 +367,31 @@
   pointer-events: none;
 }
 
+/* ================= SCROLL REVEAL + PARALLAX (DRONES / STATS / STEPS) ================= */
+/* Parallax uses the separate "translate" property (set from JS),
+   reveal uses "opacity" + "scale", and your hover uses "transform",
+   so the three effects never fight each other. */
+.ensai_home_text_pg_reveal {
+  opacity: 0;
+  will-change: translate;
+}
+
+.ensai_home_text_pg_reveal_in {
+  animation: ensai_home_text_pg_reveal_up 0.85s cubic-bezier(0.22, 0.8, 0.3, 1)
+    both;
+}
+
+@keyframes ensai_home_text_pg_reveal_up {
+  from {
+    opacity: 0;
+    scale: 0.9;
+  }
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
 /* ================= TABLET ================= */
 @media (max-width: 991px) {
   .ensai_home_text_pg_hero {
@@ -460,13 +476,6 @@
   .ensai_home_text_pg_step_card {
     padding: 24px 20px;
   }
-
-  .ensai_home_text_pg_bg_orb_one,
-  .ensai_home_text_pg_bg_orb_two {
-    width: 300px;
-    height: 300px;
-    margin-left: -150px;
-  }
 }
 
 /* ================= LARGE SCREENS ================= */
@@ -480,5 +489,12 @@
 @media (prefers-reduced-motion: reduce) {
   .ensai_home_text_pg_page * {
     transition: none !important;
+  }
+
+  .ensai_home_text_pg_reveal,
+  .ensai_home_text_pg_reveal_in {
+    opacity: 1;
+    animation: none;
+    translate: none !important;
   }
 }

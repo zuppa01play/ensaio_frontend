@@ -1,24 +1,28 @@
 import React from "react";
 import "./HomeMission.css";
+import realtimeImage from "./HomeMissionImage/RealWorld.png";
+import dynamicImage from "./HomeMissionImage/Dianomic.png";
+import precisionImage from "./HomeMissionImage/Precision.png";
+
 
 const CARDS_DATA = [
   {
     tag: "Waypoint 01",
     badge: "Real-World Scenarios",
     desc: "Environments built to rehearse the real mission.",
-    img: "https://res.cloudinary.com/dk50cmtps/image/upload/v1789630359/b4b884d4-94e6-4df1-85d7-f09ab1fc7361_v0xluu.png",
+    img:realtimeImage
   },
   {
     tag: "Waypoint 02",
     badge: "Dynamic Environments",
     desc: "Snowfields, coastlines, and low-visibility terrain to rehearse the conditions your mission will actually face.",
-    img: "https://res.cloudinary.com/dk50cmtps/image/upload/v1789630638/54b186e5-d3cd-4af1-a641-ae12c47444c3_rvl2xs.png",
+    img: dynamicImage,
   },
   {
     tag: "Waypoint 03",
     badge: "Precision FPV Courses",
     desc: "Tight structures and targeting reticles for FPV racing and precision-approach practice.",
-    img: "https://res.cloudinary.com/dk50cmtps/image/upload/v1789631893/203608d9-9629-49cb-9824-e750d25a0813_m1pser.png",
+    img: precisionImage,
   },
 ];
 

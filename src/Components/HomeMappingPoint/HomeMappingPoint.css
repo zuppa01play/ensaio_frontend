@@ -1,0 +1,470 @@
+/* All classes start with ensai_home_mapping_pg_  |  no :root  |  mobile-first */
+
+.ensai_home_mapping_pg_section,
+.ensai_home_mapping_pg_section *,
+.ensai_home_mapping_pg_section *::before,
+.ensai_home_mapping_pg_section *::after {
+  box-sizing: border-box;
+}
+
+.ensai_home_mapping_pg_section {
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+  overflow: hidden;
+  padding: 64px 0;
+  color: #e8edf5;
+  background: #0a0e14;
+  font-family: "Inter", "Segoe UI", system-ui, -apple-system, Roboto, Arial,
+    sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+.ensai_home_mapping_pg_section h2,
+.ensai_home_mapping_pg_section h3,
+.ensai_home_mapping_pg_section p,
+.ensai_home_mapping_pg_section ul {
+  margin: 0;
+}
+
+/* ---------- Background glow ---------- */
+
+.ensai_home_mapping_pg_glow {
+  position: absolute;
+  z-index: 0;
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+}
+
+.ensai_home_mapping_pg_glow_one {
+  top: -120px;
+  left: -140px;
+  width: 420px;
+  height: 420px;
+  background: #2f7bff;
+  opacity: 0.16;
+}
+
+.ensai_home_mapping_pg_glow_two {
+  right: -160px;
+  bottom: -120px;
+  width: 420px;
+  height: 420px;
+  background: #00d0b0;
+  opacity: 0.09;
+}
+
+.ensai_home_mapping_pg_container {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* ---------- Heading ---------- */
+
+.ensai_home_mapping_pg_head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 760px;
+  margin: 0 auto 40px;
+  text-align: center;
+}
+
+.ensai_home_mapping_pg_kicker {
+  display: inline-block;
+  margin-bottom: 16px;
+  padding: 7px 14px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #9fc2ff;
+  background: rgba(47, 123, 255, 0.1);
+  border: 1px solid rgba(47, 123, 255, 0.3);
+  border-radius: 999px;
+}
+
+.ensai_home_mapping_pg_title {
+  font-size: clamp(1.6rem, 5vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1.18;
+  letter-spacing: -0.015em;
+  color: #ffffff;
+}
+
+.ensai_home_mapping_pg_lead {
+  margin-top: 16px;
+  font-size: clamp(0.98rem, 1.6vw, 1.1rem);
+  color: #9aa6b8;
+}
+
+/* ---------- Cards ---------- */
+
+.ensai_home_mapping_pg_grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
+}
+
+.ensai_home_mapping_pg_card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  padding: 24px 20px;
+  overflow: hidden;
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.05) 0%,
+    rgba(255, 255, 255, 0.015) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 20px;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  transition: border-color 0.3s ease, transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* soft accent light in the top corner of each card */
+.ensai_home_mapping_pg_card::before {
+  content: "";
+  position: absolute;
+  top: -90px;
+  right: -90px;
+  width: 220px;
+  height: 220px;
+  background: radial-gradient(
+    circle,
+    rgba(47, 123, 255, 0.22) 0%,
+    rgba(47, 123, 255, 0) 70%
+  );
+  pointer-events: none;
+}
+
+.ensai_home_mapping_pg_card:hover {
+  border-color: rgba(47, 123, 255, 0.5);
+  transform: translateY(-4px);
+  box-shadow: 0 18px 50px rgba(20, 60, 140, 0.25);
+}
+
+.ensai_home_mapping_pg_card_top {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.ensai_home_mapping_pg_icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  color: #9fc2ff;
+  background: rgba(47, 123, 255, 0.12);
+  border: 1px solid rgba(47, 123, 255, 0.3);
+  border-radius: 14px;
+}
+
+.ensai_home_mapping_pg_num {
+  font-size: 2.2rem;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: rgba(255, 255, 255, 0.1);
+}
+
+.ensai_home_mapping_pg_card_title {
+  position: relative;
+  font-size: 1.2rem;
+  font-weight: 700;
+  line-height: 1.3;
+  color: #ffffff;
+}
+
+/* ---------- Key stat ---------- */
+
+.ensai_home_mapping_pg_stat {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin: 18px 0 20px;
+  padding: 14px 16px;
+  background: rgba(10, 14, 20, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+}
+
+.ensai_home_mapping_pg_stat_value {
+  font-size: clamp(1.5rem, 6vw, 2rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: #5b9bff;
+  background: linear-gradient(90deg, #ffffff 0%, #7fb0ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.ensai_home_mapping_pg_stat_label {
+  font-size: 13px;
+  color: #93a1b6;
+}
+
+/* ---------- Problem list ---------- */
+
+.ensai_home_mapping_pg_label {
+  position: relative;
+  margin-bottom: 12px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #7c8798;
+}
+
+.ensai_home_mapping_pg_list {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 0;
+  list-style: none;
+}
+
+.ensai_home_mapping_pg_list_item {
+  position: relative;
+  padding-left: 22px;
+  font-size: 15px;
+  line-height: 1.6;
+  color: #b4bfd0;
+  text-align: justify;
+}
+
+.ensai_home_mapping_pg_list_item::before {
+  content: "";
+  position: absolute;
+  top: 0.62em;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #2f7bff;
+  box-shadow: 0 0 0 3px rgba(47, 123, 255, 0.18);
+}
+
+/* ---------- enSaio angle ---------- */
+
+.ensai_home_mapping_pg_angle {
+  position: relative;
+  margin-top: auto;
+  padding: 16px 16px 16px 18px;
+  background: linear-gradient(
+    135deg,
+    rgba(47, 123, 255, 0.16) 0%,
+    rgba(0, 208, 176, 0.07) 100%
+  );
+  border: 1px solid rgba(47, 123, 255, 0.32);
+  border-left: 3px solid #2f7bff;
+  border-radius: 14px;
+}
+
+.ensai_home_mapping_pg_list + .ensai_home_mapping_pg_angle {
+  margin-top: 24px;
+}
+
+.ensai_home_mapping_pg_angle_label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #8fe8d8;
+}
+
+.ensai_home_mapping_pg_angle_label svg {
+  flex: 0 0 auto;
+}
+
+.ensai_home_mapping_pg_angle_text {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.6;
+  color: #eef3fb;
+  text-align: justify;
+}
+
+/* ---------- Bottom line ---------- */
+
+.ensai_home_mapping_pg_bottom {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 28px;
+  padding: 28px 20px;
+  text-align: center;
+  background:
+    linear-gradient(#0d1219, #0d1219) padding-box,
+    linear-gradient(120deg, #2f7bff, rgba(47, 123, 255, 0.15) 45%, #00d0b0)
+      border-box;
+  border: 1px solid transparent;
+  border-radius: 20px;
+}
+
+.ensai_home_mapping_pg_bottom_label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #2f7bff;
+}
+
+.ensai_home_mapping_pg_bottom_text {
+  max-width: 760px;
+  font-size: clamp(1.05rem, 3.6vw, 1.5rem);
+  font-weight: 600;
+  line-height: 1.45;
+  color: #dbe4f2;
+  text-align: justify;
+}
+
+.ensai_home_mapping_pg_bottom_text strong {
+  color: #ffffff;
+  font-weight: 800;
+}
+
+/* ---------- Scroll reveal ---------- */
+
+.ensai_home_mapping_pg_reveal {
+  opacity: 0;
+}
+
+.ensai_home_mapping_pg_reveal_in {
+  animation: ensai_home_mapping_pg_rise 0.8s cubic-bezier(0.22, 0.8, 0.3, 1)
+    both;
+}
+
+@keyframes ensai_home_mapping_pg_rise {
+  from {
+    opacity: 0;
+    translate: 0 28px;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+/* ==================================================================
+   RESPONSIVE
+   ================================================================== */
+
+/* Small phones (360px) */
+@media (max-width: 360px) {
+  .ensai_home_mapping_pg_card {
+    padding: 20px 16px;
+  }
+
+  .ensai_home_mapping_pg_card_title {
+    font-size: 1.1rem;
+  }
+
+  .ensai_home_mapping_pg_list_item,
+  .ensai_home_mapping_pg_angle_text {
+    font-size: 14px;
+  }
+}
+
+/* Large phones / small tablets */
+@media (min-width: 576px) {
+  .ensai_home_mapping_pg_container {
+    padding: 0 24px;
+  }
+
+  .ensai_home_mapping_pg_card {
+    padding: 28px 26px;
+  }
+
+  .ensai_home_mapping_pg_bottom {
+    padding: 34px 32px;
+  }
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  .ensai_home_mapping_pg_section {
+    padding: 80px 0;
+  }
+
+  .ensai_home_mapping_pg_head {
+    margin-bottom: 52px;
+  }
+
+  .ensai_home_mapping_pg_kicker {
+    font-size: 12px;
+  }
+}
+
+/* Desktop: 2 x 2 grid */
+@media (min-width: 992px) {
+  .ensai_home_mapping_pg_section {
+    padding: 100px 0;
+  }
+
+  .ensai_home_mapping_pg_grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+  }
+
+  .ensai_home_mapping_pg_card {
+    padding: 32px 30px;
+  }
+
+  .ensai_home_mapping_pg_card_title {
+    font-size: 1.3rem;
+  }
+
+  .ensai_home_mapping_pg_bottom {
+    margin-top: 32px;
+    padding: 40px 48px;
+  }
+}
+
+/* Large screens */
+@media (min-width: 1600px) {
+  .ensai_home_mapping_pg_container {
+    max-width: 1280px;
+  }
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  .ensai_home_mapping_pg_reveal,
+  .ensai_home_mapping_pg_reveal_in {
+    opacity: 1;
+    animation: none;
+  }
+
+  .ensai_home_mapping_pg_card {
+    transition: none;
+  }
+
+  .ensai_home_mapping_pg_card:hover {
+    transform: none;
+  }
+}
